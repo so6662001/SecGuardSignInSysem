@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>登录 · 厂智访客</title>
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .auth { min-height:100vh; display:grid; grid-template-columns: 1.05fr .95fr; }
+  .auth-side { background: linear-gradient(150deg,#12224a,#0c1428); color:#fff; padding: 56px; display:flex; flex-direction:column; position:relative; overflow:hidden; }
+  .auth-side::after { content:""; position:absolute; width:360px; height:360px; border-radius:50%; background: radial-gradient(circle, rgba(47,107,237,.45), transparent 70%); bottom:-120px; left:-80px; }
+  .auth-form { display:flex; align-items:center; justify-content:center; padding: 40px; }
+  .form-box { width: 380px; max-width: 100%; }
+  .role-pick { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:22px; }
+  .role { border:1px solid var(--line-strong); border-radius:12px; padding:14px; text-align:center; cursor:pointer; transition:all .15s; }
+  .role.active { border-color:var(--brand); background:var(--brand-light); }
+  .role svg { width:22px; height:22px; margin-bottom:6px; color:var(--brand); }
+  .role .rt { font-weight:700; font-size:14px; }
+  .role .rd { font-size:12px; color:var(--text-3); }
+  @media (max-width: 860px){ .auth{grid-template-columns:1fr;} .auth-side{display:none;} }
+</style>
+</head>
+<body>
+<div class="auth">
+  <!-- 品牌侧 -->
+  <div class="auth-side">
+    <div class="brand" style="padding:0;">
+      <div class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V7l8-4v18"/><path d="M11 21V11l8 3v7"/><path d="M8 9h.01M8 13h.01M8 17h.01"/></svg></div>
+      <div class="name">厂智访客<small>FACTORY VISITOR</small></div>
+    </div>
+    <div style="margin:auto 0; position:relative; z-index:2;">
+      <h1 style="font-size:34px; font-weight:800; line-height:1.3;">让工厂访客登记<br>更简单、更智能</h1>
+      <p style="color:#9fb0d6; margin-top:18px; font-size:15px; max-width:420px;">替代手工登记本，进出记录实时同步至管理人员，随时查看与审核。</p>
+      <div style="margin-top:36px; display:flex; flex-direction:column; gap:16px;">
+        <div style="display:flex; align-items:center; gap:12px;"><div class="ico green" style="width:38px;height:38px;margin:0;border-radius:11px;display:grid;place-items:center;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div><span style="color:#d7deef">门卫大字号快速登记，无需培训</span></div>
+        <div style="display:flex; align-items:center; gap:12px;"><div class="ico green" style="width:38px;height:38px;margin:0;border-radius:11px;display:grid;place-items:center;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div><span style="color:#d7deef">记录云端同步，管理员手机可查</span></div>
+        <div style="display:flex; align-items:center; gap:12px;"><div class="ico green" style="width:38px;height:38px;margin:0;border-radius:11px;display:grid;place-items:center;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div><span style="color:#d7deef">￥60/月租用，开箱即用免运维</span></div>
+      </div>
+    </div>
+    <div style="color:#6b7690; font-size:13px; position:relative; z-index:2;">© 2026 厂智访客 · 保留所有权利</div>
+  </div>
+
+  <!-- 表单侧 -->
+  <div class="auth-form">
+    <div class="form-box">
+      <h2 style="font-size:24px; font-weight:800;">欢迎回来 👋</h2>
+      <p class="muted" style="margin:6px 0 26px;">请选择身份并登录您的工作台</p>
+
+      <div class="role-pick">
+        <div class="role active">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <div class="rt">门卫 / 前台</div><div class="rd">负责现场登记</div>
+        </div>
+        <div class="role">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg>
+          <div class="rt">管理人员</div><div class="rd">查看与审核</div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>账号 / 手机号</label>
+        <div class="input-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <input class="input" placeholder="请输入账号" value="menwei01">
+        </div>
+      </div>
+      <div class="field">
+        <label>密码</label>
+        <div class="input-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <input class="input" type="password" placeholder="请输入密码" value="123456">
+        </div>
+      </div>
+      <div class="flex items-center justify-between" style="margin-bottom:22px;">
+        <label class="flex items-center gap-8" style="font-size:13px; font-weight:500; margin:0;"><input type="checkbox" checked> 记住登录</label>
+        <a class="muted" style="font-size:13px; color:var(--brand);">忘记密码？</a>
+      </div>
+
+      <a href="checkin.html" class="btn btn-primary btn-lg btn-block">登 录</a>
+
+      <div class="hr-text">其他登录方式</div>
+      <div style="display:flex; gap:12px;">
+        <button class="btn btn-ghost btn-block" data-toast="演示环境：微信登录">
+          <svg viewBox="0 0 24 24" fill="#22b07d"><path d="M8.5 3C4.9 3 2 5.5 2 8.6c0 1.8 1 3.4 2.5 4.4L4 15l2.3-1.2c.7.2 1.4.3 2.2.3h.6c-.1-.4-.2-.9-.2-1.4 0-3 2.9-5.4 6.5-5.4h.6C15.3 4.6 12.2 3 8.5 3z"/></svg>
+          微信
+        </button>
+        <a href="dashboard.html" class="btn btn-ghost btn-block">管理员入口</a>
+      </div>
+      <div class="center muted" style="margin-top:24px; font-size:13px;">还没有账号？<a href="index.html" style="color:var(--brand); font-weight:600;">申请试用</a></div>
+    </div>
+  </div>
+</div>
+
+<script src="assets/app.js"></script>
+<script>
+  document.querySelectorAll('.role').forEach(function(r){
+    r.addEventListener('click', function(){
+      document.querySelectorAll('.role').forEach(function(x){x.classList.remove('active')});
+      r.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
