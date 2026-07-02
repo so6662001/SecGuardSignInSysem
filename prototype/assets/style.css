@@ -470,7 +470,42 @@ ul { list-style: none; }
 .order-line { display:flex; justify-content:space-between; padding:11px 0; border-bottom:1px dashed var(--line); font-size:14px; }
 .order-total { display:flex; justify-content:space-between; align-items:center; padding-top:14px; }
 
+/* ------------------------------ 定价档卡片 ------------------------------ */
+.tier-grid { display:grid; grid-template-columns: repeat(4,1fr); gap:18px; align-items:stretch; }
+.tier { background:#fff; border:1px solid var(--line); border-radius:18px; padding:26px 22px; display:flex; flex-direction:column; box-shadow:var(--shadow-sm); position:relative; transition:all .2s; }
+.tier:hover { transform:translateY(-4px); box-shadow:var(--shadow-lg); }
+.tier.featured { border:2px solid var(--brand); box-shadow:var(--shadow-lg); }
+.tier.dark { background:linear-gradient(160deg,#12224a,#0d1830); color:#fff; border:none; }
+.tier .badge-top { position:absolute; top:-13px; left:50%; transform:translateX(-50%); background:var(--brand); color:#fff; font-size:12px; font-weight:700; padding:5px 15px; border-radius:20px; white-space:nowrap; box-shadow:0 6px 14px rgba(47,107,237,.35); }
+.tier .tname { font-weight:800; font-size:17px; }
+.tier .tdesc { color:var(--text-2); font-size:12.5px; margin-top:4px; min-height:34px; }
+.tier.dark .tdesc { color:#9fb0d6; }
+.tier .tprice { font-size:32px; font-weight:900; margin:12px 0 2px; letter-spacing:-1px; }
+.tier .tprice small { font-size:14px; font-weight:500; color:var(--text-3); }
+.tier.dark .tprice small { color:#9fb0d6; }
+.tier ul { margin:16px 0; flex:1; }
+.tier li { display:flex; gap:8px; padding:7px 0; font-size:13px; color:var(--text-2); align-items:flex-start; }
+.tier.dark li { color:#d7deef; }
+.tier li svg { width:16px; height:16px; color:var(--success); flex-shrink:0; margin-top:2px; }
+
+/* 增值模块 / 硬件卡 */
+.addon { display:flex; gap:14px; padding:16px; border:1px solid var(--line); border-radius:14px; background:#fff; align-items:flex-start; transition:all .15s; }
+.addon:hover { border-color:var(--brand-light); box-shadow:var(--shadow-sm); }
+.addon .ai { width:44px; height:44px; border-radius:12px; display:grid; place-items:center; flex-shrink:0; }
+.addon .ai svg { width:22px; height:22px; }
+.addon .an { font-weight:700; font-size:14px; }
+.addon .ad { color:var(--text-2); font-size:12.5px; margin-top:2px; }
+.addon .ap { font-weight:800; color:var(--brand); white-space:nowrap; }
+
+/* ------------------------------ 转化漏斗 ------------------------------ */
+.funnel { display:flex; flex-direction:column; gap:10px; align-items:center; padding:6px 0; }
+.funnel .fbar { color:#fff; border-radius:12px; padding:16px 20px; display:flex; justify-content:space-between; align-items:center; font-weight:600; }
+.funnel .fbar .fn { font-size:14px; }
+.funnel .fbar .fv { font-size:20px; font-weight:800; }
+.funnel .fmeta { font-size:12px; color:var(--text-3); }
+
 @media (max-width: 1100px) {
+  .tier-grid { grid-template-columns: repeat(2,1fr); }
   .stat-grid { grid-template-columns: repeat(2,1fr); }
   .feature-grid, .proto-grid { grid-template-columns: repeat(2,1fr); }
   .hero { grid-template-columns: 1fr; }
