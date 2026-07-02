@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>快速审批与多渠道通知 · 厂智访客</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V7l8-4v18"/><path d="M11 21V11l8 3v7"/><path d="M8 9h.01M8 13h.01M8 17h.01"/></svg></div>
+      <div class="name">厂智访客<small>FACTORY VISITOR</small></div>
+    </div>
+    <div class="nav-label">工作台</div>
+    <a href="checkin.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg> 入场登记</a>
+    <a href="onsite.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> 在场访客 <span class="badge-dot">37</span></a>
+    <a href="records.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg> 进出记录</a>
+    <div class="nav-label">管理</div>
+    <a href="dashboard.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/></svg> 数据看板</a>
+    <a href="approval.html" class="nav-item active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg> 审批与通知</a>
+    <a href="field-config.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v4H4zM4 12h10v4H4zM4 20h7"/></svg> 登记项配置</a>
+    <a href="settings.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg> 系统设置</a>
+    <div class="sidebar-foot">
+      <div class="rent-card"><span class="tag">已订阅</span><div class="price">￥60<small>/月</small></div><div style="font-size:12px; color:#97a2bd; margin-top:4px;">有效期至 2026-12-31</div></div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <div><h1>快速审批与多渠道通知</h1><div class="sub">让被访人第一时间收到并处理访客申请 —— 无论其是否接入系统</div></div>
+      <button class="btn btn-primary btn-sm" style="margin-left:auto;" data-toast="✅ 审批与通知规则已保存">保存规则</button>
+      <div class="avatar" style="margin-left:8px;">李</div>
+    </header>
+
+    <div class="content">
+      <!-- 核心思路说明 -->
+      <div class="card" style="background:linear-gradient(120deg,#12224a,#1e4fc4); color:#fff; border:none; margin-bottom:20px;">
+        <div class="card-pad">
+          <div style="font-weight:800; font-size:16px; margin-bottom:6px;">核心思路：多渠道触达 + 免登录审批 + 超时自动升级</div>
+          <div style="color:#c7d0e4; font-size:13.5px;">被访人<b style="color:#fff">接入系统</b>的（小程序/APP/企业微信/钉钉）→ 实时推送、一键审批；<b style="color:#fff">未接入系统</b>的（仅有手机号）→ 短信内嵌"免登录审批链接"点击即批，或 AI 语音电话按键审批；<b style="color:#fff">超时无响应</b> → 自动二次提醒并升级到备用审批人 / 门卫代审批，杜绝访客干等。</div>
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns: 1.15fr .85fr; gap:20px; align-items:start;">
+        <!-- 左：渠道 + 升级规则 -->
+        <div style="display:flex; flex-direction:column; gap:20px;">
+          <!-- 通知渠道 -->
+          <div class="card">
+            <div class="card-head"><h3>通知渠道（按优先级依次触达）</h3><span class="muted" style="font-size:13px;">可拖动排序</span></div>
+            <div class="card-pad" style="display:flex; flex-direction:column; gap:12px;">
+              <div class="channel" style="border-color:var(--brand-light); background:var(--brand-soft);">
+                <div class="ci ico blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M12 18h.01"/></svg></div>
+                <div class="grow"><div class="cn">系统推送（已接入的被访人）<span class="badge green no-dot" style="margin-left:8px;">最快</span></div><div class="cd">小程序 / APP / 公众号模板消息，点击一键审批</div></div>
+                <div class="switch on" onclick="this.classList.toggle('on')"></div>
+              </div>
+              <div class="channel" style="border-color:var(--brand-light); background:var(--brand-soft);">
+                <div class="ci ico green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M4 7l8 5 8-5"/></svg></div>
+                <div class="grow"><div class="cn">短信免登录审批（未接入的被访人）<span class="badge blue no-dot" style="margin-left:8px;">兜底首选</span></div><div class="cd">短信含专属审批短链，无需安装/登录，点开即可同意或拒绝</div></div>
+                <div class="switch on" onclick="this.classList.toggle('on')"></div>
+              </div>
+              <div class="channel">
+                <div class="ci ico purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.81.36 1.6.7 2.34a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.74-1.27a2 2 0 0 1 2.11-.45c.74.34 1.53.57 2.34.7A2 2 0 0 1 22 16.92z"/></svg></div>
+                <div class="grow"><div class="cn">AI 语音电话</div><div class="cd">自动外呼播报"XX 到访，同意请按 1，拒绝请按 2"，适合不便看手机时</div></div>
+                <div class="switch on" onclick="this.classList.toggle('on')"></div>
+              </div>
+              <div class="channel">
+                <div class="ci ico blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div>
+                <div class="grow"><div class="cn">企业微信 / 钉钉</div><div class="cd">若企业已绑定，推送应用消息，支持卡片式审批</div></div>
+                <div class="switch" onclick="this.classList.toggle('on')"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 超时升级规则 -->
+          <div class="card">
+            <div class="card-head"><h3>响应时限与自动升级</h3><span class="badge orange no-dot">防止访客干等</span></div>
+            <div class="card-pad">
+              <div class="flex items-center justify-between" style="padding:12px 0; border-bottom:1px solid var(--line);">
+                <div><div style="font-weight:600;">首次通知响应时限</div><div class="muted" style="font-size:13px;">超过时限未处理则触发下一步</div></div>
+                <select class="select" style="width:120px;"><option>2 分钟</option><option selected>3 分钟</option><option>5 分钟</option></select>
+              </div>
+              <div class="flex items-center justify-between" style="padding:12px 0; border-bottom:1px solid var(--line);">
+                <div><div style="font-weight:600;">二次提醒（换渠道）</div><div class="muted" style="font-size:13px;">超时后追加短信 + 语音电话提醒被访人</div></div>
+                <div class="switch on" onclick="this.classList.toggle('on')"></div>
+              </div>
+              <div class="flex items-center justify-between" style="padding:12px 0; border-bottom:1px solid var(--line);">
+                <div><div style="font-weight:600;">升级至备用审批人</div><div class="muted" style="font-size:13px;">再超时通知部门负责人 / 指定备用审批人</div></div>
+                <div class="switch on" onclick="this.classList.toggle('on')"></div>
+              </div>
+              <div class="flex items-center justify-between" style="padding:12px 0;">
+                <div><div style="font-weight:600;">门卫代审批（最终兜底）</div><div class="muted" style="font-size:13px;">仍无响应时，门卫可电话确认后代为放行，全程留痕</div></div>
+                <div class="switch on" onclick="this.classList.toggle('on')"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 免审快速通道 -->
+          <div class="card">
+            <div class="card-head"><h3>免审快速通道</h3></div>
+            <div class="card-pad" style="display:flex; flex-direction:column; gap:12px;">
+              <div class="channel">
+                <div class="ci ico green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg></div>
+                <div class="grow"><div class="cn">预约邀请码</div><div class="cd">被访人提前发起邀请，访客到场扫码即入，无需临时审批</div></div>
+                <div class="switch on" onclick="this.classList.toggle('on')"></div>
+              </div>
+              <div class="channel">
+                <div class="ci ico blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div>
+                <div class="grow"><div class="cn">常客 / 白名单免审</div><div class="cd">长期合作的送货、维保人员可加入白名单，进出免审批</div></div>
+                <div class="switch on" onclick="this.classList.toggle('on')"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 右：审批流程可视化 + 实时状态 -->
+        <div style="display:flex; flex-direction:column; gap:20px;">
+          <div class="card">
+            <div class="card-head"><h3>审批流转示意</h3><span class="badge green">LIVE</span></div>
+            <div class="card-pad">
+              <div class="flow">
+                <div class="flow-step">
+                  <div class="flow-icn"><div class="dot" style="background:var(--brand)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" style="width:20px;height:20px"><path d="M12 5v14M5 12h14"/></svg></div><div class="line"></div></div>
+                  <div class="flow-body"><div class="ft">访客提交到访申请<span class="flow-tag" style="background:var(--brand-light);color:var(--brand)">09:22:03</span></div><div class="fd">陈志远 · 中通快递 · 拜访张主管</div></div>
+                </div>
+                <div class="flow-step">
+                  <div class="flow-icn"><div class="dot" style="background:var(--success)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" style="width:18px;height:18px"><path d="M4 4h16v16H4z"/><path d="M4 7l8 5 8-5"/></svg></div><div class="line"></div></div>
+                  <div class="flow-body"><div class="ft">系统识别：张主管未接入系统<span class="flow-tag" style="background:var(--success-light);color:var(--success)">已发短信</span></div><div class="fd">已向 137****3345 发送免登录审批短信</div></div>
+                </div>
+                <div class="flow-step">
+                  <div class="flow-icn"><div class="dot" style="background:var(--warning)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" style="width:18px;height:18px"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><div class="line"></div></div>
+                  <div class="flow-body"><div class="ft">3 分钟未响应 → 自动升级<span class="flow-tag" style="background:var(--warning-light);color:#c9821a">09:25:10</span></div><div class="fd">追加语音电话，并通知备用审批人 周主管</div></div>
+                </div>
+                <div class="flow-step">
+                  <div class="flow-icn"><div class="dot" style="background:var(--success)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" style="width:18px;height:18px"><path d="M20 6L9 17l-5-5"/></svg></div></div>
+                  <div class="flow-body"><div class="ft">周主管点击短链，同意接待<span class="flow-tag" style="background:var(--success-light);color:var(--success)">09:25:48</span></div><div class="fd">门卫端同步显示"已通过"，可放行 · 全程耗时 3 分 45 秒</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 待审批实时列表 -->
+          <div class="card">
+            <div class="card-head"><h3>当前待审批</h3><span class="badge orange no-dot">2</span></div>
+            <div class="card-pad" style="display:flex; flex-direction:column; gap:12px;">
+              <div style="border:1px solid var(--line); border-radius:12px; padding:12px;">
+                <div class="flex items-center gap-12">
+                  <div class="pa c4" style="width:38px;height:38px;border-radius:10px;display:grid;place-items:center;color:#fff;font-weight:700">周</div>
+                  <div class="grow"><div style="font-weight:600">周晓芳 · 应聘者</div><div class="pm" style="font-size:12px;color:var(--text-3)">访 人事部 · 短信已送达 · 等待 0:42</div></div>
+                  <span class="badge orange">待响应</span>
+                </div>
+              </div>
+              <div style="border:1px solid var(--line); border-radius:12px; padding:12px;">
+                <div class="flex items-center gap-12">
+                  <div class="pa c5" style="width:38px;height:38px;border-radius:10px;display:grid;place-items:center;color:#fff;font-weight:700">孙</div>
+                  <div class="grow"><div style="font-weight:600">孙浩 · 供应商</div><div class="pm" style="font-size:12px;color:var(--text-3)">访 采购部 · 已升级备用审批人</div></div>
+                  <span class="badge red">超时升级</span>
+                </div>
+              </div>
+              <a href="approve.html" class="btn btn-ghost btn-block btn-sm">查看被访人手机审批界面 →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="assets/app.js"></script>
+</body>
+</html>
