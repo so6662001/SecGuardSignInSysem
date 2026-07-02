@@ -432,6 +432,44 @@ ul { list-style: none; }
 .flow-body .fd { color:var(--text-2); font-size:13px; margin-top:3px; }
 .flow-tag { display:inline-block; font-size:11px; font-weight:600; padding:2px 9px; border-radius:20px; margin-left:8px; }
 
+/* ------------------------------ 步骤条 Stepper ------------------------------ */
+.stepper { display:flex; align-items:center; gap:0; margin-bottom:26px; }
+.step { display:flex; align-items:center; gap:10px; }
+.step .sc { width:34px; height:34px; border-radius:50%; display:grid; place-items:center; font-weight:700; font-size:14px; background:#eef1f6; color:var(--text-3); flex-shrink:0; }
+.step .st { font-weight:600; color:var(--text-3); white-space:nowrap; }
+.step.active .sc { background:var(--brand); color:#fff; box-shadow:0 6px 14px rgba(47,107,237,.3); }
+.step.active .st { color:var(--text); }
+.step.done .sc { background:var(--success); color:#fff; }
+.step.done .st { color:var(--text); }
+.step-line { flex:1; height:2px; background:var(--line-strong); margin:0 14px; min-width:24px; }
+.step.done + .step-line, .step-line.done { background:var(--success); }
+
+/* ------------------------------ 门岗卡片 ------------------------------ */
+.gate-card { background:#fff; border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow-sm); overflow:hidden; }
+.gate-card .gh { padding:16px 18px; display:flex; align-items:center; gap:12px; border-bottom:1px solid var(--line); }
+.gate-card .gi { width:42px; height:42px; border-radius:12px; display:grid; place-items:center; flex-shrink:0; }
+.gate-card .gi svg { width:22px; height:22px; }
+.gate-card .gb { padding:16px 18px; }
+.dev-chip { display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:600; padding:5px 10px; border-radius:8px; background:#eef1f6; color:var(--text-2); }
+.dev-chip.on { background:var(--success-light); color:var(--success); }
+.dev-chip svg { width:14px; height:14px; }
+
+/* ------------------------------ 二维码占位 ------------------------------ */
+.qr-box { width:110px; height:110px; border-radius:12px; border:1px solid var(--line); padding:8px; background:#fff; }
+.qr-box svg { width:100%; height:100%; display:block; }
+
+/* ------------------------------ 租户切换 / 平台后台 ------------------------------ */
+.tenant-switch { display:flex; align-items:center; gap:10px; padding:6px 12px; border:1px solid var(--line); border-radius:10px; background:var(--bg); cursor:pointer; }
+.tenant-switch:hover { border-color:var(--brand); }
+.tenant-switch .tl { width:30px; height:30px; border-radius:8px; display:grid; place-items:center; color:#fff; font-weight:700; font-size:13px; }
+.tenant-switch .tn { font-weight:700; font-size:13.5px; line-height:1.2; }
+.tenant-switch .tp { font-size:11px; color:var(--text-3); }
+
+/* 套餐/开通须知盒 */
+.order-box { position:sticky; top:24px; }
+.order-line { display:flex; justify-content:space-between; padding:11px 0; border-bottom:1px dashed var(--line); font-size:14px; }
+.order-total { display:flex; justify-content:space-between; align-items:center; padding-top:14px; }
+
 @media (max-width: 1100px) {
   .stat-grid { grid-template-columns: repeat(2,1fr); }
   .feature-grid, .proto-grid { grid-template-columns: repeat(2,1fr); }
