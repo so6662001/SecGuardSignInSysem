@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>配置报价 · 厂智访客</title>
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .cfg-grid { display:grid; grid-template-columns: 1.5fr 1fr; gap:20px; align-items:start; }
+  @media (max-width:900px){ .cfg-grid{ grid-template-columns:1fr; } }
+  .opt { border:1px solid var(--line-strong); border-radius:14px; padding:16px; cursor:pointer; transition:all .15s; display:flex; gap:12px; align-items:flex-start; }
+  .opt:hover { border-color:var(--brand); }
+  .opt.sel { border-color:var(--brand); background:var(--brand-soft); box-shadow:0 0 0 3px var(--brand-light); }
+  .opt .rc { width:20px;height:20px;border-radius:50%;border:2px solid var(--line-strong); flex-shrink:0; margin-top:2px; display:grid; place-items:center; }
+  .opt.sel .rc { border-color:var(--brand); }
+  .opt.sel .rc::after { content:""; width:10px;height:10px;border-radius:50%;background:var(--brand); }
+  .opt.chk .rc { border-radius:6px; }
+  .opt.chk.sel .rc::after { border-radius:2px; }
+  .stepper-num { display:inline-flex; align-items:center; border:1px solid var(--line-strong); border-radius:10px; overflow:hidden; }
+  .stepper-num button { width:34px; height:34px; font-size:18px; color:var(--brand); background:#fff; }
+  .stepper-num input { width:48px; text-align:center; border:none; border-left:1px solid var(--line); border-right:1px solid var(--line); height:34px; font-weight:700; outline:none; }
+  .seg { display:inline-flex; background:var(--bg); border-radius:9px; padding:3px; }
+  .seg button { padding:5px 12px; border-radius:7px; font-size:12.5px; font-weight:600; color:var(--text-2); }
+  .seg button.on { background:#fff; color:var(--brand); box-shadow:var(--shadow-sm); }
+  .qline { display:flex; justify-content:space-between; padding:8px 0; font-size:13.5px; border-bottom:1px dashed var(--line); }
+  .qline:last-child { border-bottom:none; }
+  /* 正式报价单 */
+  #quoteDoc { display:none; }
+  .doc { background:#fff; border:1px solid var(--line); border-radius:16px; padding:36px; box-shadow:var(--shadow); }
+  .doc-h { display:flex; justify-content:space-between; align-items:flex-start; border-bottom:2px solid var(--brand); padding-bottom:18px; margin-bottom:20px; }
+  .doc table { width:100%; border-collapse:collapse; margin:8px 0 16px; }
+  .doc th { background:#f4f8ff; text-align:left; padding:10px 12px; font-size:12.5px; color:var(--text-2); border:1px solid var(--line); }
+  .doc td { padding:10px 12px; font-size:13px; border:1px solid var(--line); }
+  .doc td.r, .doc th.r { text-align:right; }
+  @media print { body * { visibility:hidden; } #quoteDoc, #quoteDoc * { visibility:visible; } #quoteDoc { position:absolute; left:0; top:0; width:100%; } .noprint { display:none !important; } }
+</style>
+</head>
+<body style="background:var(--bg);">
+<nav class="landing-nav noprint">
+  <a href="index.html" class="brand" style="padding:0;">
+    <div class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V7l8-4v18"/><path d="M11 21V11l8 3v7"/><path d="M8 9h.01M8 13h.01M8 17h.01"/></svg></div>
+    <div class="name" style="color:var(--text)">厂智访客<small style="color:var(--text-3)">FACTORY VISITOR</small></div>
+  </a>
+  <div class="links"><a href="index.html">首页</a><a href="pricing.html">套餐价格</a></div>
+  <div style="margin-left:auto; display:flex; gap:12px;">
+    <a href="pricing.html" class="btn btn-ghost">返回套餐</a>
+    <a href="signup.html" class="btn btn-primary">申请开通</a>
+  </div>
+</nav>
+
+<div style="max-width:1160px; margin:0 auto; padding:30px 24px 60px;">
+  <div class="center" style="margin-bottom:26px;">
+    <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg> 按需配置 · 实时算价 · 一键生成报价单</span>
+    <h1 style="font-size:30px; font-weight:800; margin-top:12px;">配置你的方案与报价</h1>
+    <p class="muted" style="margin-top:8px;">选择版本、增值模块与硬件，右侧实时汇总，随时生成正式报价单</p>
+  </div>
+
+  <div class="cfg-grid">
+    <!-- 左：配置 -->
+    <div style="display:flex; flex-direction:column; gap:20px;">
+      <!-- 版本 -->
+      <div class="card">
+        <div class="card-head"><h3>① 选择版本</h3><div class="flex items-center gap-12"><span class="muted" style="font-size:13px;">厂区数量</span>
+          <div class="stepper-num"><button onclick="stepSite(-1)">−</button><input id="siteCount" value="1" readonly><button onclick="stepSite(1)">+</button></div></div>
+        </div>
+        <div class="card-pad" style="display:flex; flex-direction:column; gap:12px;">
+          <div class="opt" data-tier data-price="0" data-name="免费版" onclick="pickTier(this)">
+            <div class="rc"></div><div class="grow"><div style="font-weight:700;">免费版</div><div class="muted" style="font-size:12.5px;">基础登记 · 单门岗 · 记录 30 天</div></div><div style="font-weight:800;">￥0<small class="muted" style="font-weight:500;">/月</small></div>
+          </div>
+          <div class="opt sel" data-tier data-price="60" data-name="标准版（通用）" onclick="pickTier(this)">
+            <div class="rc"></div><div class="grow"><div style="font-weight:700;">标准版（通用）<span class="badge blue no-dot" style="margin-left:6px;">推荐</span></div><div class="muted" style="font-size:12.5px;">不限登记·多门岗·扫码自助·审批·看板导出</div></div><div style="font-weight:800;">￥60<small class="muted" style="font-weight:500;">/月·厂区</small></div>
+          </div>
+          <div class="opt" data-tier data-price="599" data-name="钢铁厂专属版" onclick="pickTier(this)" style="border-color:#f7d9a6;">
+            <div class="rc"></div><div class="grow"><div style="font-weight:700;">钢铁厂专属版 <span class="badge orange no-dot" style="margin-left:6px;">赚钱版</span></div><div class="muted" style="font-size:12.5px;">车辆到厂闭环·磅单·排队叫号·交易平台打通</div></div><div style="font-weight:800;">￥599<small class="muted" style="font-weight:500;">/月·厂区</small></div>
+          </div>
+          <div class="opt" data-tier data-price="" data-name="集团版（定制）" onclick="pickTier(this)">
+            <div class="rc"></div><div class="grow"><div style="font-weight:700;">集团版（定制）</div><div class="muted" style="font-size:12.5px;">多厂区·MES/ERP对接·专属SLA</div></div><div style="font-weight:800;">面议</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 增值模块 -->
+      <div class="card">
+        <div class="card-head"><h3>② 增值模块（按需加购）</h3></div>
+        <div class="card-pad" style="display:flex; flex-direction:column; gap:12px;">
+          <div class="opt chk" data-addon data-price="199" data-name="车牌识别 + 道闸联动" onclick="toggleAddon(this)"><div class="rc"></div><div class="grow"><div style="font-weight:700;">车牌识别 + 道闸联动</div><div class="muted" style="font-size:12.5px;">自动识别、抬杆放行</div></div><div style="font-weight:800;">￥199<small class="muted" style="font-weight:500;">/月</small></div></div>
+          <div class="opt chk" data-addon data-price="159" data-name="人脸识别核验" onclick="toggleAddon(this)"><div class="rc"></div><div class="grow"><div style="font-weight:700;">人脸识别核验</div><div class="muted" style="font-size:12.5px;">刷脸进出、防代刷</div></div><div style="font-weight:800;">￥159<small class="muted" style="font-weight:500;">/月</small></div></div>
+          <div class="opt chk" data-addon data-price="99" data-name="身份证 OCR 识别" onclick="toggleAddon(this)"><div class="rc"></div><div class="grow"><div style="font-weight:700;">身份证 OCR 识别</div><div class="muted" style="font-size:12.5px;">秒填信息、防错录</div></div><div style="font-weight:800;">￥99<small class="muted" style="font-weight:500;">/月</small></div></div>
+          <div class="opt chk sel" data-addon data-price="399" data-name="磅单对接 + 交易平台打通" onclick="toggleAddon(this)" style="border-color:#f7d9a6; background:var(--warning-light);"><div class="rc"></div><div class="grow"><div style="font-weight:700;">磅单对接 + 交易平台打通 <span class="badge orange no-dot">钢铁</span></div><div class="muted" style="font-size:12.5px;">净重回写订单、运单同步</div></div><div style="font-weight:800;">￥399<small class="muted" style="font-weight:500;">/月</small></div></div>
+          <div class="opt chk" data-addon data-price="30" data-name="短信/语音通知包" data-unit="千条" onclick="toggleAddon(this)"><div class="rc"></div><div class="grow"><div style="font-weight:700;">短信/语音通知包</div><div class="muted" style="font-size:12.5px;">审批提醒、语音外呼 · 按千条</div></div><div style="font-weight:800;">￥30<small class="muted" style="font-weight:500;">/千条</small></div></div>
+        </div>
+      </div>
+
+      <!-- 硬件 -->
+      <div class="card">
+        <div class="card-head"><h3>③ 配套硬件（购买 / 租赁）</h3></div>
+        <div class="card-pad" style="display:flex; flex-direction:column; gap:14px;">
+          <div class="hw" data-name="门岗登记平板" data-buy="1280" data-rent="49">
+            <div class="flex items-center gap-12">
+              <div class="ai ico blue" style="width:40px;height:40px;border-radius:11px;display:grid;place-items:center;flex-shrink:0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px;"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 21h8"/></svg></div>
+              <div class="grow"><div style="font-weight:700;">门岗登记平板</div><div class="muted" style="font-size:12px;">购买 ￥1,280/台 · 租赁 ￥49/月</div></div>
+              <div class="seg"><button class="on" onclick="setMode(this,'buy')">购买</button><button onclick="setMode(this,'rent')">租赁</button></div>
+              <div class="stepper-num"><button onclick="stepHw(this,-1)">−</button><input value="1" readonly><button onclick="stepHw(this,1)">+</button></div>
+            </div>
+          </div>
+          <div class="hw" data-name="人脸识别一体机" data-buy="2680" data-rent="99">
+            <div class="flex items-center gap-12">
+              <div class="ai ico purple" style="width:40px;height:40px;border-radius:11px;display:grid;place-items:center;flex-shrink:0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px;"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 12 0v1"/></svg></div>
+              <div class="grow"><div style="font-weight:700;">人脸识别一体机</div><div class="muted" style="font-size:12px;">购买 ￥2,680/台 · 租赁 ￥99/月</div></div>
+              <div class="seg"><button class="on" onclick="setMode(this,'buy')">购买</button><button onclick="setMode(this,'rent')">租赁</button></div>
+              <div class="stepper-num"><button onclick="stepHw(this,-1)">−</button><input value="0" readonly><button onclick="stepHw(this,1)">+</button></div>
+            </div>
+          </div>
+          <div class="hw" data-name="车牌识别道闸" data-buy="5600" data-rent="199">
+            <div class="flex items-center gap-12">
+              <div class="ai ico orange" style="width:40px;height:40px;border-radius:11px;display:grid;place-items:center;flex-shrink:0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px;"><path d="M14 16H9m10 0h3l-2-6H4l-2 6h3"/></svg></div>
+              <div class="grow"><div style="font-weight:700;">车牌识别道闸</div><div class="muted" style="font-size:12px;">购买 ￥5,600/套 · 租赁 ￥199/月</div></div>
+              <div class="seg"><button onclick="setMode(this,'buy')">购买</button><button class="on" onclick="setMode(this,'rent')">租赁</button></div>
+              <div class="stepper-num"><button onclick="stepHw(this,-1)">−</button><input value="1" readonly><button onclick="stepHw(this,1)">+</button></div>
+            </div>
+          </div>
+          <div class="hw" data-name="自助登记码立牌" data-buy="120" data-rent="0">
+            <div class="flex items-center gap-12">
+              <div class="ai ico green" style="width:40px;height:40px;border-radius:11px;display:grid;place-items:center;flex-shrink:0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px;"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 8h.01M8 12h4"/></svg></div>
+              <div class="grow"><div style="font-weight:700;">自助登记码立牌</div><div class="muted" style="font-size:12px;">购买 ￥120/个</div></div>
+              <div class="seg"><button class="on" onclick="setMode(this,'buy')">购买</button></div>
+              <div class="stepper-num"><button onclick="stepHw(this,-1)">−</button><input value="2" readonly><button onclick="stepHw(this,1)">+</button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 右：实时报价 -->
+    <div style="position:sticky; top:24px;">
+      <div class="card">
+        <div class="card-head"><h3>报价摘要</h3><span class="badge green" id="siteBadge">1 个厂区</span></div>
+        <div class="card-pad">
+          <div id="sumLines" style="margin-bottom:6px;"></div>
+          <div class="divider"></div>
+          <div class="qline" style="border:none;"><span class="muted">月度订阅/租赁小计</span><span id="mMonthly" style="font-weight:700;">￥60</span></div>
+          <div class="qline" style="border:none;"><span class="muted">硬件一次性投入</span><span id="mOnce" style="font-weight:700;">￥240</span></div>
+          <div class="order-total" style="border-top:1px dashed var(--line); margin-top:6px;">
+            <div><div class="muted" style="font-size:12.5px;">首年预估总额（月费×12 + 一次性）</div><div class="faint" style="font-size:12px;">含 14 天免费试用</div></div>
+            <div style="text-align:right;"><div id="mYear" style="font-size:26px; font-weight:800;">￥960</div></div>
+          </div>
+          <button class="btn btn-primary btn-lg btn-block" style="margin-top:16px;" onclick="genQuote()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 15l2 2 4-4"/></svg>
+            生成报价单
+          </button>
+          <div class="center muted" style="font-size:12px; margin-top:10px;">价格为示意 · 大客户/多厂区可享折扣</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 正式报价单 -->
+  <div id="quoteDoc" style="margin-top:26px;">
+    <div class="doc">
+      <div class="doc-h">
+        <div>
+          <div class="flex items-center gap-12" style="margin-bottom:8px;">
+            <div class="logo" style="width:34px;height:34px;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V7l8-4v18"/><path d="M11 21V11l8 3v7"/></svg></div>
+            <div style="font-weight:800; font-size:18px;">厂智访客 · 产品报价单</div>
+          </div>
+          <div class="muted" style="font-size:13px;">FACTORY VISITOR · 工厂访客与车辆管理平台</div>
+        </div>
+        <div style="text-align:right; font-size:13px;">
+          <div><span class="muted">报价单号：</span><span id="qNo" class="mono">—</span></div>
+          <div><span class="muted">报价日期：</span><span id="qDate">—</span></div>
+          <div><span class="muted">有效期：</span>自报价日起 30 天</div>
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px 30px; margin-bottom:18px;">
+        <div class="flex items-center gap-8"><span class="muted" style="font-size:13px; white-space:nowrap;">客户名称：</span><input class="input btn-sm" value="宏远精密制造有限公司" style="flex:1;"></div>
+        <div class="flex items-center gap-8"><span class="muted" style="font-size:13px; white-space:nowrap;">联系人：</span><input class="input btn-sm" value="李经理" style="flex:1;"></div>
+        <div class="flex items-center gap-8"><span class="muted" style="font-size:13px; white-space:nowrap;">联系电话：</span><input class="input btn-sm" value="138 6621 8890" style="flex:1;"></div>
+        <div class="flex items-center gap-8"><span class="muted" style="font-size:13px; white-space:nowrap;">销售顾问：</span><input class="input btn-sm" value="王顾问" style="flex:1;"></div>
+      </div>
+
+      <table>
+        <thead><tr><th style="width:44px;">#</th><th>项目</th><th>规格 / 说明</th><th class="r">数量</th><th class="r">单价</th><th class="r">计费方式</th><th class="r">小计</th></tr></thead>
+        <tbody id="docBody"></tbody>
+      </table>
+
+      <div style="display:flex; justify-content:flex-end;">
+        <div style="width:340px;">
+          <div class="qline"><span class="muted">月度费用合计</span><span id="dMonthly" style="font-weight:700;">—</span></div>
+          <div class="qline"><span class="muted">一次性硬件合计</span><span id="dOnce" style="font-weight:700;">—</span></div>
+          <div class="qline" style="border-top:2px solid var(--brand); padding-top:12px;"><span style="font-weight:800;">首年预估总额</span><span id="dYear" style="font-weight:800; font-size:18px; color:var(--brand);">—</span></div>
+        </div>
+      </div>
+
+      <div style="margin-top:20px; font-size:12.5px; color:var(--text-2); line-height:1.8;">
+        <b>报价说明：</b><br>
+        1. 订阅费用按月计费，支持按年预付（年付赠 2 个月）；含 14 天免费试用，试用到期不自动扣费。<br>
+        2. 硬件"购买"为一次性费用，"租赁"计入月度费用并含维保；多厂区、大批量可享阶梯折扣。<br>
+        3. 增值模块可随时开通/停用；短信语音按实际用量结算。<br>
+        4. 本报价为方案示意，最终以正式合同为准。
+      </div>
+
+      <div style="display:flex; justify-content:space-between; margin-top:28px; align-items:flex-end;">
+        <div class="muted" style="font-size:13px;">客户签字确认：____________________</div>
+        <div style="text-align:center;">
+          <div style="width:120px;height:120px;border:1px dashed var(--line-strong);border-radius:50%;display:grid;place-items:center;color:var(--text-3);font-size:12px;">公章</div>
+          <div class="muted" style="font-size:12px; margin-top:6px;">厂智访客（示意）</div>
+        </div>
+      </div>
+
+      <div class="flex gap-12 noprint" style="margin-top:24px; justify-content:flex-end;">
+        <button class="btn btn-ghost" onclick="window.print()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z"/></svg> 打印</button>
+        <button class="btn btn-ghost" data-toast="报价单 PDF 已下载（演示）"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg> 下载 PDF</button>
+        <button class="btn btn-primary" data-toast="✅ 报价单已发送至客户手机与邮箱"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg> 发送给客户</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer noprint">厂智访客 · 配置报价 · 高保真原型演示 &nbsp;|&nbsp; 价格为示意</footer>
+
+<script src="assets/app.js"></script>
+<script>
+  function fmt(n){ return '￥' + Number(n).toLocaleString('zh-CN'); }
+
+  function pickTier(el){
+    document.querySelectorAll('[data-tier]').forEach(function(t){ t.classList.remove('sel'); });
+    el.classList.add('sel');
+    recompute();
+  }
+  function toggleAddon(el){ el.classList.toggle('sel'); recompute(); }
+  function stepSite(d){
+    var i = document.getElementById('siteCount'); var v = Math.max(1, (parseInt(i.value)||1) + d); i.value = v; recompute();
+  }
+  function setMode(btn, mode){
+    var seg = btn.parentElement; seg.querySelectorAll('button').forEach(function(b){ b.classList.remove('on'); });
+    btn.classList.add('on'); seg.setAttribute('data-mode', mode); recompute();
+  }
+  function stepHw(btn, d){
+    var input = btn.parentElement.querySelector('input'); var v = Math.max(0, (parseInt(input.value)||0) + d); input.value = v; recompute();
+  }
+
+  function collect(){
+    var tierEl = document.querySelector('[data-tier].sel');
+    var tierPrice = tierEl.getAttribute('data-price');
+    var sites = parseInt(document.getElementById('siteCount').value)||1;
+    var custom = (tierPrice === '');
+    var items = [];
+    // 版本
+    if (custom){
+      items.push({ name: tierEl.getAttribute('data-name'), spec:'定制方案', qty: sites, unit:'面议', mode:'订阅/月', monthly: null, once:0 });
+    } else {
+      items.push({ name: tierEl.getAttribute('data-name'), spec:'平台订阅', qty: sites, unit: Number(tierPrice), mode:'订阅/月·厂区', monthly: Number(tierPrice)*sites, once:0 });
+    }
+    // 增值模块
+    document.querySelectorAll('[data-addon].sel').forEach(function(a){
+      var p = Number(a.getAttribute('data-price'));
+      var unit = a.getAttribute('data-unit');
+      items.push({ name: a.getAttribute('data-name'), spec: unit? ('按'+unit+'计费') : '增值模块', qty:1, unit:p, mode: unit? ('/'+unit) : '订阅/月', monthly: p, once:0 });
+    });
+    // 硬件
+    document.querySelectorAll('.hw').forEach(function(h){
+      var qty = parseInt(h.querySelector('input').value)||0;
+      if (qty<=0) return;
+      var seg = h.querySelector('.seg'); var mode = seg.getAttribute('data-mode') || 'buy';
+      var buy = Number(h.getAttribute('data-buy')); var rent = Number(h.getAttribute('data-rent'));
+      if (mode==='rent'){
+        items.push({ name:h.getAttribute('data-name'), spec:'租赁（含维保）', qty:qty, unit:rent, mode:'租赁/月', monthly: rent*qty, once:0 });
+      } else {
+        items.push({ name:h.getAttribute('data-name'), spec:'购买（含质保）', qty:qty, unit:buy, mode:'一次性', monthly:0, once: buy*qty });
+      }
+    });
+    return { items: items, custom: custom, sites: sites };
+  }
+
+  function recompute(){
+    var d = collect();
+    var monthly = 0, once = 0, hasCustom = d.custom;
+    d.items.forEach(function(it){ if (it.monthly) monthly += it.monthly; if (it.once) once += it.once; });
+    document.getElementById('siteCount'); 
+    document.getElementById('siteBadge').textContent = d.sites + ' 个厂区';
+    // 摘要行
+    var html = '';
+    d.items.forEach(function(it){
+      var right = it.monthly ? (fmt(it.monthly)+'/月') : (it.once ? fmt(it.once) : (hasCustom && it.unit==='面议' ? '面议' : '—'));
+      html += '<div class="qline"><span class="muted">'+it.name+ (it.qty>1?(' ×'+it.qty):'') +'</span><span style="font-weight:600;">'+right+'</span></div>';
+    });
+    document.getElementById('sumLines').innerHTML = html;
+    document.getElementById('mMonthly').textContent = hasCustom ? '面议' : fmt(monthly);
+    document.getElementById('mOnce').textContent = fmt(once);
+    document.getElementById('mYear').textContent = hasCustom ? '面议' : fmt(monthly*12 + once);
+  }
+
+  function genQuote(){
+    var d = collect();
+    var monthly = 0, once = 0, hasCustom = d.custom;
+    var body = '';
+    d.items.forEach(function(it, idx){
+      if (it.monthly) monthly += it.monthly; if (it.once) once += it.once;
+      var unitTxt = (it.unit==='面议') ? '面议' : fmt(it.unit);
+      var sub = it.monthly ? (fmt(it.monthly)+'/月') : (it.once ? fmt(it.once) : '面议');
+      body += '<tr><td>'+(idx+1)+'</td><td>'+it.name+'</td><td>'+it.spec+'</td><td class="r">'+it.qty+'</td><td class="r">'+unitTxt+'</td><td class="r">'+it.mode+'</td><td class="r">'+sub+'</td></tr>';
+    });
+    document.getElementById('docBody').innerHTML = body;
+    document.getElementById('dMonthly').textContent = hasCustom ? '面议' : fmt(monthly);
+    document.getElementById('dOnce').textContent = fmt(once);
+    document.getElementById('dYear').textContent = hasCustom ? '面议（含定制）' : fmt(monthly*12 + once);
+    var now = new Date();
+    var pad = function(n){ return (n<10?'0':'')+n; };
+    document.getElementById('qNo').textContent = 'Q' + now.getFullYear() + pad(now.getMonth()+1) + pad(now.getDate()) + '-' + pad(now.getHours()) + pad(now.getMinutes());
+    document.getElementById('qDate').textContent = now.getFullYear()+'-'+pad(now.getMonth()+1)+'-'+pad(now.getDate());
+    var doc = document.getElementById('quoteDoc');
+    doc.style.display = 'block';
+    doc.scrollIntoView({ behavior:'smooth' });
+    showToast('✅ 报价单已生成');
+  }
+
+  recompute();
+</script>
+</body>
+</html>
