@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>送货入厂（收原料/废钢） · 钢铁厂专属版</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V7l8-4v18"/><path d="M11 21V11l8 3v7"/><path d="M8 9h.01M8 13h.01M8 17h.01"/></svg></div>
+      <div class="name">厂智访客<small style="color:#f5a623;">钢铁厂专属版</small></div>
+    </div>
+    <div class="nav-label">工作台</div>
+    <a href="steel-checkin.html" class="nav-item active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 16H9m10 0h3l-2-6H4l-2 6h3m0 0a2 2 0 1 0 4 0m6 0a2 2 0 1 0 4 0"/></svg> 车辆到厂</a>
+    <a href="weighbridge.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 6l2 13h14l2-13M9 10v5M15 10v5"/></svg> 磅房过磅</a>
+    <a href="carrier.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg> 承运商管理</a>
+    <a href="checkin.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg> 访客登记</a>
+    <a href="records.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg> 进出记录</a>
+    <div class="nav-label">管理</div>
+    <a href="dashboard.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/></svg> 数据看板</a>
+    <a href="settings.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg> 系统设置</a>
+    <div class="sidebar-foot">
+      <div class="rent-card" style="background:linear-gradient(135deg,#3a2c12,#241a08);"><span class="tag" style="background:#f5a623;">专属版</span><div class="price">￥599<small>/月起</small></div><div style="font-size:12px; color:#c9a86a; margin-top:4px;">含交易平台打通</div></div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <div><h1>车辆到厂登记 <span class="badge orange no-dot" style="vertical-align:middle;">钢铁厂专属版</span></h1><div class="sub">送货入厂 · 收原料 / 废钢 · 质检扣杂 · 磅单净重闭环</div></div>
+      <div class="tenant-switch" style="margin-left:20px;" title="当前企业空间">
+        <span class="tl c5">德</span><div><div class="tn">德胜钢铁</div><div class="tp">东莞总厂 · 货运门岗</div></div>
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" stroke-width="2" style="width:16px;height:16px;"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="avatar" style="margin-left:auto;">王</div>
+    </header>
+
+    <div class="content">
+      <div class="stat-grid" style="margin-bottom:20px;">
+        <div class="stat"><div class="ico blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 16H9m10 0h3l-2-6H4l-2 6h3"/></svg></div><div class="num">11</div><div class="lbl">在厂送货车辆</div></div>
+        <div class="stat"><div class="ico orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><div class="num">4</div><div class="lbl">等待卸货</div></div>
+        <div class="stat"><div class="ico purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 6l2 13h14l2-13"/></svg></div><div class="num">7</div><div class="lbl">待复磅（皮重）</div></div>
+        <div class="stat"><div class="ico green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div><div class="num">1,286 t</div><div class="lbl">今日收货净重</div></div>
+      </div>
+
+      <div style="display:grid; grid-template-columns: 1.6fr 1fr; gap:20px; align-items:start;">
+        <div class="card">
+          <div class="card-head">
+            <h3>车辆到厂登记</h3>
+            <div class="tabs"><a href="steel-checkin.html" class="tab">提货出厂（成品）</a><div class="tab active">送货入厂（原料）</div></div>
+          </div>
+          <div class="card-pad">
+            <!-- 车牌识别 -->
+            <div class="field">
+              <label>车牌号（自动识别）<span class="req">*</span></label>
+              <div style="display:flex; gap:12px;">
+                <div class="input-icon" style="flex:1;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 16H9m10 0h3l-2-6H4l-2 6h3m0 0a2 2 0 1 0 4 0m6 0a2 2 0 1 0 4 0"/></svg><input class="input" value="粤C·1188Z" style="padding-left:42px; font-weight:700; letter-spacing:1px;"></div>
+                <button class="btn btn-ghost" data-toast="摄像头识别车牌成功"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M3 17l5-4 4 3"/></svg> 抓拍识别</button>
+              </div>
+              <div class="muted" style="font-size:12px; margin-top:6px;">已匹配承运商：广发货运 · 司机 陈师傅 130****9911</div>
+            </div>
+
+            <!-- 关联采购单 -->
+            <div class="field">
+              <label>关联采购订单 / 收货通知单 <span class="req">*</span></label>
+              <div style="display:flex; gap:12px;">
+                <div class="input-icon" style="flex:1;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg><input class="input" value="PO-260702-0175" style="padding-left:42px;"></div>
+                <button class="btn btn-primary" data-toast="✅ 已从交易平台/ERP带出采购单信息">核验采购单</button>
+              </div>
+            </div>
+
+            <!-- 带出信息 -->
+            <div class="card" style="box-shadow:none; border-color:#c9e8dd; background:var(--success-light); padding:14px; margin-bottom:18px;">
+              <div class="flex items-center gap-8" style="margin-bottom:10px;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.4" style="width:18px;height:18px;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+                <span style="font-weight:700; color:#1a7a56;">已对接采购单 · 供应商与物料有效</span>
+                <span class="badge green no-dot" style="margin-left:auto;">钢智汇 / ERP</span>
+              </div>
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:2px 20px;">
+                <div class="kv"><span class="k">供应商</span><span class="v">中拓废旧金属回收</span></div>
+                <div class="kv"><span class="k">物料</span><span class="v">重型废钢（含税）</span></div>
+                <div class="kv"><span class="k">采购总量</span><span class="v">500.00 吨</span></div>
+                <div class="kv"><span class="k">已收数量</span><span class="v">312.60 吨</span></div>
+                <div class="kv"><span class="k">本单剩余可收</span><span class="v" style="color:var(--brand)">187.40 吨</span></div>
+                <div class="kv"><span class="k">质检要求</span><span class="v"><span class="badge orange no-dot">需验收/扣杂</span></span></div>
+              </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:0 18px;">
+              <div class="field"><label>物料牌号 / 规格</label><input class="input" value="重废 6-9mm"></div>
+              <div class="field"><label>卸货料场 / 仓位</label><input class="input" value="废钢料场 · B 区"></div>
+            </div>
+
+            <!-- 质检与扣杂（废钢特有） -->
+            <div class="field"><label>质检与扣杂</label>
+              <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px;">
+                <div class="card" style="box-shadow:none; background:#fafbfd; padding:12px;">
+                  <div class="muted" style="font-size:12px;">是否需质检</div>
+                  <div class="chip-group" style="margin-top:6px;"><div class="chip active" style="padding:6px 12px;font-size:12.5px;">需质检</div><div class="chip" style="padding:6px 12px;font-size:12.5px;">免检</div></div>
+                </div>
+                <div class="card" style="box-shadow:none; background:#fafbfd; padding:12px;">
+                  <div class="muted" style="font-size:12px;">扣杂率(%)</div>
+                  <input class="input btn-sm" value="2.5" style="margin-top:6px;">
+                </div>
+                <div class="card" style="box-shadow:none; background:#fafbfd; padding:12px;">
+                  <div class="muted" style="font-size:12px;">水分/其它扣重(t)</div>
+                  <input class="input btn-sm" value="0.00" style="margin-top:6px;">
+                </div>
+              </div>
+            </div>
+
+            <!-- 磅单闭环（入厂：毛重进 → 卸货 → 皮重出 → 净重） -->
+            <div class="divider"></div>
+            <div style="font-weight:700; margin-bottom:12px; display:flex; align-items:center; gap:8px;"><svg viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2" style="width:18px;height:18px;"><path d="M3 6h18M3 6l2 13h14l2-13M9 10v5M15 10v5"/></svg> 磅单闭环（毛重进厂 → 卸货 → 皮重出厂 → 净重）</div>
+            <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:12px;">
+              <div class="card" style="box-shadow:none; background:#fafbfd; padding:14px; text-align:center;"><div class="muted" style="font-size:12px;">进厂毛重</div><div class="mono" style="font-size:20px; font-weight:800; color:var(--success)">42.68 t</div><div class="badge green no-dot" style="margin-top:4px;">已过磅</div></div>
+              <div class="card" style="box-shadow:none; background:#fafbfd; padding:14px; text-align:center;"><div class="muted" style="font-size:12px;">出厂皮重</div><div class="mono" style="font-size:20px; font-weight:800; color:var(--text-3)">— t</div><div class="badge orange no-dot" style="margin-top:4px;">待复磅</div></div>
+              <div class="card" style="box-shadow:none; background:var(--brand-soft); border:1px solid var(--brand-light); padding:14px; text-align:center;"><div class="muted" style="font-size:12px;">净重(毛-皮)</div><div class="mono" style="font-size:20px; font-weight:800; color:var(--brand)">— t</div><div class="faint" style="margin-top:4px; font-size:11px;">复磅后计算</div></div>
+              <div class="card" style="box-shadow:none; background:var(--warning-light); border:1px solid #f7d9a6; padding:14px; text-align:center;"><div class="muted" style="font-size:12px;">结算净重(扣杂)</div><div class="mono" style="font-size:20px; font-weight:800; color:#c9821a">— t</div><div class="faint" style="margin-top:4px; font-size:11px;">×(1-扣杂率)</div></div>
+            </div>
+
+            <div class="divider"></div>
+            <div class="flex items-center justify-between">
+              <label class="flex items-center gap-8" style="margin:0; font-size:13px; font-weight:500;"><input type="checkbox" checked> 复磅后将结算净重与磅单回写采购单</label>
+              <button class="btn btn-primary btn-lg" data-toast="✅ 已登记入厂，排队号 #B08，通知废钢料场卸货">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg> 确认入厂 · 排队卸货
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 右：排队卸货 + 闭环 -->
+        <div style="display:flex; flex-direction:column; gap:20px;">
+          <div class="card">
+            <div class="card-head"><h3>在厂送货车辆排队</h3><span class="badge green">LIVE</span></div>
+            <div style="padding:6px 0;">
+              <div class="flex items-center gap-12" style="padding:12px 18px;">
+                <div class="mono" style="font-size:18px; font-weight:800; color:var(--brand); width:44px;">B05</div>
+                <div class="grow"><div style="font-weight:600;">粤C·77120 · 废钢</div><div class="pm" style="font-size:12px; color:var(--text-3);">料场B · 卸货中</div></div>
+                <span class="badge purple no-dot" style="color:#7c56e0;background:#f0ebfe;">卸货中</span>
+              </div>
+              <div class="flex items-center gap-12" style="padding:12px 18px; background:var(--brand-soft);">
+                <div class="mono" style="font-size:18px; font-weight:800; color:var(--text); width:44px;">B08</div>
+                <div class="grow"><div style="font-weight:600;">粤C·1188Z · 废钢</div><div class="pm" style="font-size:12px; color:var(--text-3);">当前登记车辆</div></div>
+                <span class="badge blue">已登记</span>
+              </div>
+              <div class="flex items-center gap-12" style="padding:12px 18px;">
+                <div class="mono" style="font-size:18px; font-weight:800; color:var(--success); width:44px;">B02</div>
+                <div class="grow"><div style="font-weight:600;">桂A·3F556 · 铁精粉</div><div class="pm" style="font-size:12px; color:var(--text-3);">复磅完成 · 净重 41.2t</div></div>
+                <button class="btn btn-success btn-sm" data-toast="✅ 已放行，磅单已回写采购单">放行</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head"><h3>车辆到厂闭环</h3><span class="muted" style="font-size:12px;">粤C·1188Z</span></div>
+            <div class="card-pad">
+              <div class="timeline">
+                <div class="tl-item green"><div class="tl-time">09:02</div><div class="tl-title">到厂 · 车牌识别入场</div><div class="muted" style="font-size:12px">货运门岗</div></div>
+                <div class="tl-item green"><div class="tl-time">09:06</div><div class="tl-title">进厂过磅（毛重 42.68t）</div></div>
+                <div class="tl-item orange"><div class="tl-time">进行中</div><div class="tl-title">排队卸货 #B08 · 料场 B</div></div>
+                <div class="tl-item"><div class="tl-time">待完成</div><div class="tl-title">卸货 + 质检验收</div></div>
+                <div class="tl-item"><div class="tl-time">待完成</div><div class="tl-title">出厂复磅（皮重）→ 净重/扣杂结算</div></div>
+                <div class="tl-item"><div class="tl-time">待完成</div><div class="tl-title">回写采购单 · 放行</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="assets/app.js"></script>
+</body>
+</html>

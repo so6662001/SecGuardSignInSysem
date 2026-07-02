@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>磅房过磅工作站 · 钢铁厂专属版</title>
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .scale-display { background:linear-gradient(160deg,#0b1220,#101a33); border-radius:18px; padding:22px 24px; color:#fff; position:relative; overflow:hidden; }
+  .scale-display::after { content:""; position:absolute; width:220px; height:220px; border-radius:50%; background:radial-gradient(circle,rgba(47,107,237,.4),transparent 70%); top:-90px; right:-60px; }
+  .scale-num { font-family:'DS-Digital','Courier New',monospace; font-size:72px; font-weight:800; letter-spacing:4px; color:#4ade80; text-shadow:0 0 18px rgba(74,222,128,.5); line-height:1; }
+  .scale-num small { font-size:24px; color:#9fb0d6; letter-spacing:0; }
+  .scale-plate { display:inline-flex; align-items:center; gap:8px; background:#1e4fc4; padding:6px 14px; border-radius:8px; font-weight:800; letter-spacing:2px; font-size:18px; }
+  .cam-view { background:repeating-linear-gradient(45deg,#1a2540,#1a2540 12px,#202c4c 12px,#202c4c 24px); border-radius:12px; height:150px; display:grid; place-items:center; color:#5a6a90; position:relative; }
+  .cam-view .rec { position:absolute; top:10px; left:10px; display:flex; align-items:center; gap:6px; font-size:11px; color:#ff6b6b; }
+  .cam-view .rec::before { content:""; width:8px; height:8px; border-radius:50%; background:#ff6b6b; }
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V7l8-4v18"/><path d="M11 21V11l8 3v7"/><path d="M8 9h.01M8 13h.01M8 17h.01"/></svg></div>
+      <div class="name">厂智访客<small style="color:#f5a623;">钢铁厂专属版</small></div>
+    </div>
+    <div class="nav-label">工作台</div>
+    <a href="steel-checkin.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 16H9m10 0h3l-2-6H4l-2 6h3m0 0a2 2 0 1 0 4 0m6 0a2 2 0 1 0 4 0"/></svg> 车辆到厂</a>
+    <a href="weighbridge.html" class="nav-item active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 6l2 13h14l2-13M9 10v5M15 10v5"/></svg> 磅房过磅</a>
+    <a href="carrier.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg> 承运商管理</a>
+    <a href="checkin.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg> 访客登记</a>
+    <a href="records.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg> 进出记录</a>
+    <div class="nav-label">管理</div>
+    <a href="dashboard.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/></svg> 数据看板</a>
+    <a href="settings.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg> 系统设置</a>
+    <div class="sidebar-foot">
+      <div class="rent-card" style="background:linear-gradient(135deg,#3a2c12,#241a08);"><span class="tag" style="background:#f5a623;">专属版</span><div class="price">￥599<small>/月起</small></div><div style="font-size:12px; color:#c9a86a; margin-top:4px;">含交易平台打通</div></div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <div><h1>磅房过磅工作站 <span class="badge orange no-dot" style="vertical-align:middle;">1 号地磅</span></h1><div class="sub">司磅员 张磅 · 地磅在线 · 与订单/采购单联动</div></div>
+      <div class="mono" data-clock="time" style="margin-left:auto; font-size:20px; font-weight:800;">09:26:40</div>
+      <div class="avatar" style="margin-left:16px;">磅</div>
+    </header>
+
+    <div class="content">
+      <div style="display:grid; grid-template-columns: 1.5fr 1fr; gap:20px; align-items:start;">
+        <!-- 左：地磅 + 摄像 + 过磅操作 -->
+        <div style="display:flex; flex-direction:column; gap:20px;">
+          <!-- 地磅读数大屏 -->
+          <div class="scale-display">
+            <div class="flex items-center justify-between" style="position:relative; z-index:2;">
+              <div>
+                <div style="color:#9fb0d6; font-size:13px; margin-bottom:4px;">当前上磅重量（实时）</div>
+                <div class="scale-num">42.68<small> t</small></div>
+              </div>
+              <div style="text-align:right;">
+                <span class="scale-plate">粤C·1188Z</span>
+                <div style="color:#4ade80; font-size:12px; margin-top:10px; display:flex; align-items:center; gap:6px; justify-content:flex-end;"><span style="width:8px;height:8px;border-radius:50%;background:#4ade80;display:inline-block;"></span> 读数稳定 · 可记录</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 摄像抓拍 -->
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+            <div class="card card-pad">
+              <div class="muted" style="font-size:12px; margin-bottom:8px;">车头抓拍（车牌）</div>
+              <div class="cam-view"><span class="rec">REC</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:40px;height:40px;"><path d="M14 16H9m10 0h3l-2-6H4l-2 6h3m0 0a2 2 0 1 0 4 0m6 0a2 2 0 1 0 4 0"/></svg></div>
+            </div>
+            <div class="card card-pad">
+              <div class="muted" style="font-size:12px; margin-bottom:8px;">车厢抓拍（防作弊）</div>
+              <div class="cam-view"><span class="rec">REC</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:40px;height:40px;"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M3 17l5-4 4 3"/></svg></div>
+            </div>
+          </div>
+
+          <!-- 过磅操作 -->
+          <div class="card">
+            <div class="card-head"><h3>过磅操作</h3><span class="badge blue no-dot">送货入厂 · 第 1 次（毛重）</span></div>
+            <div class="card-pad">
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:2px 20px; margin-bottom:14px;">
+                <div class="kv"><span class="k">车牌</span><span class="v">粤C·1188Z</span></div>
+                <div class="kv"><span class="k">承运商</span><span class="v">广发货运</span></div>
+                <div class="kv"><span class="k">关联单据</span><span class="v">PO-260702-0175</span></div>
+                <div class="kv"><span class="k">物料</span><span class="v">重型废钢</span></div>
+                <div class="kv"><span class="k">供应商</span><span class="v">中拓废旧金属</span></div>
+                <div class="kv"><span class="k">扣杂率</span><span class="v">2.5%</span></div>
+              </div>
+              <div style="display:flex; gap:12px; align-items:flex-end;">
+                <div class="field grow" style="margin:0;"><label>本次称重读数（吨）</label><input class="input mono" value="42.68" style="font-size:18px; font-weight:700;"></div>
+                <button class="btn btn-ghost" data-toast="已读取地磅仪表并抓拍存证"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg> 读取地磅</button>
+                <button class="btn btn-primary btn-lg" data-toast="✅ 毛重 42.68t 已记录，生成磅单，等待卸货复磅">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> 确认记录毛重
+                </button>
+              </div>
+              <div class="card" style="box-shadow:none; background:var(--warning-light); border-color:#f7d9a6; padding:10px 12px; margin-top:14px; display:flex; align-items:center; gap:10px;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#c9821a" stroke-width="2" style="width:18px;height:18px;flex-shrink:0;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+                <div style="font-size:12.5px; color:#a86a12;">防作弊校验：车牌与登记一致 ✓，读数稳定 ✓，与历史皮重偏差在合理范围 ✓</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 右：待过磅队列 + 今日磅单 -->
+        <div style="display:flex; flex-direction:column; gap:20px;">
+          <div class="card">
+            <div class="card-head"><h3>待过磅队列</h3><span class="badge orange no-dot">5 辆</span></div>
+            <div style="padding:6px 0;">
+              <div class="flex items-center gap-12" style="padding:11px 18px; background:var(--brand-soft);">
+                <span class="scale-plate" style="font-size:13px; padding:4px 9px; background:var(--brand);">粤C·1188Z</span>
+                <div class="grow"><div style="font-weight:600; font-size:13px;">送货 · 毛重</div><div class="pm" style="font-size:12px;color:var(--text-3)">在磅上 · 当前</div></div>
+                <span class="badge blue">称重中</span>
+              </div>
+              <div class="flex items-center gap-12" style="padding:11px 18px;">
+                <span class="scale-plate" style="font-size:13px; padding:4px 9px; background:#5a6478;">粤B·8Z326</span>
+                <div class="grow"><div style="font-weight:600; font-size:13px;">提货 · 复磅(毛)</div><div class="pm" style="font-size:12px;color:var(--text-3)">装货完成</div></div>
+                <span class="badge orange">等待</span>
+              </div>
+              <div class="flex items-center gap-12" style="padding:11px 18px;">
+                <span class="scale-plate" style="font-size:13px; padding:4px 9px; background:#5a6478;">桂A·3F556</span>
+                <div class="grow"><div style="font-weight:600; font-size:13px;">送货 · 复磅(皮)</div><div class="pm" style="font-size:12px;color:var(--text-3)">卸货完成</div></div>
+                <span class="badge orange">等待</span>
+              </div>
+              <div class="flex items-center gap-12" style="padding:11px 18px;">
+                <span class="scale-plate" style="font-size:13px; padding:4px 9px; background:#5a6478;">粤A·9K077</span>
+                <div class="grow"><div style="font-weight:600; font-size:13px;">提货 · 毛重</div><div class="pm" style="font-size:12px;color:var(--text-3)">刚入场</div></div>
+                <span class="badge gray">排队</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head"><h3>今日磅单流水</h3><span class="muted" style="font-size:12px;">已完成 46 单</span></div>
+            <table class="table">
+              <thead><tr><th>车牌</th><th>净重</th><th>类型</th><th>状态</th></tr></thead>
+              <tbody>
+                <tr><td class="mono">桂A·3F556</td><td class="mono" style="font-weight:700;">41.20 t</td><td>送货</td><td><span class="badge green">已回写</span></td></tr>
+                <tr><td class="mono">粤A·9K077</td><td class="mono" style="font-weight:700;">34.80 t</td><td>提货</td><td><span class="badge green">已回写</span></td></tr>
+                <tr><td class="mono">粤C·77120</td><td class="mono" style="font-weight:700;">39.05 t</td><td>送货</td><td><span class="badge green">已回写</span></td></tr>
+                <tr><td class="mono">粤B·6L820</td><td class="mono" style="font-weight:700;">36.60 t</td><td>提货</td><td><span class="badge orange">复磅差异</span></td></tr>
+              </tbody>
+            </table>
+            <div class="card-pad" style="padding-top:12px;"><a href="records.html" class="btn btn-ghost btn-block btn-sm">查看全部磅单记录 →</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="assets/app.js"></script>
+</body>
+</html>
