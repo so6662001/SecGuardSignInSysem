@@ -1,0 +1,41 @@
+---
+description: 厂智访客（工厂访客与车辆管理 SaaS）全局工程规则：技术栈、架构、多租户、编码规范。始终生效。
+alwaysApply: true
+---
+
+# 厂智访客 · 全局工程规则
+
+你正在开发「厂智访客」——一个**多租户 SaaS** 平台，用于工厂外来人员与车辆的进出管理。产品分两条腿：
+- **通用版**：访客登记、审批、在场/离场、台账、看板等（面向所有工厂）。
+- **钢铁厂专属版**：车辆到厂（送货/提货）、磅单净重闭环、排队叫号、承运商管理，并与「钢智汇」交易平台/ERP 打通。
+
+设计稿位于仓库 `prototype/` 目录（28 个高保真 HTML 页面），是功能与 UI 的权威参考。开发前请阅读对应原型页面，保证功能、字段、交互与之一致，不得缺失。
+
+## 技术栈（务必遵守）
+- 后端：Java 17、Spring Boot 3.x、Spring Security + JWT、MyBatis-Plus、MySQL 8、Redis 7、RabbitMQ、MinIO（对象存储）、Flyway（数据库迁移）、Knife4j/OpenAPI3（接口文档）、WebSocket/SSE（实时推送）、Spring Scheduling/XXL-JOB（定时任务）、Maven 多模块。
+- 前端 PC：Vue 3 + Vite + TypeScript + Pinia + Vue Router + Element Plus + Axios + ECharts + UnoCSS。使用 `<script setup>` 组合式 API。
+- 移动端：uni-app（Vue3 语法，一套代码编译到 H5 / 微信小程序 / App）；访客免登录审批用 H5。移动端 UI 组件用 uni-ui / wot-design-uni。
+- 仓库形态：pnpm workspace 前端 monorepo（`apps/pc-tenant`、`apps/pc-ops`、`apps/mobile`、`packages/shared`）；后端 Maven 多模块（`fv-common`、`fv-system`、`fv-visitor`、`fv-steel`、`fv-notify`、`fv-device`、`fv-billing`、`fv-ops`、`fv-gateway`/`fv-admin-api`、`fv-tenant-api`）。
+
+## 架构与多租户
+- **多租户隔离**：行级隔离，所有租户业务表含 `tenant_id`。通过 MyBatis-Plus TenantLineInnerInterceptor 自动注入/过滤；平台运营域（tenant/application/plan/invoice）不参与租户过滤。
+- **租户上下文**：登录 JWT 内含 `tenantId`、`userId`、`roles`；用 `TenantContextHolder`（ThreadLocal）贯穿请求。运营平台账号 `tenantId=0/NULL`（平台域）。
+- **三类使用者**：① 平台运营方（我们）；② 租户企业（钢厂/工厂：管理员、门卫、审核员、司磅员、被访人/员工）；③ 外部人员（访客、司机——多为免登录/小程序）。
+- **API 分层**：`/api/ops/**`（运营平台）、`/api/tenant/**`（租户端 PC）、`/api/mobile/**`（移动端/员工）、`/api/public/**`（免登录：访客自助、短信审批短链、扫码）、`/api/device/**`（设备回调，走设备密钥鉴权）。
+- **实时**：在场动态、排队叫号、审批推送、设备事件用 WebSocket（STOMP）或 SSE，按 tenantId + 门岗/用户维度分频道。
+
+## 编码规范
+- 统一响应体 `R<T>{code,message,data,traceId}`；分页 `PageResult<T>{list,total,page,size}`；全局异常处理器 + 业务异常 `BizException(code,msg)`。
+- 参数校验用 Jakarta Validation；对外 DTO 与 PO/Entity 分离，用 MapStruct 转换。
+- 所有金额用 `BigDecimal`，重量（吨）保留 3 位小数，时间用 `LocalDateTime`（UTC 存储、前端本地展示）。
+- 关键操作写审计日志（audit_log）：谁、租户、动作、对象、前后值、IP、时间。
+- 敏感信息（手机号、证件号）入库加密或脱敏展示，遵循最小权限。
+- 数据库变更一律通过 Flyway 脚本（`V{version}__{desc}.sql`），不手改表。
+- 前端：Axios 统一封装（携带 token、租户头、错误提示、401 跳登录）；路由与菜单由后端权限动态生成；页面/组件与 `prototype/` 对应命名清晰。
+- 命名：Java 包 `cn.faccess.{module}`；REST 资源名用复数、kebab 或直义；前端组件 PascalCase、目录 kebab-case。
+
+## 交付质量要求
+- **功能齐全、逻辑不缺失**：每个模块必须包含增删改查 + 列表筛选分页 + 状态流转 + 权限校验 + 异常与空态 + 实时/通知联动，且与原型页面逐项对齐。
+- 每完成一个后端模块，配套 Flyway 迁移、单元/集成测试、OpenAPI 注解；每完成一个前端页面，配套接口联调、加载/错误/空态、权限控制。
+- 涉及外部设备/第三方（车牌道闸、人脸、地磅、短信、语音、电子签、微信/企微/钉钉、OCR、交易平台）一律先定义**适配器接口 + Mock 实现**，通过配置切换真实厂商实现，保证无硬件也能跑通。
+- 不允许出现「TODO 占位」式的空方法交付；如确需分期，必须在 PR 说明中列出。
