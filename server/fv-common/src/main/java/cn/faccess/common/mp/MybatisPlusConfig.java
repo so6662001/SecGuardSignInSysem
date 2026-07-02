@@ -22,9 +22,11 @@ public class MybatisPlusConfig {
 
     /** 不参与租户过滤的表（平台域 / 全局字典）。 */
     private static final Set<String> IGNORE_TABLES = Set.of(
+            // 平台域表
             "sys_tenant", "tenant_application", "biz_plan", "biz_addon", "biz_hardware",
             "tenant_subscription", "biz_invoice", "biz_quote", "ops_lead", "ops_conversion",
-            "sys_permission", "sys_menu", "notify_template"
+            // 全局字典 / 无 tenant_id 列的关联表
+            "sys_permission", "sys_menu", "sys_user_role", "sys_role_permission", "notify_template"
     );
 
     @Bean

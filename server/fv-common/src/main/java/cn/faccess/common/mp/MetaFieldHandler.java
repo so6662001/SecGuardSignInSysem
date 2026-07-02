@@ -21,12 +21,7 @@ public class MetaFieldHandler implements MetaObjectHandler {
         strictInsertFill(metaObject, "createBy", Long.class, TenantContext.getUserId());
         strictInsertFill(metaObject, "updateBy", Long.class, TenantContext.getUserId());
         strictInsertFill(metaObject, "deleted", Integer.class, 0);
-        // tenant_id 若业务未显式设置，则填当前租户
-        Object tid = getFieldValByName("tenantId", metaObject);
-        if (tid == null) {
-            Long ctx = TenantContext.getTenantId();
-            strictInsertFill(metaObject, "tenantId", Long.class, ctx == null ? 0L : ctx);
-        }
+        // tenant_id 由 TenantLineInnerInterceptor 在 SQL 层注入，不在此填充
     }
 
     @Override

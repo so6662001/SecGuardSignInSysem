@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>cn.faccess</groupId>
+    <artifactId>fv-parent</artifactId>
+    <version>1.0.0</version>
+  </parent>
+  <artifactId>fv-system</artifactId>
+  <name>厂智访客 · 系统域</name>
+  <description>用户/角色/权限/菜单/门岗/厂区/审计 + 鉴权与租户开通</description>
+  <dependencies>
+    <dependency>
+      <groupId>cn.faccess</groupId>
+      <artifactId>fv-common</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <optional>true</optional>
+    </dependency>
+  </dependencies>
+</project>

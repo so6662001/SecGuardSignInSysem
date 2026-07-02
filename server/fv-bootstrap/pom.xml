@@ -18,6 +18,10 @@
       <groupId>cn.faccess</groupId>
       <artifactId>fv-common</artifactId>
     </dependency>
+    <dependency>
+      <groupId>cn.faccess</groupId>
+      <artifactId>fv-ops</artifactId>
+    </dependency>
 
     <dependency>
       <groupId>com.mysql</groupId>

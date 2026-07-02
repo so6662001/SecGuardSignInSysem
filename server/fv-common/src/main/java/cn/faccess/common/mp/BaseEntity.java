@@ -17,7 +17,11 @@ public class BaseEntity implements Serializable {
     @TableId
     private Long id;
 
-    @TableField(value = "tenant_id", fill = FieldFill.INSERT)
+    /**
+     * 租户ID。由 TenantLineInnerInterceptor 在 SQL 层自动注入/过滤，
+     * 因此此字段不参与实体自动填充，避免与拦截器重复写列。
+     */
+    @TableField(value = "tenant_id")
     private Long tenantId;
 
     @TableField(value = "create_time", fill = FieldFill.INSERT)

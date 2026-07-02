@@ -29,6 +29,8 @@
 
   <modules>
     <module>fv-common</module>
+    <module>fv-system</module>
+    <module>fv-ops</module>
     <module>fv-bootstrap</module>
   </modules>
 
@@ -62,6 +64,16 @@
       <dependency>
         <groupId>cn.faccess</groupId>
         <artifactId>fv-common</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>cn.faccess</groupId>
+        <artifactId>fv-system</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>cn.faccess</groupId>
+        <artifactId>fv-ops</artifactId>
         <version>${project.version}</version>
       </dependency>
     </dependencies>
