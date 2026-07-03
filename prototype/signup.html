@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>申请开通 · 厂智访客</title>
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .signup-wrap { max-width: 1120px; margin: 0 auto; padding: 30px 24px 60px; }
+  @media (max-width: 900px){ .signup-grid{ grid-template-columns:1fr !important; } }
+</style>
+</head>
+<body style="background:var(--bg);">
+
+<!-- 顶部导航 -->
+<nav class="landing-nav">
+  <a href="index.html" class="brand" style="padding:0;">
+    <div class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V7l8-4v18"/><path d="M11 21V11l8 3v7"/><path d="M8 9h.01M8 13h.01M8 17h.01"/></svg></div>
+    <div class="name" style="color:var(--text)">厂智访客<small style="color:var(--text-3)">FACTORY VISITOR</small></div>
+  </a>
+  <div style="margin-left:auto; display:flex; gap:12px; align-items:center;">
+    <span class="muted" style="font-size:13px;">已有账号？</span>
+    <a href="login.html" class="btn btn-ghost btn-sm">登录</a>
+  </div>
+</nav>
+
+<div class="signup-wrap">
+  <div class="center" style="margin-bottom:26px;">
+    <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> 多租户 SaaS · 在线自助开通</span>
+    <h1 style="font-size:30px; font-weight:800; margin-top:12px;">申请开通「厂智访客」</h1>
+    <p class="muted" style="margin-top:8px;">填写企业信息即可开通，自动创建您的专属厂区空间，数据与其他企业完全隔离</p>
+  </div>
+
+  <!-- 步骤条 -->
+  <div class="card card-pad" style="margin-bottom:20px;">
+    <div class="stepper" style="margin-bottom:0; justify-content:center;">
+      <div class="step active"><span class="sc">1</span><span class="st">企业信息</span></div>
+      <div class="step-line"></div>
+      <div class="step"><span class="sc">2</span><span class="st">管理员账号</span></div>
+      <div class="step-line"></div>
+      <div class="step"><span class="sc">3</span><span class="st">选择套餐</span></div>
+      <div class="step-line"></div>
+      <div class="step"><span class="sc">4</span><span class="st">开通完成</span></div>
+    </div>
+  </div>
+
+  <div class="signup-grid" style="display:grid; grid-template-columns: 1.5fr 1fr; gap:20px; align-items:start;">
+    <!-- 左：表单 -->
+    <div style="display:flex; flex-direction:column; gap:20px;">
+      <div class="card">
+        <div class="card-head"><h3>① 企业信息</h3></div>
+        <div class="card-pad">
+          <div class="field"><label>企业名称 <span class="req">*</span></label><input class="input" placeholder="请输入营业执照上的企业全称" value="宏远精密制造有限公司"></div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:0 18px;">
+            <div class="field"><label>统一社会信用代码 <span class="req">*</span></label><input class="input" placeholder="18 位信用代码"></div>
+            <div class="field"><label>所属行业</label><select class="select"><option>机械制造</option><option>电子科技</option><option>食品加工</option><option>化工</option><option>物流仓储</option><option>其他</option></select></div>
+          </div>
+          <div class="field"><label>厂区/园区地址 <span class="req">*</span></label><input class="input" placeholder="省 / 市 / 区 详细地址" value="广东省东莞市长安镇宏远工业园"></div>
+          <div class="field" style="margin-bottom:0;"><label>厂区数量 <span class="req">*</span></label>
+            <div class="chip-group">
+              <div class="chip active">1 个厂区</div><div class="chip">2 个厂区</div><div class="chip">3 个厂区</div><div class="chip">4 个及以上</div>
+            </div>
+            <div class="muted" style="font-size:12.5px; margin-top:8px;">每个厂区按 ￥60/月 独立计费，多厂区统一管理</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><h3>② 管理员账号</h3><span class="muted" style="font-size:13px;">该账号为企业超级管理员</span></div>
+        <div class="card-pad">
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:0 18px;">
+            <div class="field"><label>联系人姓名 <span class="req">*</span></label><input class="input" placeholder="您的姓名" value="李文强"></div>
+            <div class="field"><label>职务</label><input class="input" placeholder="如：安保负责人 / 行政经理"></div>
+          </div>
+          <div class="field"><label>手机号（登录账号）<span class="req">*</span></label>
+            <div style="display:flex; gap:12px;">
+              <input class="input" placeholder="请输入手机号" value="138 6621 8890" style="flex:1;">
+              <button class="btn btn-ghost" data-toast="验证码已发送（演示）" style="white-space:nowrap;">获取验证码</button>
+            </div>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:0 18px;">
+            <div class="field"><label>短信验证码 <span class="req">*</span></label><input class="input" placeholder="6 位验证码"></div>
+            <div class="field"><label>设置登录密码 <span class="req">*</span></label><input class="input" type="password" placeholder="至少 8 位"></div>
+          </div>
+          <div class="field" style="margin-bottom:0;"><label>企业邮箱（选填）</label><input class="input" placeholder="用于接收账单与通知"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 右：订单摘要 -->
+    <div class="order-box">
+      <div class="card">
+        <div class="card-head"><h3>③ 套餐与订单</h3></div>
+        <div class="card-pad">
+          <div class="card" style="box-shadow:none; border-color:var(--brand-light); background:var(--brand-soft); padding:16px; margin-bottom:16px;">
+            <div class="flex items-center justify-between">
+              <div><div style="font-weight:800; font-size:16px;">全功能版</div><div class="muted" style="font-size:12.5px;">不限登记次数 · 全部功能</div></div>
+              <div style="text-align:right;"><div style="font-size:24px; font-weight:800; color:var(--brand);">￥60</div><div class="muted" style="font-size:12px;">/ 厂区 / 月</div></div>
+            </div>
+          </div>
+
+          <div class="order-line"><span class="muted">全功能版 × 1 厂区</span><span>￥60.00 / 月</span></div>
+          <div class="order-line"><span class="muted">免费试用</span><span style="color:var(--success); font-weight:600;">14 天</span></div>
+          <div class="order-line"><span class="muted">试用期费用</span><span style="color:var(--success); font-weight:600;">￥0.00</span></div>
+          <div class="order-total">
+            <div><div class="muted" style="font-size:12.5px;">试用到期后</div><div style="font-weight:700;">按月自动续费</div></div>
+            <div style="text-align:right;"><div style="font-size:26px; font-weight:800;">￥60<span style="font-size:14px; font-weight:500; color:var(--text-3);">/月</span></div></div>
+          </div>
+
+          <div class="divider"></div>
+          <label class="flex items-center gap-8" style="font-size:12.5px; color:var(--text-2); margin-bottom:14px; align-items:flex-start;"><input type="checkbox" checked style="margin-top:3px;"> 我已阅读并同意《服务协议》与《数据处理与隐私政策》</label>
+          <button class="btn btn-primary btn-lg btn-block" data-toast="✅ 申请已提交，正在为您开通专属厂区空间…" onclick="setTimeout(function(){location.href='signup-done.html'},900)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            提交申请 · 免费试用
+          </button>
+          <div class="center muted" style="font-size:12px; margin-top:12px;">无需绑卡 · 试用到期不自动扣费 · 随时可取消</div>
+
+          <div class="divider"></div>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div class="flex items-center gap-8" style="font-size:13px; color:var(--text-2);"><svg viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.4" style="width:16px;height:16px;"><path d="M20 6L9 17l-5-5"/></svg> 独立空间，企业间数据隔离</div>
+            <div class="flex items-center gap-8" style="font-size:13px; color:var(--text-2);"><svg viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.4" style="width:16px;height:16px;"><path d="M20 6L9 17l-5-5"/></svg> 开通即用，无需部署服务器</div>
+            <div class="flex items-center gap-8" style="font-size:13px; color:var(--text-2);"><svg viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.4" style="width:16px;height:16px;"><path d="M20 6L9 17l-5-5"/></svg> 数据云端备份，免运维</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">厂智访客 · 多租户 SaaS · 高保真原型演示 &nbsp;|&nbsp; 本页面为界面设计稿，数据均为示意</footer>
+<script src="assets/app.js"></script>
+</body>
+</html>

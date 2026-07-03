@@ -1,0 +1,70 @@
+name: CI
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+
+jobs:
+  backend:
+    name: 后端构建与集成测试（Maven）
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: faccess123
+          MYSQL_DATABASE: faccess_test
+        ports: ["3306:3306"]
+        options: >-
+          --health-cmd="mysqladmin ping -h localhost -pfaccess123"
+          --health-interval=10s --health-timeout=5s --health-retries=15
+      redis:
+        image: redis:7
+        ports: ["6379:6379"]
+        options: >-
+          --health-cmd="redis-cli ping" --health-interval=10s --health-timeout=5s --health-retries=10
+    env:
+      FV_TEST_DB_URL: jdbc:mysql://127.0.0.1:3306/faccess_test?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&useSSL=false
+      FV_TEST_DB_USER: root
+      FV_TEST_DB_PASSWORD: faccess123
+      FV_TEST_REDIS_HOST: 127.0.0.1
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+          cache: maven
+      - name: Build
+        working-directory: server
+        run: mvn -q -B clean package -DskipTests
+      - name: Integration Test
+        working-directory: server
+        run: mvn -q -B test
+
+  frontend:
+    name: 前端构建（pnpm）
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: pnpm
+          cache-dependency-path: web/pnpm-lock.yaml
+      - name: Install
+        working-directory: web
+        run: pnpm install --frozen-lockfile
+      - name: Build tenant
+        working-directory: web
+        run: pnpm --filter pc-tenant build
+      - name: Build ops
+        working-directory: web
+        run: pnpm --filter pc-ops build
+      - name: Build mobile
+        working-directory: web
+        run: pnpm --filter mobile build

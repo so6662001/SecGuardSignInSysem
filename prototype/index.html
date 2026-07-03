@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>厂智访客 · 工厂外来人员进出登记系统</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<!-- 顶部导航 -->
+<nav class="landing-nav">
+  <div class="brand" style="padding:0;">
+    <div class="logo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V7l8-4v18"/><path d="M11 21V11l8 3v7"/><path d="M8 9h.01M8 13h.01M8 17h.01"/></svg>
+    </div>
+    <div class="name" style="color:var(--text)">厂智访客<small style="color:var(--text-3)">FACTORY VISITOR</small></div>
+  </div>
+  <div class="links">
+    <a href="#features">功能特色</a>
+    <a href="#flow">使用流程</a>
+    <a href="#proto">原型演示</a>
+    <a href="pricing.html">套餐价格</a>
+  </div>
+  <div style="margin-left:auto; display:flex; gap:12px;">
+    <a href="login.html" class="btn btn-ghost">登录</a>
+    <a href="signup.html" class="btn btn-primary">申请开通</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<header class="hero">
+  <div>
+    <span class="pill">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+      告别手工登记本 · 一部平板即可开工
+    </span>
+    <h1>工厂<span class="hl">外来人员</span><br>进出登记，从此<span class="hl">一键搞定</span></h1>
+    <p class="lead">访客到访、离场全程电子化登记，记录实时同步到管理人员手机端，随时查看与审核。简单、直观、美观，门卫上手只需 1 分钟。</p>
+    <div style="display:flex; gap:14px; flex-wrap:wrap;">
+      <a href="checkin.html" class="btn btn-primary btn-lg">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        进入门卫工作台
+      </a>
+      <a href="dashboard.html" class="btn btn-ghost btn-lg">查看管理看板</a>
+    </div>
+    <div style="display:flex; gap:34px; margin-top:36px;">
+      <div><div style="font-size:26px;font-weight:800;color:var(--brand)">≈10<small style="font-size:14px">秒</small></div><div class="muted" style="font-size:13px">单次登记耗时</div></div>
+      <div><div style="font-size:26px;font-weight:800;color:var(--brand)">0<small style="font-size:14px">纸张</small></div><div class="muted" style="font-size:13px">无纸化登记</div></div>
+      <div><div style="font-size:26px;font-weight:800;color:var(--brand)">￥60<small style="font-size:14px">/月</small></div><div class="muted" style="font-size:13px">超低租用成本</div></div>
+    </div>
+  </div>
+
+  <!-- 右侧预览卡 -->
+  <div style="position:relative;">
+    <div class="card" style="box-shadow:var(--shadow-lg); overflow:hidden;">
+      <div class="topbar" style="height:56px; padding:0 18px; position:static; border-radius:16px 16px 0 0;">
+        <span style="width:11px;height:11px;border-radius:50%;background:#ff5f57"></span>
+        <span style="width:11px;height:11px;border-radius:50%;background:#febc2e"></span>
+        <span style="width:11px;height:11px;border-radius:50%;background:#28c840"></span>
+        <span class="muted" style="margin-left:12px;font-size:13px">门卫工作台 · 今日进出</span>
+      </div>
+      <div class="card-pad" style="background:var(--bg)">
+        <div class="stat-grid" style="grid-template-columns:repeat(2,1fr); gap:12px;">
+          <div class="stat" style="padding:16px;">
+            <div class="ico blue" style="width:38px;height:38px;margin-bottom:8px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg></div>
+            <div class="num" style="font-size:24px;">128</div><div class="lbl">今日到访</div>
+          </div>
+          <div class="stat" style="padding:16px;">
+            <div class="ico green" style="width:38px;height:38px;margin-bottom:8px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+            <div class="num" style="font-size:24px;">37</div><div class="lbl">当前在场</div>
+          </div>
+        </div>
+        <div class="card" style="margin-top:12px; box-shadow:none;">
+          <div style="padding:12px 14px; display:flex; align-items:center; gap:10px; border-bottom:1px solid var(--line)">
+            <div class="pa c2" style="width:34px;height:34px;border-radius:10px;display:grid;place-items:center;color:#fff;font-weight:700;font-size:13px">张</div>
+            <div style="flex:1"><div style="font-weight:600">张建国 · 顺丰速运</div><div class="pm" style="font-size:12px;color:var(--text-3)">洽谈业务 · 09:12 入场</div></div>
+            <span class="badge green">在场</span>
+          </div>
+          <div style="padding:12px 14px; display:flex; align-items:center; gap:10px;">
+            <div class="pa c3" style="width:34px;height:34px;border-radius:10px;display:grid;place-items:center;color:#fff;font-weight:700;font-size:13px">李</div>
+            <div style="flex:1"><div style="font-weight:600">李美琳 · 华为技术</div><div class="pm" style="font-size:12px;color:var(--text-3)">设备维修 · 08:40 入场</div></div>
+            <span class="badge gray">已离场</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="position:absolute; bottom:-24px; left:-24px; padding:14px 16px; display:flex; align-items:center; gap:12px; box-shadow:var(--shadow-lg);">
+      <div class="ico green" style="width:40px;height:40px;margin:0;border-radius:11px;display:grid;place-items:center;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg></div>
+      <div><div style="font-weight:700;font-size:13px">记录已同步</div><div class="muted" style="font-size:12px">管理员已收到通知</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 功能特色 -->
+<section class="section" id="features" style="background:#fff;">
+  <div class="section-title">
+    <h2>为工厂门卫场景量身打造</h2>
+    <p>把繁琐的手工登记本，变成人人会用的电子化工具</p>
+  </div>
+  <div class="feature-grid">
+    <div class="feature">
+      <div class="fi ico blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+      <h4>极简登记</h4>
+      <p>大字号、大按钮，门卫无需培训即可上手。姓名、单位、事由、被访人，选一选点一点即可完成。</p>
+    </div>
+    <div class="feature">
+      <div class="fi ico green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+      <h4>进出双记录</h4>
+      <p>入场、离场一键切换，自动计算在场时长。异常滞留自动提醒，杜绝人员漏登、漏走。</p>
+    </div>
+    <div class="feature">
+      <div class="fi ico orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></div>
+      <h4>实时同步审核</h4>
+      <p>每条记录实时推送到相关管理人员手机，可远程查看、审批被访人接待申请，全程留痕可追溯。</p>
+    </div>
+    <div class="feature">
+      <div class="fi ico purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg></div>
+      <h4>访客扫码自助</h4>
+      <p>访客手机扫码自主填写信息，门卫核对即可放行，高峰期不排队，信息更准确。</p>
+    </div>
+    <div class="feature">
+      <div class="fi ico blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/></svg></div>
+      <h4>数据看板</h4>
+      <p>到访趋势、来访单位、事由分布一目了然，为安保管理与决策提供数据支撑，支持导出报表。</p>
+    </div>
+    <div class="feature">
+      <div class="fi ico green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+      <h4>安全合规</h4>
+      <p>信息加密存储，权限分级管理，满足工厂进出人员台账留存要求，数据只有您和授权人员可见。</p>
+    </div>
+    <div class="feature">
+      <div class="fi ico orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v4H4zM4 12h10v4H4zM4 20h7"/><path d="M18 14l4 4M22 14l-4 4"/></svg></div>
+      <h4>登记项自由定制</h4>
+      <p>普通企业开箱即用；高安全级别企业可按来访类型启用<b>携带设备登记、危险品申报、安全承诺书</b>等，还能自定义字段——要求各不相同也能满足。</p>
+    </div>
+    <div class="feature">
+      <div class="fi ico blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+      <h4>多渠道快速审批</h4>
+      <p>被访人接入系统的推送秒批；<b>未接入系统</b>的用短信免登录链接、语音电话也能一键审批；超时自动升级到备用审批人或门卫代批，访客不干等。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 使用流程 -->
+<section class="section" id="flow">
+  <div class="section-title">
+    <h2>四步完成一次访客进出</h2>
+    <p>从进厂到离厂，全程电子留痕</p>
+  </div>
+  <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:20px;">
+    <div class="feature" style="text-align:center;">
+      <div style="width:52px;height:52px;border-radius:50%;background:var(--brand);color:#fff;font-size:22px;font-weight:800;display:grid;place-items:center;margin:0 auto 14px;">1</div>
+      <h4>到访登记</h4><p>门卫录入或访客扫码填写来访信息</p>
+    </div>
+    <div class="feature" style="text-align:center;">
+      <div style="width:52px;height:52px;border-radius:50%;background:var(--brand);color:#fff;font-size:22px;font-weight:800;display:grid;place-items:center;margin:0 auto 14px;">2</div>
+      <h4>通知被访人</h4><p>系统自动推送，被访人确认接待</p>
+    </div>
+    <div class="feature" style="text-align:center;">
+      <div style="width:52px;height:52px;border-radius:50%;background:var(--brand);color:#fff;font-size:22px;font-weight:800;display:grid;place-items:center;margin:0 auto 14px;">3</div>
+      <h4>入场放行</h4><p>核验身份，发放访客牌，记录入场时间</p>
+    </div>
+    <div class="feature" style="text-align:center;">
+      <div style="width:52px;height:52px;border-radius:50%;background:var(--success);color:#fff;font-size:22px;font-weight:800;display:grid;place-items:center;margin:0 auto 14px;">4</div>
+      <h4>离场登记</h4><p>归还访客牌，一键离场，自动生成台账</p>
+    </div>
+  </div>
+</section>
+
+<!-- 原型演示 -->
+<section class="section" id="proto" style="background:#fff;">
+  <div class="section-title">
+    <h2>高保真原型演示</h2>
+    <p>点击下方卡片，进入对应界面查看交互效果</p>
+  </div>
+  <div class="proto-grid">
+    <a href="checkin.html" class="proto-card">
+      <div class="thumb" style="background:linear-gradient(135deg,#eaf1ff,#dbe7ff)"><svg viewBox="0 0 24 24" fill="none" stroke="#2f6bed" stroke-width="1.6"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg></div>
+      <div class="pinfo"><h4>门卫工作台 · 入场登记 <span class="badge blue no-dot">核心</span></h4><p>大字号快速录入访客信息</p></div>
+    </a>
+    <a href="onsite.html" class="proto-card">
+      <div class="thumb" style="background:linear-gradient(135deg,#e6f7f0,#d3f0e3)"><svg viewBox="0 0 24 24" fill="none" stroke="#22b07d" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+      <div class="pinfo"><h4>在场访客 · 离场登记</h4><p>实时在场名单与一键离场</p></div>
+    </a>
+    <a href="records.html" class="proto-card">
+      <div class="thumb" style="background:linear-gradient(135deg,#fdf3e2,#fce7c6)"><svg viewBox="0 0 24 24" fill="none" stroke="#f5a623" stroke-width="1.6"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 15l2 2 4-4"/></svg></div>
+      <div class="pinfo"><h4>进出记录 · 审核台账</h4><p>全量记录检索、筛选与审核</p></div>
+    </a>
+    <a href="dashboard.html" class="proto-card">
+      <div class="thumb" style="background:linear-gradient(135deg,#f0ebfe,#e5dbfd)"><svg viewBox="0 0 24 24" fill="none" stroke="#7c56e0" stroke-width="1.6"><path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/></svg></div>
+      <div class="pinfo"><h4>管理数据看板</h4><p>趋势/单位/事由多维分析</p></div>
+    </a>
+    <a href="mobile.html" class="proto-card">
+      <div class="thumb" style="background:linear-gradient(135deg,#e9f4fc,#d3ebfa)"><svg viewBox="0 0 24 24" fill="none" stroke="#4a9fe0" stroke-width="1.6"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M12 18h.01"/></svg></div>
+      <div class="pinfo"><h4>移动端 · 访客自助登记</h4><p>扫码填报与管理员移动审核</p></div>
+    </a>
+    <a href="field-config.html" class="proto-card">
+      <div class="thumb" style="background:linear-gradient(135deg,#fdf3e2,#fce7c6)"><svg viewBox="0 0 24 24" fill="none" stroke="#f5a623" stroke-width="1.6"><path d="M4 4h16v4H4zM4 12h10v4H4zM4 20h7"/><path d="M18 14l4 4M22 14l-4 4"/></svg></div>
+      <div class="pinfo"><h4>登记项配置 · 模板设计器 <span class="badge orange no-dot">新</span></h4><p>按企业自定义登记项，如携带设备登记</p></div>
+    </a>
+    <a href="checkin-secure.html" class="proto-card">
+      <div class="thumb" style="background:linear-gradient(135deg,#e6f7f0,#d3f0e3)"><svg viewBox="0 0 24 24" fill="none" stroke="#22b07d" stroke-width="1.6"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 21h8M12 18v3"/><path d="M7 9h6"/></svg></div>
+      <div class="pinfo"><h4>高安全级别登记 · 携带设备 <span class="badge orange no-dot">新</span></h4><p>设备逐项登记、承诺书电子签署</p></div>
+    </a>
+    <a href="approval.html" class="proto-card">
+      <div class="thumb" style="background:linear-gradient(135deg,#eaf1ff,#dbe7ff)"><svg viewBox="0 0 24 24" fill="none" stroke="#2f6bed" stroke-width="1.6"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+      <div class="pinfo"><h4>快速审批 · 多渠道通知 <span class="badge orange no-dot">新</span></h4><p>短信免登录审批、超时自动升级</p></div>
+    </a>
+    <a href="approve.html" class="proto-card">
+      <div class="thumb" style="background:linear-gradient(135deg,#e9f4fc,#d3ebfa)"><svg viewBox="0 0 24 24" fill="none" stroke="#4a9fe0" stroke-width="1.6"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M9 6h6M12 18h.01"/></svg></div>
+      <div class="pinfo"><h4>被访人手机审批 <span class="badge orange no-dot">新</span></h4><p>接入/未接入系统均可一键秒批</p></div>
+    </a>
+    <a href="settings.html" class="proto-card">
+      <div class="thumb" style="background:linear-gradient(135deg,#eef1f6,#e2e7f0)"><svg viewBox="0 0 24 24" fill="none" stroke="#5a6478" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
+      <div class="pinfo"><h4>系统设置 · 人员权限</h4><p>门卫、管理员账号与规则配置</p></div>
+    </a>
+    <a href="rules.html" class="proto-card">
+      <div class="thumb" style="background:linear-gradient(135deg,#f0ebfe,#e5dbfd)"><svg viewBox="0 0 24 24" fill="none" stroke="#7c56e0" stroke-width="1.6"><path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></div>
+      <div class="pinfo"><h4>登记规则 <span class="badge orange no-dot">新</span></h4><p>必填项、审批、滞留、访客牌、黑名单</p></div>
+    </a>
+    <a href="gate-config.html" class="proto-card">
+      <div class="thumb" style="background:linear-gradient(135deg,#eaf1ff,#dbe7ff)"><svg viewBox="0 0 24 24" fill="none" stroke="#2f6bed" stroke-width="1.6"><path d="M3 21h18M5 21V7l7-4 7 4v14"/><path d="M9 9h.01M15 9h.01"/></svg></div>
+      <div class="pinfo"><h4>门岗管理 <span class="badge orange no-dot">新</span></h4><p>门岗、设备绑定、自助登记二维码</p></div>
+    </a>
+    <a href="signup.html" class="proto-card">
+      <div class="thumb" style="background:linear-gradient(135deg,#e6f7f0,#d3f0e3)"><svg viewBox="0 0 24 24" fill="none" stroke="#22b07d" stroke-width="1.6"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg></div>
+      <div class="pinfo"><h4>企业在线申请开通 <span class="badge green no-dot">SaaS</span></h4><p>多步表单，自助注册开通专属空间</p></div>
+    </a>
+    <a href="platform.html" class="proto-card">
+      <div class="thumb" style="background:linear-gradient(135deg,#f0ebfe,#e5dbfd)"><svg viewBox="0 0 24 24" fill="none" stroke="#7c56e0" stroke-width="1.6"><path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/></svg></div>
+      <div class="pinfo"><h4>平台运营后台 <span class="badge green no-dot">多租户</span></h4><p>租户管理、开通审核、订阅计费</p></div>
+    </a>
+    <a href="invite.html" class="proto-card">
+      <div class="thumb" style="background:linear-gradient(135deg,#e6f7f0,#d3f0e3)"><svg viewBox="0 0 24 24" fill="none" stroke="#22b07d" stroke-width="1.6"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 11l-3 3-2-2"/></svg></div>
+      <div class="pinfo"><h4>预约到访邀请 <span class="badge orange no-dot">新</span></h4><p>提前邀请、生成邀请码，到场扫码免审入场</p></div>
+    </a>
+    <a href="multi-site.html" class="proto-card">
+      <div class="thumb" style="background:linear-gradient(135deg,#eaf1ff,#dbe7ff)"><svg viewBox="0 0 24 24" fill="none" stroke="#2f6bed" stroke-width="1.6"><path d="M3 21h18M5 21V7l7-4 7 4v14M14 21V11h6v10"/></svg></div>
+      <div class="pinfo"><h4>集团总览 · 多厂区汇总 <span class="badge orange no-dot">新</span></h4><p>跨厂区切换与数据对比，一屏掌握</p></div>
+    </a>
+    <a href="tenant-detail.html" class="proto-card">
+      <div class="thumb" style="background:linear-gradient(135deg,#f0ebfe,#e5dbfd)"><svg viewBox="0 0 24 24" fill="none" stroke="#7c56e0" stroke-width="1.6"><path d="M3 21h18M5 21V7l7-4 7 4v14"/><path d="M9 9h.01M15 9h.01M9 13h.01M15 13h.01"/></svg></div>
+      <div class="pinfo"><h4>平台 · 租户/申请详情 <span class="badge green no-dot">多租户</span></h4><p>开通申请审核与租户订阅账单详情</p></div>
+    </a>
+    <a href="steel-checkin.html" class="proto-card">
+      <div class="thumb" style="background:linear-gradient(135deg,#fdf3e2,#fce7c6)"><svg viewBox="0 0 24 24" fill="none" stroke="#f5a623" stroke-width="1.6"><path d="M14 16H9m10 0h3l-2-6H4l-2 6h3m0 0a2 2 0 1 0 4 0m6 0a2 2 0 1 0 4 0"/></svg></div>
+      <div class="pinfo"><h4>钢铁厂专属版 · 车辆到厂 <span class="badge orange no-dot">赚钱版</span></h4><p>送货/提货·磅单·排号·交易平台打通</p></div>
+    </a>
+    <a href="steel-inbound.html" class="proto-card">
+      <div class="thumb" style="background:linear-gradient(135deg,#fdf3e2,#fce7c6)"><svg viewBox="0 0 24 24" fill="none" stroke="#f5a623" stroke-width="1.6"><path d="M14 16H9m10 0h3l-2-6H4l-2 6h3m0 0a2 2 0 1 0 4 0m6 0a2 2 0 1 0 4 0"/><path d="M12 3v5M9.5 5.5L12 3l2.5 2.5"/></svg></div>
+      <div class="pinfo"><h4>送货入厂 · 收原料/废钢 <span class="badge orange no-dot">钢铁</span></h4><p>采购单打通·质检扣杂·磅单净重闭环</p></div>
+    </a>
+    <a href="weighbridge.html" class="proto-card">
+      <div class="thumb" style="background:linear-gradient(135deg,#fdf3e2,#fce7c6)"><svg viewBox="0 0 24 24" fill="none" stroke="#f5a623" stroke-width="1.6"><path d="M3 6h18M3 6l2 13h14l2-13M9 10v5M15 10v5"/></svg></div>
+      <div class="pinfo"><h4>磅房过磅工作站 <span class="badge orange no-dot">钢铁</span></h4><p>地磅读数·抓拍存证·磅单回写订单</p></div>
+    </a>
+    <a href="carrier.html" class="proto-card">
+      <div class="thumb" style="background:linear-gradient(135deg,#fdf3e2,#fce7c6)"><svg viewBox="0 0 24 24" fill="none" stroke="#f5a623" stroke-width="1.6"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg></div>
+      <div class="pinfo"><h4>承运商与车辆管理 <span class="badge orange no-dot">钢铁</span></h4><p>档案/白名单/运力池入驻交易平台</p></div>
+    </a>
+    <a href="pricing.html" class="proto-card">
+      <div class="thumb" style="background:linear-gradient(135deg,#eaf1ff,#dbe7ff)"><svg viewBox="0 0 24 24" fill="none" stroke="#2f6bed" stroke-width="1.6"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+      <div class="pinfo"><h4>套餐与增值商城 <span class="badge blue no-dot">两条腿</span></h4><p>分层定价 + 增值模块 + 硬件租赁</p></div>
+    </a>
+    <a href="quote.html" class="proto-card">
+      <div class="thumb" style="background:linear-gradient(135deg,#eaf1ff,#dbe7ff)"><svg viewBox="0 0 24 24" fill="none" stroke="#2f6bed" stroke-width="1.6"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 15l2 2 4-4"/></svg></div>
+      <div class="pinfo"><h4>配置报价单 <span class="badge orange no-dot">新</span></h4><p>选套餐/模块/硬件·实时算价·一键生成报价单</p></div>
+    </a>
+    <a href="conversion.html" class="proto-card">
+      <div class="thumb" style="background:linear-gradient(135deg,#f0ebfe,#e5dbfd)"><svg viewBox="0 0 24 24" fill="none" stroke="#7c56e0" stroke-width="1.6"><path d="M13 2L3 14h9l-1 8 10-12h-9z"/></svg></div>
+      <div class="pinfo"><h4>运营 · 引流转化看板 <span class="badge green no-dot">增长</span></h4><p>访客客户→主营/交易平台转化漏斗</p></div>
+    </a>
+  </div>
+</section>
+
+<!-- 定价 -->
+<section class="section" id="price">
+  <div class="section-title">
+    <h2>简单透明的租用价格</h2>
+    <p>无需购买服务器，无需专人运维，开箱即用</p>
+  </div>
+  <div class="price-wrap">
+    <div class="price-card">
+      <span class="tag" style="background:var(--brand)">全功能 · 无限用量</span>
+      <div style="position:relative;z-index:2;">
+        <div class="big">￥60<small>/ 月</small></div>
+        <div style="color:#9fb0d6; margin-top:4px;">单厂区订阅 · 按月租用，随时可停</div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> 访客进出登记 · 不限次数</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> 记录实时同步至管理人员</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> 数据看板与台账导出</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> 访客扫码自助登记</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> 多账号 · 权限分级管理</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> 数据云端备份 · 免运维</li>
+        </ul>
+        <a href="signup.html" class="btn btn-primary btn-lg btn-block" style="background:#fff;color:var(--brand)">在线申请开通 · 免费试用 14 天</a>
+        <div class="center" style="color:#8592b0; font-size:12px; margin-top:14px;">多租户 SaaS · 企业自助开通 · 无需绑卡</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  厂智访客 · 工厂外来人员进出登记系统 &nbsp;|&nbsp; 高保真原型演示 &nbsp;|&nbsp; 本页面为界面设计稿，数据均为示意
+</footer>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

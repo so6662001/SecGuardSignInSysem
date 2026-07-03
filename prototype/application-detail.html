@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>开通申请详情 · 运营后台</title>
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .sidebar.ops { background:#1a1230; }
+  .sidebar.ops .brand .logo { background:linear-gradient(135deg,#7c56e0,#a78bfa); box-shadow:0 6px 16px rgba(124,86,224,.4); }
+  .sidebar.ops .nav-item.active { background:linear-gradient(135deg,#7c56e0,#a78bfa); box-shadow:0 8px 18px rgba(124,86,224,.35); }
+  .doc-thumb { border:1px solid var(--line); border-radius:12px; overflow:hidden; background:var(--bg); }
+  .doc-thumb .dt-img { height:150px; display:grid; place-items:center; color:var(--text-3); background:repeating-linear-gradient(45deg,#f2f4f8,#f2f4f8 10px,#eef1f6 10px,#eef1f6 20px); }
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar ops">
+    <div class="brand">
+      <div class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V7l8-4v18"/><path d="M11 21V11l8 3v7"/><path d="M8 9h.01M8 13h.01M8 17h.01"/></svg></div>
+      <div class="name">厂智访客<small>运营后台 · PLATFORM</small></div>
+    </div>
+    <div class="nav-label">平台运营</div>
+    <a href="platform.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/></svg> 运营概览</a>
+    <a href="application-detail.html" class="nav-item active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 15l2 2 4-4"/></svg> 开通申请 <span class="badge-dot">3</span></a>
+    <a href="platform.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14"/></svg> 租户管理</a>
+    <a href="conversion.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9z"/></svg> 引流转化</a>
+    <a href="platform.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg> 订阅与账单</a>
+    <div class="nav-label">系统</div>
+    <a href="platform.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg> 平台设置</a>
+    <div class="sidebar-foot">
+      <div class="rent-card" style="background:linear-gradient(135deg,#3a2a63,#241a44);"><span class="tag" style="background:#7c56e0;">运营者</span><div style="font-size:13px; color:#dbe3f4; margin-top:6px;">当前登录</div><div style="font-weight:700; color:#fff;">平台管理员</div></div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <div class="flex items-center gap-12">
+        <a href="platform.html" class="icon-btn" style="width:34px;height:34px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></a>
+        <div><h1>开通申请详情</h1><div class="sub">开通申请 / 恒达五金制品有限公司</div></div>
+      </div>
+      <span class="badge orange" style="margin-left:auto;">待审核</span>
+      <div class="avatar" style="background:linear-gradient(135deg,#a78bfa,#7c56e0);">运</div>
+    </header>
+
+    <div class="content">
+      <!-- 申请头 -->
+      <div class="card card-pad" style="margin-bottom:20px;">
+        <div class="flex items-center gap-16 wrap">
+          <div class="pa c4" style="width:60px;height:60px;border-radius:16px;display:grid;place-items:center;color:#fff;font-weight:800;font-size:24px;">恒</div>
+          <div class="grow">
+            <div style="font-size:19px; font-weight:800;">恒达五金制品有限公司</div>
+            <div class="muted" style="font-size:13px; margin-top:2px;">申请编号 AP-20260702-018 · 提交于 今天 09:40</div>
+          </div>
+          <div class="flex gap-12">
+            <button class="btn btn-ghost" data-toast="已要求企业补充营业执照等材料">要求补充材料</button>
+            <button class="btn btn-danger-ghost" data-toast="已拒绝该开通申请，并通知申请人">拒绝申请</button>
+            <button class="btn btn-primary" data-toast="✅ 已开通！已创建租户空间并向企业发送账号与专属域名" onclick="setTimeout(function(){location.href='tenant-detail.html'},900)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> 审核通过并开通
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns: 1.4fr 1fr; gap:20px; align-items:start;">
+        <div style="display:flex; flex-direction:column; gap:20px;">
+          <!-- 企业信息 -->
+          <div class="card">
+            <div class="card-head"><h3>企业信息</h3><span class="badge green no-dot">工商信息已自动核验 ✓</span></div>
+            <div class="card-pad">
+              <div class="kv"><span class="k">企业全称</span><span class="v">恒达五金制品有限公司</span></div>
+              <div class="kv"><span class="k">统一社会信用代码</span><span class="v mono">91442000MA51XXXX2K</span></div>
+              <div class="kv"><span class="k">所属行业</span><span class="v">五金制造</span></div>
+              <div class="kv"><span class="k">工商状态</span><span class="v"><span class="badge green">存续（在营）</span></span></div>
+              <div class="kv"><span class="k">厂区/园区地址</span><span class="v">广东省中山市小榄镇工业大道 18 号</span></div>
+              <div class="kv"><span class="k">申请厂区数量</span><span class="v">1 个厂区</span></div>
+            </div>
+          </div>
+
+          <!-- 联系人/管理员 -->
+          <div class="card">
+            <div class="card-head"><h3>管理员 / 联系人</h3></div>
+            <div class="card-pad">
+              <div class="kv"><span class="k">联系人姓名</span><span class="v">王海</span></div>
+              <div class="kv"><span class="k">职务</span><span class="v">行政经理</span></div>
+              <div class="kv"><span class="k">手机号（登录账号）</span><span class="v mono">138 xxxx 2231 <span class="badge green no-dot" style="margin-left:6px;">已验证</span></span></div>
+              <div class="kv"><span class="k">企业邮箱</span><span class="v">wanghai@hengda-hw.com</span></div>
+            </div>
+          </div>
+
+          <!-- 证照材料 -->
+          <div class="card">
+            <div class="card-head"><h3>证照材料</h3></div>
+            <div class="card-pad" style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+              <div class="doc-thumb">
+                <div class="dt-img"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:44px;height:44px;"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9h6M7 13h10M7 17h4"/></svg></div>
+                <div style="padding:10px 12px; display:flex; align-items:center; justify-content:space-between;"><span style="font-weight:600; font-size:13px;">营业执照.jpg</span><a class="link" style="color:var(--brand); font-size:12px;" data-toast="预览证照">查看大图</a></div>
+              </div>
+              <div class="doc-thumb">
+                <div class="dt-img"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:44px;height:44px;"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M15 8h3M15 12h3M7 16h10"/></svg></div>
+                <div style="padding:10px 12px; display:flex; align-items:center; justify-content:space-between;"><span style="font-weight:600; font-size:13px;">法人身份证.jpg</span><a class="link" style="color:var(--brand); font-size:12px;" data-toast="预览证照">查看大图</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 右：订阅与审核 -->
+        <div style="display:flex; flex-direction:column; gap:20px;">
+          <div class="card">
+            <div class="card-head"><h3>申请套餐</h3></div>
+            <div class="card-pad">
+              <div class="card" style="box-shadow:none; border-color:var(--brand-light); background:var(--brand-soft); padding:16px; margin-bottom:14px;">
+                <div class="flex items-center justify-between">
+                  <div><div style="font-weight:800;">全功能版</div><div class="muted" style="font-size:12.5px;">不限登记次数 · 全部功能</div></div>
+                  <div style="text-align:right;"><div style="font-size:22px; font-weight:800; color:var(--brand);">￥60</div><div class="muted" style="font-size:12px;">/ 厂区 / 月</div></div>
+                </div>
+              </div>
+              <div class="kv"><span class="k">厂区数量</span><span class="v">1</span></div>
+              <div class="kv"><span class="k">月费合计</span><span class="v">￥60.00 / 月</span></div>
+              <div class="kv"><span class="k">试用期</span><span class="v" style="color:var(--success)">14 天免费</span></div>
+              <div class="kv"><span class="k">预计首次扣费</span><span class="v">2026-07-16</span></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head"><h3>审核操作</h3></div>
+            <div class="card-pad">
+              <div class="field"><label>开通后分配的专属域名</label>
+                <div class="flex items-center gap-8"><input class="input" value="hengda" style="flex:1;"><span class="muted" style="white-space:nowrap;">.faccess.cn</span></div>
+              </div>
+              <div class="field"><label>审核备注（选填）</label><textarea class="input" rows="3" placeholder="填写审核意见，拒绝或要求补充材料时会同步给申请人"></textarea></div>
+              <button class="btn btn-primary btn-block btn-lg" data-toast="✅ 已开通！已创建租户空间并发送账号" onclick="setTimeout(function(){location.href='tenant-detail.html'},900)">审核通过并开通</button>
+              <div class="flex gap-12" style="margin-top:10px;">
+                <button class="btn btn-ghost btn-block" data-toast="已要求企业补充材料">补充材料</button>
+                <button class="btn btn-danger-ghost btn-block" data-toast="已拒绝该申请">拒绝</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 审核进度 -->
+          <div class="card">
+            <div class="card-head"><h3>处理进度</h3></div>
+            <div class="card-pad">
+              <div class="flow">
+                <div class="flow-step"><div class="flow-icn"><div class="dot" style="background:var(--success)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" style="width:16px;height:16px"><path d="M20 6L9 17l-5-5"/></svg></div><div class="line"></div></div><div class="flow-body"><div class="ft">企业提交申请</div><div class="fd">今天 09:40</div></div></div>
+                <div class="flow-step"><div class="flow-icn"><div class="dot" style="background:var(--success)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" style="width:16px;height:16px"><path d="M20 6L9 17l-5-5"/></svg></div><div class="line"></div></div><div class="flow-body"><div class="ft">工商信息自动核验通过</div><div class="fd">今天 09:40</div></div></div>
+                <div class="flow-step"><div class="flow-icn"><div class="dot" style="background:var(--warning)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" style="width:16px;height:16px"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><div class="line"></div></div><div class="flow-body"><div class="ft">等待运营人工审核<span class="flow-tag" style="background:var(--warning-light);color:#c9821a">当前</span></div><div class="fd">请核对企业资料后开通</div></div></div>
+                <div class="flow-step"><div class="flow-icn"><div class="dot" style="background:#dfe4ee"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" style="width:16px;height:16px"><path d="M5 12h14"/></svg></div></div><div class="flow-body"><div class="ft" style="color:var(--text-3)">开通并创建租户空间</div><div class="fd">通过后自动完成</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,582 @@
+openapi: 3.0.3
+info:
+  title: 厂智访客 API 契约
+  description: >
+    工厂访客与车辆管理多租户 SaaS。分层前缀：/api/ops（运营平台）、/api/tenant（租户端）、
+    /api/tenant/steel（钢铁专属）、/api/mobile（移动/员工）、/api/public（免登录）、/api/device（设备回调）。
+    统一响应体 R<T>，分页 PageResult<T>。此契约覆盖主要端点，实现时按 docs/01 补全子资源与字段。
+  version: 1.0.0
+servers:
+  - url: https://api.faccess.cn
+    description: 生产
+  - url: http://localhost:8080
+    description: 本地
+
+tags:
+  - name: ops-auth
+  - name: ops-application
+  - name: ops-tenant
+  - name: ops-catalog
+  - name: ops-dashboard
+  - name: ops-conversion
+  - name: ops-quote
+  - name: public
+  - name: tenant-auth
+  - name: tenant-visit
+  - name: tenant-template
+  - name: tenant-rules
+  - name: tenant-gate
+  - name: tenant-invitation
+  - name: tenant-blacklist
+  - name: tenant-member
+  - name: tenant-dashboard
+  - name: tenant-site
+  - name: tenant-subscription
+  - name: tenant-notify
+  - name: steel-vehicle
+  - name: steel-weigh
+  - name: steel-carrier
+  - name: steel-trade
+  - name: mobile
+  - name: device
+
+security:
+  - bearerAuth: []
+
+paths:
+
+  # ========================= 运营平台 =========================
+  /api/ops/auth/login:
+    post:
+      tags: [ops-auth]
+      summary: 运营登录
+      security: []
+      requestBody:
+        required: true
+        content: { application/json: { schema: { $ref: '#/components/schemas/LoginReq' } } }
+      responses:
+        '200': { description: OK, content: { application/json: { schema: { $ref: '#/components/schemas/R_LoginResp' } } } }
+
+  /api/ops/applications:
+    get:
+      tags: [ops-application]
+      summary: 开通申请列表
+      parameters:
+        - { name: status, in: query, schema: { type: integer } }
+        - { name: keyword, in: query, schema: { type: string } }
+        - { $ref: '#/components/parameters/Page' }
+        - { $ref: '#/components/parameters/Size' }
+      responses:
+        '200': { description: OK, content: { application/json: { schema: { $ref: '#/components/schemas/R_PageApplication' } } } }
+  /api/ops/applications/{id}:
+    get:
+      tags: [ops-application]
+      summary: 开通申请详情
+      parameters: [ { $ref: '#/components/parameters/Id' } ]
+      responses:
+        '200': { description: OK, content: { application/json: { schema: { $ref: '#/components/schemas/R_Application' } } } }
+  /api/ops/applications/{id}/approve:
+    post:
+      tags: [ops-application]
+      summary: 审核通过并开通租户（创建租户/超管/订阅/默认配置）
+      parameters: [ { $ref: '#/components/parameters/Id' } ]
+      requestBody:
+        content: { application/json: { schema: { type: object, properties: { domain: { type: string }, remark: { type: string } } } } }
+      responses: { '200': { $ref: '#/components/responses/Ok' } }
+  /api/ops/applications/{id}/reject:
+    post:
+      tags: [ops-application]
+      summary: 驳回申请
+      parameters: [ { $ref: '#/components/parameters/Id' } ]
+      responses: { '200': { $ref: '#/components/responses/Ok' } }
+  /api/ops/applications/{id}/request-materials:
+    post:
+      tags: [ops-application]
+      summary: 要求补充材料
+      parameters: [ { $ref: '#/components/parameters/Id' } ]
+      responses: { '200': { $ref: '#/components/responses/Ok' } }
+
+  /api/ops/tenants:
+    get:
+      tags: [ops-tenant]
+      summary: 租户列表
+      parameters:
+        - { name: status, in: query, schema: { type: integer } }
+        - { $ref: '#/components/parameters/Page' }
+        - { $ref: '#/components/parameters/Size' }
+      responses: { '200': { description: OK, content: { application/json: { schema: { $ref: '#/components/schemas/R_PageTenant' } } } } }
+  /api/ops/tenants/{id}:
+    get:
+      tags: [ops-tenant]
+      summary: 租户详情（概览）
+      parameters: [ { $ref: '#/components/parameters/Id' } ]
+      responses: { '200': { description: OK, content: { application/json: { schema: { $ref: '#/components/schemas/R_Tenant' } } } } }
+  /api/ops/tenants/{id}/subscription:
+    get: { tags: [ops-tenant], summary: 租户订阅, parameters: [ { $ref: '#/components/parameters/Id' } ], responses: { '200': { $ref: '#/components/responses/Ok' } } }
+  /api/ops/tenants/{id}/invoices:
+    get: { tags: [ops-tenant], summary: 租户账单, parameters: [ { $ref: '#/components/parameters/Id' } ], responses: { '200': { $ref: '#/components/responses/Ok' } } }
+  /api/ops/tenants/{id}/usage:
+    get: { tags: [ops-tenant], summary: 租户用量统计, parameters: [ { $ref: '#/components/parameters/Id' } ], responses: { '200': { $ref: '#/components/responses/Ok' } } }
+  /api/ops/tenants/{id}/logs:
+    get: { tags: [ops-tenant], summary: 租户操作日志, parameters: [ { $ref: '#/components/parameters/Id' } ], responses: { '200': { $ref: '#/components/responses/Ok' } } }
+  /api/ops/tenants/{id}/renew:
+    post: { tags: [ops-tenant], summary: 手动续费, parameters: [ { $ref: '#/components/parameters/Id' } ], responses: { '200': { $ref: '#/components/responses/Ok' } } }
+  /api/ops/tenants/{id}/change-plan:
+    post: { tags: [ops-tenant], summary: 调整套餐, parameters: [ { $ref: '#/components/parameters/Id' } ], responses: { '200': { $ref: '#/components/responses/Ok' } } }
+  /api/ops/tenants/{id}/disable:
+    post: { tags: [ops-tenant], summary: 停用租户, parameters: [ { $ref: '#/components/parameters/Id' } ], responses: { '200': { $ref: '#/components/responses/Ok' } } }
+  /api/ops/tenants/{id}/impersonate:
+    post: { tags: [ops-tenant], summary: 进入租户空间(受限令牌), parameters: [ { $ref: '#/components/parameters/Id' } ], responses: { '200': { $ref: '#/components/responses/Ok' } } }
+
+  /api/ops/plans:    { get: { tags: [ops-catalog], summary: 套餐列表, responses: { '200': { $ref: '#/components/responses/Ok' } } }, post: { tags: [ops-catalog], summary: 新增套餐, responses: { '200': { $ref: '#/components/responses/Ok' } } } }
+  /api/ops/addons:   { get: { tags: [ops-catalog], summary: 增值模块列表, responses: { '200': { $ref: '#/components/responses/Ok' } } } }
+  /api/ops/hardware: { get: { tags: [ops-catalog], summary: 硬件列表, responses: { '200': { $ref: '#/components/responses/Ok' } } } }
+
+  /api/ops/overview:      { get: { tags: [ops-dashboard], summary: 运营概览指标(租户数/试用/MRR/待审), responses: { '200': { $ref: '#/components/responses/Ok' } } } }
+  /api/ops/revenue-trend: { get: { tags: [ops-dashboard], summary: 收入趋势, responses: { '200': { $ref: '#/components/responses/Ok' } } } }
+  /api/ops/expiring:      { get: { tags: [ops-dashboard], summary: 到期预警列表, responses: { '200': { $ref: '#/components/responses/Ok' } } } }
+  /api/ops/expiring/notify: { post: { tags: [ops-dashboard], summary: 一键催续, responses: { '200': { $ref: '#/components/responses/Ok' } } } }
+
+  /api/ops/funnel:      { get: { tags: [ops-conversion], summary: 转化漏斗, responses: { '200': { $ref: '#/components/responses/Ok' } } } }
+  /api/ops/destination: { get: { tags: [ops-conversion], summary: 转化去向, responses: { '200': { $ref: '#/components/responses/Ok' } } } }
+  /api/ops/leads:       { get: { tags: [ops-conversion], summary: 高潜线索列表, responses: { '200': { $ref: '#/components/responses/Ok' } } } }
+  /api/ops/leads/{id}/assign: { post: { tags: [ops-conversion], summary: 派发线索, parameters: [ { $ref: '#/components/parameters/Id' } ], responses: { '200': { $ref: '#/components/responses/Ok' } } } }
+
+  /api/ops/quotes:
+    post:
+      tags: [ops-quote]
+      summary: 生成报价单（版本×厂区 + 增值 + 硬件购买一次性/租赁月费；集团版面议）
+      requestBody: { required: true, content: { application/json: { schema: { $ref: '#/components/schemas/QuoteReq' } } } }
+      responses: { '200': { description: OK, content: { application/json: { schema: { $ref: '#/components/schemas/R_Quote' } } } } }
+  /api/ops/quotes/{id}:
+    get: { tags: [ops-quote], summary: 报价单详情, parameters: [ { $ref: '#/components/parameters/Id' } ], responses: { '200': { $ref: '#/components/responses/Ok' } } }
+  /api/ops/quotes/{id}/send:
+    post: { tags: [ops-quote], summary: 发送报价单, parameters: [ { $ref: '#/components/parameters/Id' } ], responses: { '200': { $ref: '#/components/responses/Ok' } } }
+
+  # ========================= 公开（免登录） =========================
+  /api/public/apply:
+    post:
+      tags: [public]
+      summary: 企业在线申请开通
+      security: []
+      requestBody: { required: true, content: { application/json: { schema: { $ref: '#/components/schemas/ApplyReq' } } } }
+      responses: { '200': { $ref: '#/components/responses/Ok' } }
+  /api/public/sms/code:
+    post: { tags: [public], summary: 获取短信验证码, security: [], requestBody: { content: { application/json: { schema: { type: object, properties: { mobile: { type: string } } } } } }, responses: { '200': { $ref: '#/components/responses/Ok' } } }
+  /api/public/gate/{gateCode}/template:
+    get:
+      tags: [public]
+      summary: 扫码取门岗登记模板 schema（移动端动态渲染）
+      security: []
+      parameters: [ { name: gateCode, in: path, required: true, schema: { type: string } } ]
+      responses: { '200': { description: OK, content: { application/json: { schema: { $ref: '#/components/schemas/R_TemplateSchema' } } } } }
+  /api/public/visit/self-register:
+    post:
+      tags: [public]
+      summary: 访客自助登记
+      security: []
+      requestBody: { required: true, content: { application/json: { schema: { $ref: '#/components/schemas/SelfRegisterReq' } } } }
+      responses: { '200': { $ref: '#/components/responses/Ok' } }
+  /api/public/approve/{token}:
+    get:
+      tags: [public]
+      summary: 短信免登录审批详情
+      security: []
+      parameters: [ { name: token, in: path, required: true, schema: { type: string } } ]
+      responses: { '200': { description: OK, content: { application/json: { schema: { $ref: '#/components/schemas/R_ApprovalView' } } } } }
+  /api/public/approve/{token}/decision:
+    post:
+      tags: [public]
+      summary: 免登录审批决策（同意/拒绝，可限定时段）
+      security: []
+      parameters: [ { name: token, in: path, required: true, schema: { type: string } } ]
+      requestBody: { required: true, content: { application/json: { schema: { $ref: '#/components/schemas/ApprovalDecisionReq' } } } }
+      responses: { '200': { $ref: '#/components/responses/Ok' } }
+  /api/public/invite/{code}:
+    get: { tags: [public], summary: 邀请函详情, security: [], parameters: [ { name: code, in: path, required: true, schema: { type: string } } ], responses: { '200': { $ref: '#/components/responses/Ok' } } }
+
+  # ========================= 租户端 =========================
+  /api/tenant/auth/login:
+    post: { tags: [tenant-auth], summary: 租户登录, security: [], requestBody: { required: true, content: { application/json: { schema: { $ref: '#/components/schemas/LoginReq' } } } }, responses: { '200': { description: OK, content: { application/json: { schema: { $ref: '#/components/schemas/R_LoginResp' } } } } } }
+  /api/tenant/me/menus:
+    get: { tags: [tenant-auth], summary: 当前用户菜单与权限点, responses: { '200': { $ref: '#/components/responses/Ok' } } }
+
+  /api/tenant/visits:
+    get:
+      tags: [tenant-visit]
+      summary: 进出记录列表（多条件筛选/分页）
+      parameters:
+        - { name: date, in: query, schema: { type: string, format: date } }
+        - { name: reason, in: query, schema: { type: string } }
+        - { name: status, in: query, schema: { type: string } }
+        - { name: gateId, in: query, schema: { type: integer } }
+        - { name: keyword, in: query, schema: { type: string } }
+        - { $ref: '#/components/parameters/Page' }
+        - { $ref: '#/components/parameters/Size' }
+      responses: { '200': { description: OK, content: { application/json: { schema: { $ref: '#/components/schemas/R_PageVisit' } } } } }
+    post:
+      tags: [tenant-visit]
+      summary: 入场登记（校验必填/黑名单/规则，分配访客牌，触发审批与通知）
+      requestBody: { required: true, content: { application/json: { schema: { $ref: '#/components/schemas/CheckinReq' } } } }
+      responses: { '200': { description: OK, content: { application/json: { schema: { $ref: '#/components/schemas/R_Visit' } } } } }
+  /api/tenant/visits/onsite:
+    get: { tags: [tenant-visit], summary: 在场访客名单（含实时在场时长）, responses: { '200': { $ref: '#/components/responses/Ok' } } }
+  /api/tenant/visits/{id}:
+    get: { tags: [tenant-visit], summary: 记录详情, parameters: [ { $ref: '#/components/parameters/Id' } ], responses: { '200': { $ref: '#/components/responses/Ok' } } }
+  /api/tenant/visits/{id}/checkout:
+    post: { tags: [tenant-visit], summary: 离场登记（回收访客牌）, parameters: [ { $ref: '#/components/parameters/Id' } ], responses: { '200': { $ref: '#/components/responses/Ok' } } }
+  /api/tenant/visits/{id}/audit:
+    post:
+      tags: [tenant-visit]
+      summary: 审核（通过/驳回）
+      parameters: [ { $ref: '#/components/parameters/Id' } ]
+      requestBody: { content: { application/json: { schema: { type: object, properties: { pass: { type: boolean }, remark: { type: string } } } } } }
+      responses: { '200': { $ref: '#/components/responses/Ok' } }
+
+  /api/tenant/templates:
+    get:  { tags: [tenant-template], summary: 登记模板列表, responses: { '200': { $ref: '#/components/responses/Ok' } } }
+    post: { tags: [tenant-template], summary: 新建模板, responses: { '200': { $ref: '#/components/responses/Ok' } } }
+  /api/tenant/templates/{id}:
+    put:    { tags: [tenant-template], summary: 更新模板与字段, parameters: [ { $ref: '#/components/parameters/Id' } ], responses: { '200': { $ref: '#/components/responses/Ok' } } }
+    delete: { tags: [tenant-template], summary: 删除模板, parameters: [ { $ref: '#/components/parameters/Id' } ], responses: { '200': { $ref: '#/components/responses/Ok' } } }
+  /api/tenant/templates/{id}/publish:
+    post: { tags: [tenant-template], summary: 发布模板, parameters: [ { $ref: '#/components/parameters/Id' } ], responses: { '200': { $ref: '#/components/responses/Ok' } } }
+
+  /api/tenant/rules:
+    get: { tags: [tenant-rules], summary: 获取登记规则, responses: { '200': { $ref: '#/components/responses/Ok' } } }
+    put: { tags: [tenant-rules], summary: 保存登记规则, responses: { '200': { $ref: '#/components/responses/Ok' } } }
+
+  /api/tenant/gates:
+    get:  { tags: [tenant-gate], summary: 门岗列表, responses: { '200': { $ref: '#/components/responses/Ok' } } }
+    post: { tags: [tenant-gate], summary: 新增门岗, responses: { '200': { $ref: '#/components/responses/Ok' } } }
+  /api/tenant/gates/{id}:
+    put:    { tags: [tenant-gate], summary: 编辑门岗/绑定设备/启停, parameters: [ { $ref: '#/components/parameters/Id' } ], responses: { '200': { $ref: '#/components/responses/Ok' } } }
+    delete: { tags: [tenant-gate], summary: 删除门岗, parameters: [ { $ref: '#/components/parameters/Id' } ], responses: { '200': { $ref: '#/components/responses/Ok' } } }
+  /api/tenant/gates/{id}/qrcode:
+    get: { tags: [tenant-gate], summary: 获取门岗自助登记二维码, parameters: [ { $ref: '#/components/parameters/Id' } ], responses: { '200': { $ref: '#/components/responses/Ok' } } }
+
+  /api/tenant/invitations:
+    get:  { tags: [tenant-invitation], summary: 邀请记录, responses: { '200': { $ref: '#/components/responses/Ok' } } }
+    post: { tags: [tenant-invitation], summary: 发起邀请（生成邀请码/二维码并发送）, requestBody: { required: true, content: { application/json: { schema: { $ref: '#/components/schemas/InvitationReq' } } } }, responses: { '200': { $ref: '#/components/responses/Ok' } } }
+  /api/tenant/invitations/{id}/resend: { post: { tags: [tenant-invitation], summary: 重发邀请, parameters: [ { $ref: '#/components/parameters/Id' } ], responses: { '200': { $ref: '#/components/responses/Ok' } } } }
+  /api/tenant/invitations/{id}/cancel: { post: { tags: [tenant-invitation], summary: 取消邀请, parameters: [ { $ref: '#/components/parameters/Id' } ], responses: { '200': { $ref: '#/components/responses/Ok' } } } }
+
+  /api/tenant/blacklist:
+    get:  { tags: [tenant-blacklist], summary: 黑名单列表, responses: { '200': { $ref: '#/components/responses/Ok' } } }
+    post: { tags: [tenant-blacklist], summary: 新增黑名单/限制, responses: { '200': { $ref: '#/components/responses/Ok' } } }
+  /api/tenant/blacklist/{id}: { delete: { tags: [tenant-blacklist], summary: 移除, parameters: [ { $ref: '#/components/parameters/Id' } ], responses: { '200': { $ref: '#/components/responses/Ok' } } } }
+
+  /api/tenant/members:
+    get:  { tags: [tenant-member], summary: 成员列表, responses: { '200': { $ref: '#/components/responses/Ok' } } }
+    post: { tags: [tenant-member], summary: 新增成员, responses: { '200': { $ref: '#/components/responses/Ok' } } }
+  /api/tenant/members/{id}:
+    put:    { tags: [tenant-member], summary: 编辑成员/角色/门岗归属/启停, parameters: [ { $ref: '#/components/parameters/Id' } ], responses: { '200': { $ref: '#/components/responses/Ok' } } }
+    delete: { tags: [tenant-member], summary: 删除成员, parameters: [ { $ref: '#/components/parameters/Id' } ], responses: { '200': { $ref: '#/components/responses/Ok' } } }
+  /api/tenant/members/{id}/reset-password: { post: { tags: [tenant-member], summary: 重置密码, parameters: [ { $ref: '#/components/parameters/Id' } ], responses: { '200': { $ref: '#/components/responses/Ok' } } } }
+  /api/tenant/roles: { get: { tags: [tenant-member], summary: 角色列表, responses: { '200': { $ref: '#/components/responses/Ok' } } }, post: { tags: [tenant-member], summary: 新增角色, responses: { '200': { $ref: '#/components/responses/Ok' } } } }
+
+  /api/tenant/dashboard/trend:    { get: { tags: [tenant-dashboard], summary: 到访趋势, responses: { '200': { $ref: '#/components/responses/Ok' } } } }
+  /api/tenant/dashboard/reasons:  { get: { tags: [tenant-dashboard], summary: 事由分布, responses: { '200': { $ref: '#/components/responses/Ok' } } } }
+  /api/tenant/dashboard/peak:     { get: { tags: [tenant-dashboard], summary: 高峰时段, responses: { '200': { $ref: '#/components/responses/Ok' } } } }
+  /api/tenant/dashboard/top-units: { get: { tags: [tenant-dashboard], summary: 来访单位TOP, responses: { '200': { $ref: '#/components/responses/Ok' } } } }
+  /api/tenant/dashboard/live:     { get: { tags: [tenant-dashboard], summary: 实时动态(SSE/轮询), responses: { '200': { $ref: '#/components/responses/Ok' } } } }
+
+  /api/tenant/sites:          { get: { tags: [tenant-site], summary: 厂区列表, responses: { '200': { $ref: '#/components/responses/Ok' } } }, post: { tags: [tenant-site], summary: 新增厂区, responses: { '200': { $ref: '#/components/responses/Ok' } } } }
+  /api/tenant/sites/overview: { get: { tags: [tenant-site], summary: 集团总览汇总, responses: { '200': { $ref: '#/components/responses/Ok' } } } }
+
+  /api/tenant/subscription: { get: { tags: [tenant-subscription], summary: 我的订阅, responses: { '200': { $ref: '#/components/responses/Ok' } } } }
+  /api/tenant/invoices:     { get: { tags: [tenant-subscription], summary: 我的账单, responses: { '200': { $ref: '#/components/responses/Ok' } } } }
+  /api/tenant/renew:        { post: { tags: [tenant-subscription], summary: 续费, responses: { '200': { $ref: '#/components/responses/Ok' } } } }
+
+  /api/tenant/notify-config:
+    get: { tags: [tenant-notify], summary: 获取通知渠道与升级配置, responses: { '200': { $ref: '#/components/responses/Ok' } } }
+    put: { tags: [tenant-notify], summary: 保存通知配置, responses: { '200': { $ref: '#/components/responses/Ok' } } }
+
+  # ========================= 钢铁专属 =========================
+  /api/tenant/steel/vehicle-visits:
+    get:  { tags: [steel-vehicle], summary: 车辆到厂/排队列表, parameters: [ { name: status, in: query, schema: { type: string } }, { name: direction, in: query, schema: { type: string } } ], responses: { '200': { $ref: '#/components/responses/Ok' } } }
+    post:
+      tags: [steel-vehicle]
+      summary: 车辆到厂登记（送货入厂/提货出厂，关联交易平台单据）
+      requestBody: { required: true, content: { application/json: { schema: { $ref: '#/components/schemas/VehicleVisitReq' } } } }
+      responses: { '200': { $ref: '#/components/responses/Ok' } }
+  /api/tenant/steel/vehicle-visits/{id}/call:    { post: { tags: [steel-vehicle], summary: 叫号, parameters: [ { $ref: '#/components/parameters/Id' } ], responses: { '200': { $ref: '#/components/responses/Ok' } } } }
+  /api/tenant/steel/vehicle-visits/{id}/release: { post: { tags: [steel-vehicle], summary: 放行（净重与磅单回写交易平台）, parameters: [ { $ref: '#/components/parameters/Id' } ], responses: { '200': { $ref: '#/components/responses/Ok' } } } }
+  /api/tenant/steel/weigh:
+    post: { tags: [steel-weigh], summary: 记录过磅（皮/毛重，防作弊校验，抓拍存证）, requestBody: { required: true, content: { application/json: { schema: { $ref: '#/components/schemas/WeighReq' } } } }, responses: { '200': { $ref: '#/components/responses/Ok' } } }
+  /api/tenant/steel/weigh/queue:   { get: { tags: [steel-weigh], summary: 待过磅队列, responses: { '200': { $ref: '#/components/responses/Ok' } } } }
+  /api/tenant/steel/weigh/records: { get: { tags: [steel-weigh], summary: 磅单流水, responses: { '200': { $ref: '#/components/responses/Ok' } } } }
+  /api/tenant/steel/carriers:
+    get:  { tags: [steel-carrier], summary: 承运商列表, responses: { '200': { $ref: '#/components/responses/Ok' } } }
+    post: { tags: [steel-carrier], summary: 新增承运商, responses: { '200': { $ref: '#/components/responses/Ok' } } }
+  /api/tenant/steel/carriers/{id}/invite-trade:
+    post: { tags: [steel-carrier], summary: 邀请入驻交易平台运力池, parameters: [ { $ref: '#/components/parameters/Id' } ], responses: { '200': { $ref: '#/components/responses/Ok' } } }
+  /api/tenant/steel/vehicles: { get: { tags: [steel-carrier], summary: 车辆列表, responses: { '200': { $ref: '#/components/responses/Ok' } } } }
+  /api/tenant/steel/drivers:  { get: { tags: [steel-carrier], summary: 司机列表, responses: { '200': { $ref: '#/components/responses/Ok' } } } }
+  /api/tenant/steel/trade/order/{no}:
+    get: { tags: [steel-trade], summary: 核验并带出交易平台单据, parameters: [ { name: no, in: path, required: true, schema: { type: string } }, { name: type, in: query, schema: { type: string, enum: [SALES, PURCHASE] } } ], responses: { '200': { description: OK, content: { application/json: { schema: { $ref: '#/components/schemas/R_TradeOrder' } } } } } }
+
+  # ========================= 移动端 =========================
+  /api/mobile/auth/login: { post: { tags: [mobile], summary: 移动登录(微信/企微/短信), security: [], responses: { '200': { $ref: '#/components/responses/Ok' } } } }
+  /api/mobile/todo:       { get: { tags: [mobile], summary: 我的待办, responses: { '200': { $ref: '#/components/responses/Ok' } } } }
+  /api/mobile/my-visitors: { get: { tags: [mobile], summary: 今日来访我的访客, responses: { '200': { $ref: '#/components/responses/Ok' } } } }
+  /api/mobile/approvals/{id}/decision:
+    post: { tags: [mobile], summary: 审批决策, parameters: [ { $ref: '#/components/parameters/Id' } ], requestBody: { content: { application/json: { schema: { $ref: '#/components/schemas/ApprovalDecisionReq' } } } }, responses: { '200': { $ref: '#/components/responses/Ok' } } }
+  /api/mobile/invitations: { post: { tags: [mobile], summary: 员工发起邀请, responses: { '200': { $ref: '#/components/responses/Ok' } } } }
+  /api/mobile/notifications: { get: { tags: [mobile], summary: 消息通知中心, responses: { '200': { $ref: '#/components/responses/Ok' } } } }
+
+  # ========================= 设备回调（设备密钥+签名） =========================
+  /api/device/heartbeat:        { post: { tags: [device], summary: 设备心跳, security: [ { deviceAuth: [] } ], responses: { '200': { $ref: '#/components/responses/Ok' } } } }
+  /api/device/lpr/event:        { post: { tags: [device], summary: 车牌识别上报, security: [ { deviceAuth: [] } ], requestBody: { content: { application/json: { schema: { $ref: '#/components/schemas/LprEvent' } } } }, responses: { '200': { $ref: '#/components/responses/Ok' } } } }
+  /api/device/face/event:       { post: { tags: [device], summary: 人脸识别上报, security: [ { deviceAuth: [] } ], responses: { '200': { $ref: '#/components/responses/Ok' } } } }
+  /api/device/weighbridge/reading: { post: { tags: [device], summary: 地磅读数上报, security: [ { deviceAuth: [] } ], requestBody: { content: { application/json: { schema: { $ref: '#/components/schemas/WeighReading' } } } }, responses: { '200': { $ref: '#/components/responses/Ok' } } } }
+  /api/device/gate/{id}/open:   { post: { tags: [device], summary: 下发抬杆, security: [ { deviceAuth: [] } ], parameters: [ { $ref: '#/components/parameters/Id' } ], responses: { '200': { $ref: '#/components/responses/Ok' } } } }
+
+components:
+  securitySchemes:
+    bearerAuth: { type: http, scheme: bearer, bearerFormat: JWT }
+    deviceAuth: { type: apiKey, in: header, name: X-Device-Sign, description: 设备ID+HMAC签名+时间戳+nonce }
+  parameters:
+    Id:   { name: id, in: path, required: true, schema: { type: integer, format: int64 } }
+    Page: { name: page, in: query, schema: { type: integer, default: 1 } }
+    Size: { name: size, in: query, schema: { type: integer, default: 20 } }
+  responses:
+    Ok:
+      description: OK
+      content: { application/json: { schema: { $ref: '#/components/schemas/R' } } }
+  schemas:
+    R:
+      type: object
+      properties:
+        code: { type: integer, example: 0 }
+        message: { type: string, example: success }
+        data: {}
+        traceId: { type: string }
+    PageResult:
+      type: object
+      properties:
+        list: { type: array, items: {} }
+        total: { type: integer, format: int64 }
+        page: { type: integer }
+        size: { type: integer }
+    LoginReq:
+      type: object
+      required: [username, password]
+      properties:
+        username: { type: string }
+        password: { type: string }
+        role: { type: string, enum: [GUARD, ADMIN], description: 门卫/管理员 }
+        remember: { type: boolean }
+    LoginResp:
+      type: object
+      properties:
+        accessToken: { type: string }
+        refreshToken: { type: string }
+        user: { $ref: '#/components/schemas/UserBrief' }
+    R_LoginResp: { allOf: [ { $ref: '#/components/schemas/R' }, { type: object, properties: { data: { $ref: '#/components/schemas/LoginResp' } } } ] }
+    UserBrief:
+      type: object
+      properties:
+        id: { type: integer, format: int64 }
+        tenantId: { type: integer, format: int64 }
+        realName: { type: string }
+        roles: { type: array, items: { type: string } }
+        perms: { type: array, items: { type: string } }
+    ApplyReq:
+      type: object
+      required: [companyName, contactName, contactMobile, smsCode, planCode]
+      properties:
+        companyName: { type: string }
+        creditCode: { type: string }
+        industry: { type: string }
+        address: { type: string }
+        siteCount: { type: integer, default: 1 }
+        contactName: { type: string }
+        contactMobile: { type: string }
+        contactTitle: { type: string }
+        email: { type: string }
+        smsCode: { type: string }
+        password: { type: string }
+        planCode: { type: string, enum: [FREE, STANDARD, STEEL, GROUP] }
+        licenseFiles: { type: array, items: { type: string } }
+    Application:
+      type: object
+      properties:
+        id: { type: integer, format: int64 }
+        appNo: { type: string }
+        companyName: { type: string }
+        status: { type: integer, description: '1待审 2通过 3驳回 4补充材料' }
+        planCode: { type: string }
+        siteCount: { type: integer }
+        createTime: { type: string, format: date-time }
+    R_Application: { allOf: [ { $ref: '#/components/schemas/R' }, { type: object, properties: { data: { $ref: '#/components/schemas/Application' } } } ] }
+    R_PageApplication: { allOf: [ { $ref: '#/components/schemas/R' }, { type: object, properties: { data: { allOf: [ { $ref: '#/components/schemas/PageResult' }, { type: object, properties: { list: { type: array, items: { $ref: '#/components/schemas/Application' } } } } ] } } } ] }
+    Tenant:
+      type: object
+      properties:
+        id: { type: integer, format: int64 }
+        name: { type: string }
+        domain: { type: string }
+        status: { type: integer, description: '1试用 2正常 3即将到期 4欠费 5停用' }
+        siteCount: { type: integer }
+        openDate: { type: string, format: date }
+    R_Tenant: { allOf: [ { $ref: '#/components/schemas/R' }, { type: object, properties: { data: { $ref: '#/components/schemas/Tenant' } } } ] }
+    R_PageTenant: { allOf: [ { $ref: '#/components/schemas/R' }, { type: object, properties: { data: { allOf: [ { $ref: '#/components/schemas/PageResult' }, { type: object, properties: { list: { type: array, items: { $ref: '#/components/schemas/Tenant' } } } } ] } } } ] }
+    QuoteReq:
+      type: object
+      properties:
+        planCode: { type: string }
+        siteCount: { type: integer }
+        addons: { type: array, items: { type: string } }
+        hardware:
+          type: array
+          items:
+            type: object
+            properties: { code: { type: string }, mode: { type: string, enum: [buy, rent] }, qty: { type: integer } }
+        customer: { type: object, properties: { name: { type: string }, contact: { type: string }, phone: { type: string } } }
+    Quote:
+      type: object
+      properties:
+        id: { type: integer, format: int64 }
+        quoteNo: { type: string }
+        monthlyTotal: { type: number }
+        onetimeTotal: { type: number }
+        firstYear: { type: number }
+        isCustom: { type: boolean }
+        items: { type: array, items: { type: object } }
+    R_Quote: { allOf: [ { $ref: '#/components/schemas/R' }, { type: object, properties: { data: { $ref: '#/components/schemas/Quote' } } } ] }
+    TemplateSchema:
+      type: object
+      properties:
+        templateId: { type: integer, format: int64 }
+        visitType: { type: string }
+        fields:
+          type: array
+          items:
+            type: object
+            properties:
+              module: { type: string }
+              fieldKey: { type: string }
+              label: { type: string }
+              fieldType: { type: string }
+              required: { type: boolean }
+              options: { type: array, items: { type: string } }
+    R_TemplateSchema: { allOf: [ { $ref: '#/components/schemas/R' }, { type: object, properties: { data: { $ref: '#/components/schemas/TemplateSchema' } } } ] }
+    CheckinReq:
+      type: object
+      required: [visitorName, reason, hostName, gateId]
+      properties:
+        gateId: { type: integer, format: int64 }
+        templateId: { type: integer, format: int64 }
+        visitorName: { type: string }
+        visitorMobile: { type: string }
+        company: { type: string }
+        reason: { type: string }
+        hostName: { type: string }
+        hostUserId: { type: integer, format: int64 }
+        companions: { type: integer, default: 1 }
+        plateNo: { type: string }
+        badgeNo: { type: string }
+        registerType: { type: string, enum: [GUARD, SELF, ID_OCR] }
+        extFields: { type: object, additionalProperties: true }
+        devices: { type: array, items: { type: object } }
+    SelfRegisterReq:
+      allOf:
+        - { $ref: '#/components/schemas/CheckinReq' }
+        - type: object
+          properties: { gateCode: { type: string }, authorized: { type: boolean } }
+    Visit:
+      type: object
+      properties:
+        id: { type: integer, format: int64 }
+        visitorName: { type: string }
+        company: { type: string }
+        reason: { type: string }
+        hostName: { type: string }
+        badgeNo: { type: string }
+        inTime: { type: string, format: date-time }
+        outTime: { type: string, format: date-time }
+        status: { type: string, enum: [PENDING, ONSITE, LEFT, REJECTED, OVERSTAY] }
+    R_Visit: { allOf: [ { $ref: '#/components/schemas/R' }, { type: object, properties: { data: { $ref: '#/components/schemas/Visit' } } } ] }
+    R_PageVisit: { allOf: [ { $ref: '#/components/schemas/R' }, { type: object, properties: { data: { allOf: [ { $ref: '#/components/schemas/PageResult' }, { type: object, properties: { list: { type: array, items: { $ref: '#/components/schemas/Visit' } } } } ] } } } ] }
+    InvitationReq:
+      type: object
+      required: [visitorName, visitorMobile, reason]
+      properties:
+        visitorName: { type: string }
+        visitorMobile: { type: string }
+        company: { type: string }
+        reason: { type: string }
+        hostUserId: { type: integer, format: int64 }
+        companions: { type: integer }
+        visitDate: { type: string, format: date }
+        timeFrom: { type: string }
+        timeTo: { type: string }
+        sendChannels: { type: array, items: { type: string, enum: [SMS, WECHAT, LINK] } }
+    ApprovalView:
+      type: object
+      properties:
+        visitorName: { type: string }
+        company: { type: string }
+        reason: { type: string }
+        hostName: { type: string }
+        companions: { type: integer }
+        mobileMask: { type: string }
+        gateName: { type: string }
+        applyTime: { type: string, format: date-time }
+        expired: { type: boolean }
+    R_ApprovalView: { allOf: [ { $ref: '#/components/schemas/R' }, { type: object, properties: { data: { $ref: '#/components/schemas/ApprovalView' } } } ] }
+    ApprovalDecisionReq:
+      type: object
+      required: [approve]
+      properties:
+        approve: { type: boolean }
+        validScope: { type: string, enum: [ONCE, TODAY, WEEK] }
+        remark: { type: string }
+    VehicleVisitReq:
+      type: object
+      required: [plateNo, direction]
+      properties:
+        plateNo: { type: string }
+        direction: { type: string, enum: [INBOUND, OUTBOUND] }
+        orderNo: { type: string, description: 关联销售订单/采购单号 }
+        goodsName: { type: string }
+        goodsSpec: { type: string }
+        planWeight: { type: number }
+        warehouse: { type: string }
+        deductRate: { type: number }
+        safetyCheck: { type: object, additionalProperties: true }
+    WeighReq:
+      type: object
+      required: [vehicleVisitId, weight, weighType]
+      properties:
+        vehicleVisitId: { type: integer, format: int64 }
+        deviceId: { type: integer, format: int64 }
+        weight: { type: number }
+        weighType: { type: string, enum: [TARE, GROSS], description: 皮重/毛重 }
+    TradeOrder:
+      type: object
+      properties:
+        orderNo: { type: string }
+        orderType: { type: string, enum: [SALES, PURCHASE] }
+        partnerName: { type: string }
+        goodsName: { type: string }
+        planQty: { type: number }
+        doneQty: { type: number }
+        remainQty: { type: number }
+        settleStatus: { type: string }
+    R_TradeOrder: { allOf: [ { $ref: '#/components/schemas/R' }, { type: object, properties: { data: { $ref: '#/components/schemas/TradeOrder' } } } ] }
+    LprEvent:
+      type: object
+      properties:
+        deviceId: { type: string }
+        plate: { type: string }
+        imageUrl: { type: string }
+        time: { type: string, format: date-time }
+    WeighReading:
+      type: object
+      properties:
+        deviceId: { type: string }
+        weight: { type: number }
+        stable: { type: boolean }
+        time: { type: string, format: date-time }

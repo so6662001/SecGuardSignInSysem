@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>引流转化看板 · 运营后台</title>
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .sidebar.ops { background:#1a1230; }
+  .sidebar.ops .brand .logo { background:linear-gradient(135deg,#7c56e0,#a78bfa); box-shadow:0 6px 16px rgba(124,86,224,.4); }
+  .sidebar.ops .nav-item.active { background:linear-gradient(135deg,#7c56e0,#a78bfa); box-shadow:0 8px 18px rgba(124,86,224,.35); }
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar ops">
+    <div class="brand">
+      <div class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V7l8-4v18"/><path d="M11 21V11l8 3v7"/><path d="M8 9h.01M8 13h.01M8 17h.01"/></svg></div>
+      <div class="name">厂智访客<small>运营后台 · PLATFORM</small></div>
+    </div>
+    <div class="nav-label">平台运营</div>
+    <a href="platform.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/></svg> 运营概览</a>
+    <a href="application-detail.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 15l2 2 4-4"/></svg> 开通申请 <span class="badge-dot">3</span></a>
+    <a href="tenant-detail.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14"/></svg> 租户管理</a>
+    <a href="conversion.html" class="nav-item active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9z"/></svg> 引流转化</a>
+    <a href="platform.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg> 订阅与账单</a>
+    <div class="nav-label">系统</div>
+    <a href="platform.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg> 平台设置</a>
+    <div class="sidebar-foot">
+      <div class="rent-card" style="background:linear-gradient(135deg,#3a2a63,#241a44);"><span class="tag" style="background:#7c56e0;">运营者</span><div style="font-size:13px; color:#dbe3f4; margin-top:6px;">当前登录</div><div style="font-weight:700; color:#fff;">平台管理员</div></div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <div><h1>引流转化看板</h1><div class="sub">厂智访客作为获客入口 → 交叉转化到主营软件与钢智汇交易平台</div></div>
+      <div class="tabs" style="margin-left:auto;"><div class="tab">本月</div><div class="tab active">本季度</div><div class="tab">本年</div></div>
+      <div class="avatar" style="background:linear-gradient(135deg,#a78bfa,#7c56e0);">运</div>
+    </header>
+
+    <div class="content">
+      <!-- 核心指标 -->
+      <div class="stat-grid" style="margin-bottom:20px;">
+        <div class="stat"><div class="ico blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14"/></svg></div><div class="num">170</div><div class="lbl">访客平台租户企业</div></div>
+        <div class="stat"><span class="trend up">↑ 4.2%</span><div class="ico purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9z"/></svg></div><div class="num">23.5%</div><div class="lbl">交叉转化率（→主营/交易）</div></div>
+        <div class="stat"><span class="trend up">↑ 8 家</span><div class="ico green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div><div class="num">40</div><div class="lbl">已转化为主营客户</div></div>
+        <div class="stat"><span class="trend up">佣金</span><div class="ico orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div class="num">¥386万</div><div class="lbl">带来的主营+交易平台收入</div></div>
+      </div>
+
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px; margin-bottom:20px; align-items:start;">
+        <!-- 转化漏斗 -->
+        <div class="card">
+          <div class="card-head"><h3>引流转化漏斗</h3><span class="muted" style="font-size:12px;">厂智访客 → 主营生态</span></div>
+          <div class="card-pad">
+            <div class="funnel">
+              <div class="frow" style="width:100%;"><div class="fbar" style="width:100%; background:linear-gradient(135deg,#2f6bed,#5b8dff);"><span class="fn">注册厂智访客企业</span><span class="fv">170</span></div></div>
+              <svg viewBox="0 0 24 24" fill="none" stroke="#c4ccdb" stroke-width="2" style="width:18px;height:18px;"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+              <div class="frow" style="width:88%;"><div class="fbar" style="width:100%; background:linear-gradient(135deg,#4a9fe0,#6fb6ea);"><span class="fn">活跃使用（周活）</span><span class="fv">138</span></div></div>
+              <svg viewBox="0 0 24 24" fill="none" stroke="#c4ccdb" stroke-width="2" style="width:18px;height:18px;"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+              <div class="frow" style="width:70%;"><div class="fbar" style="width:100%; background:linear-gradient(135deg,#22b07d,#34d39e);"><span class="fn">被识别为高潜客户</span><span class="fv">72</span></div></div>
+              <svg viewBox="0 0 24 24" fill="none" stroke="#c4ccdb" stroke-width="2" style="width:18px;height:18px;"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+              <div class="frow" style="width:52%;"><div class="fbar" style="width:100%; background:linear-gradient(135deg,#f5a623,#f7b955);"><span class="fn">已线索跟进 / 商机</span><span class="fv">58</span></div></div>
+              <svg viewBox="0 0 24 24" fill="none" stroke="#c4ccdb" stroke-width="2" style="width:18px;height:18px;"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+              <div class="frow" style="width:38%;"><div class="fbar" style="width:100%; background:linear-gradient(135deg,#7c56e0,#a78bfa);"><span class="fn">成交（主营/交易平台）</span><span class="fv">40</span></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 各产品转化贡献 -->
+        <div style="display:flex; flex-direction:column; gap:20px;">
+          <div class="card">
+            <div class="card-head"><h3>转化去向（各产品）</h3></div>
+            <div class="card-pad">
+              <div style="margin-bottom:14px;"><div class="flex justify-between" style="font-size:13px; margin-bottom:6px;"><span>钢智汇交易平台</span><span class="muted">18 家 · ¥210万</span></div><div style="height:9px;background:var(--line);border-radius:8px;overflow:hidden;"><div style="width:90%;height:100%;background:#7c56e0;border-radius:8px;"></div></div></div>
+              <div style="margin-bottom:14px;"><div class="flex justify-between" style="font-size:13px; margin-bottom:6px;"><span>钢贸/生产管理软件</span><span class="muted">14 家 · ¥118万</span></div><div style="height:9px;background:var(--line);border-radius:8px;overflow:hidden;"><div style="width:64%;height:100%;background:#2f6bed;border-radius:8px;"></div></div></div>
+              <div><div class="flex justify-between" style="font-size:13px; margin-bottom:6px;"><span>MES 软件</span><span class="muted">8 家 · ¥58万</span></div><div style="height:9px;background:var(--line);border-radius:8px;overflow:hidden;"><div style="width:40%;height:100%;background:#22b07d;border-radius:8px;"></div></div></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-head"><h3>钢铁厂专属版拉动</h3><span class="badge orange no-dot">关键</span></div>
+            <div class="card-pad">
+              <div class="kv"><span class="k">升级为专属版的企业</span><span class="v">34 家</span></div>
+              <div class="kv"><span class="k">专属版 → 交易平台转化率</span><span class="v" style="color:var(--success)">52.9%</span></div>
+              <div class="kv"><span class="k">通用版 → 交易平台转化率</span><span class="v">9.6%</span></div>
+              <div class="card" style="box-shadow:none; background:var(--brand-soft); border-color:var(--brand-light); padding:10px 12px; margin-top:10px; font-size:12.5px; color:var(--text-2);">用了专属版（磅单/交易打通）的企业，转化到交易平台的概率是通用版的 <b style="color:var(--brand)">5.5 倍</b>——专属版是最有效的引流放大器。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 高潜线索列表 -->
+      <div class="card">
+        <div class="card-head">
+          <div class="flex items-center gap-12"><h3>高潜转化线索</h3><span class="muted" style="font-size:12.5px;">依据到访/送货频次、行业、规模等自动评分</span></div>
+          <button class="btn btn-ghost btn-sm" data-toast="已分配给对应销售顾问跟进">批量派发跟进</button>
+        </div>
+        <table class="table">
+          <thead><tr><th>企业（访客租户）</th><th>行业信号</th><th>推荐产品</th><th>意向分</th><th>状态</th><th style="text-align:right">操作</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><div class="person"><div class="pa c1">德</div><div><div class="pn">德胜钢铁</div><div class="pm">已用专属版 · 日均送货 120 车</div></div></div></td>
+              <td><span class="badge blue no-dot">高频物流</span></td><td>钢智汇交易平台</td>
+              <td><div class="flex items-center gap-8"><div style="width:60px;height:6px;background:var(--line);border-radius:6px;overflow:hidden;"><div style="width:94%;height:100%;background:var(--success)"></div></div><span style="font-weight:700;color:var(--success)">94</span></div></td>
+              <td><span class="badge orange">待跟进</span></td>
+              <td style="text-align:right"><button class="btn btn-primary btn-sm" data-toast="已派发给交易平台 BD 跟进">派发跟进</button></td>
+            </tr>
+            <tr>
+              <td><div class="person"><div class="pa c2">宏</div><div><div class="pn">宏远精密制造</div><div class="pm">机械制造 · 供应商到访多</div></div></div></td>
+              <td><span class="badge blue no-dot">供应链活跃</span></td><td>生产管理软件 / MES</td>
+              <td><div class="flex items-center gap-8"><div style="width:60px;height:6px;background:var(--line);border-radius:6px;overflow:hidden;"><div style="width:82%;height:100%;background:var(--success)"></div></div><span style="font-weight:700;color:var(--success)">82</span></div></td>
+              <td><span class="badge green">跟进中</span></td>
+              <td style="text-align:right"><button class="btn btn-ghost btn-sm">查看</button></td>
+            </tr>
+            <tr>
+              <td><div class="person"><div class="pa c3">金</div><div><div class="pn">金泰物流仓储</div><div class="pm">仓储物流 · 承运商密集</div></div></div></td>
+              <td><span class="badge blue no-dot">运力密集</span></td><td>钢智汇 · 运力池</td>
+              <td><div class="flex items-center gap-8"><div style="width:60px;height:6px;background:var(--line);border-radius:6px;overflow:hidden;"><div style="width:76%;height:100%;background:var(--warning)"></div></div><span style="font-weight:700;color:var(--warning)">76</span></div></td>
+              <td><span class="badge orange">待跟进</span></td>
+              <td style="text-align:right"><button class="btn btn-primary btn-sm" data-toast="已派发跟进">派发跟进</button></td>
+            </tr>
+            <tr>
+              <td><div class="person"><div class="pa c5">兴</div><div><div class="pn">兴盛食品加工厂</div><div class="pm">食品 · 非钢铁行业</div></div></div></td>
+              <td><span class="badge gray no-dot">通用需求</span></td><td>标准版续费 / 增值模块</td>
+              <td><div class="flex items-center gap-8"><div style="width:60px;height:6px;background:var(--line);border-radius:6px;overflow:hidden;"><div style="width:45%;height:100%;background:var(--text-3)"></div></div><span style="font-weight:700;color:var(--text-3)">45</span></div></td>
+              <td><span class="badge gray">观察</span></td>
+              <td style="text-align:right"><button class="btn btn-ghost btn-sm">查看</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="assets/app.js"></script>
+</body>
+</html>

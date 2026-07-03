@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>预约到访邀请 · 厂智访客</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V7l8-4v18"/><path d="M11 21V11l8 3v7"/><path d="M8 9h.01M8 13h.01M8 17h.01"/></svg></div>
+      <div class="name">厂智访客<small>FACTORY VISITOR</small></div>
+    </div>
+    <div class="nav-label">工作台</div>
+    <a href="checkin.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg> 入场登记</a>
+    <a href="invite.html" class="nav-item active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 11l-3 3-2-2"/></svg> 预约邀请</a>
+    <a href="onsite.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> 在场访客 <span class="badge-dot">37</span></a>
+    <a href="records.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg> 进出记录</a>
+    <div class="nav-label">管理</div>
+    <a href="dashboard.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/></svg> 数据看板</a>
+    <a href="approval.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg> 审批与通知</a>
+    <a href="field-config.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v4H4zM4 12h10v4H4zM4 20h7"/></svg> 登记项配置</a>
+    <a href="settings.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg> 系统设置</a>
+    <div class="sidebar-foot">
+      <div class="rent-card"><span class="tag">已订阅</span><div class="price">￥60<small>/月</small></div><div style="font-size:12px; color:#97a2bd; margin-top:4px;">有效期至 2026-12-31</div></div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <div><h1>预约到访邀请</h1><div class="sub">被访人提前邀请访客，到场扫码即入 · 免临时审批</div></div>
+      <div class="tenant-switch" style="margin-left:20px;" title="当前企业空间（多租户）">
+        <span class="tl c1">宏</span><div><div class="tn">宏远精密制造</div><div class="tp">企业空间 · 1 厂区</div></div>
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" stroke-width="2" style="width:16px;height:16px;"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="avatar" style="margin-left:auto;">李</div>
+    </header>
+
+    <div class="content">
+      <div class="card" style="background:var(--brand-soft); border-color:var(--brand-light); margin-bottom:20px;">
+        <div class="card-pad flex items-center gap-12">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2" style="width:22px;height:22px;flex-shrink:0;"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+          <div style="font-size:13.5px; color:var(--text-2);">预约邀请属于<b>免审快速通道</b>：由被访人/前台提前发起，系统生成邀请码与二维码发送给访客；访客到场只需扫码或报邀请码，门卫核对身份即可放行，<b>无需临时通知与审批</b>，高峰期不排队。可在 <a href="approval.html" style="color:var(--brand);font-weight:600;">审批与通知</a> 中开关此通道。</div>
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns: 1.35fr 1fr; gap:20px; align-items:start; margin-bottom:20px;">
+        <!-- 发起邀请 -->
+        <div class="card">
+          <div class="card-head"><h3>发起预约邀请</h3></div>
+          <div class="card-pad">
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:0 18px;">
+              <div class="field"><label>访客姓名 <span class="req">*</span></label><input class="input" placeholder="受邀访客姓名" value="陈志远"></div>
+              <div class="field"><label>访客手机号 <span class="req">*</span></label><input class="input" placeholder="用于发送邀请短信" value="137 3345 8890"></div>
+              <div class="field"><label>访客单位</label><input class="input" placeholder="来访单位" value="中通快递"></div>
+              <div class="field"><label>随行人数</label><select class="select"><option>1 人</option><option>2 人</option><option>3 人</option></select></div>
+            </div>
+            <div class="field"><label>来访事由 <span class="req">*</span></label>
+              <div class="chip-group"><div class="chip active">物料送货</div><div class="chip">洽谈业务</div><div class="chip">设备维修</div><div class="chip">参观考察</div></div>
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:0 18px;">
+              <div class="field"><label>来访日期 <span class="req">*</span></label>
+                <div class="input-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><input class="input" value="2026-07-03" style="padding-left:42px;"></div>
+              </div>
+              <div class="field"><label>有效时段</label>
+                <div class="flex items-center gap-8"><input class="input btn-sm" style="width:90px;" value="09:00"><span class="muted">—</span><input class="input btn-sm" style="width:90px;" value="12:00"></div>
+              </div>
+            </div>
+            <div class="field" style="margin-bottom:0;"><label>被访人 / 接待人</label>
+              <div class="input-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><input class="input" value="李经理 · 采购部（我）"></div>
+            </div>
+            <div class="divider"></div>
+            <div class="flex items-center justify-between">
+              <label class="flex items-center gap-8" style="margin:0; font-size:13px; font-weight:500;"><input type="checkbox" checked> 生成后立即以短信发送给访客</label>
+              <button class="btn btn-primary btn-lg" data-toast="✅ 邀请已生成并发送至访客手机">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                生成并发送邀请
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 生成的邀请卡 -->
+        <div class="card">
+          <div class="card-head"><h3>邀请函预览</h3><span class="badge green">已生成</span></div>
+          <div class="card-pad">
+            <div style="border:1px solid var(--line); border-radius:16px; overflow:hidden;">
+              <div style="background:linear-gradient(135deg,var(--brand),#4f82ff); color:#fff; padding:18px 20px;">
+                <div style="font-size:12px; opacity:.85;">宏远精密制造厂 · 访客邀请函</div>
+                <div style="font-size:18px; font-weight:800; margin-top:2px;">诚邀您莅临我厂</div>
+              </div>
+              <div style="padding:20px; text-align:center;">
+                <div class="qr-box" style="width:150px; height:150px; margin:0 auto;">
+                  <svg viewBox="0 0 100 100"><rect width="100" height="100" fill="#fff"/><path fill="#101a33" d="M8 8h24v24H8zM14 14v12h12V14zM68 8h24v24H68zM74 14v12h12V14zM8 68h24v24H8zM14 74v12h12V74z"/><path fill="#2f6bed" d="M40 8h6v6h-6zM52 8h6v6h-6zM40 20h6v6h-6zM60 40h6v6h-6zM40 40h6v6h-6zM48 48h6v6h-6zM40 60h6v6h-6zM52 60h6v6h-6zM60 52h6v6h-6zM72 44h6v6h-6zM84 52h6v6h-6zM68 68h6v6h-6zM80 68h6v6h-6zM88 80h6v6h-6zM72 84h6v6h-6zM60 72h6v6h-6z"/></svg>
+                </div>
+                <div class="muted" style="font-size:12px; margin-top:10px;">到场出示此码扫描即可登记入场</div>
+                <div style="margin-top:12px; background:var(--brand-soft); border:1px dashed var(--brand-light); border-radius:10px; padding:10px;">
+                  <div class="muted" style="font-size:12px;">邀请码</div>
+                  <div class="mono" style="font-size:24px; font-weight:800; letter-spacing:4px; color:var(--brand);">8 K D 3 Z P</div>
+                </div>
+                <div style="text-align:left; margin-top:14px;">
+                  <div class="kv"><span class="k">受邀访客</span><span class="v">陈志远 · 中通快递</span></div>
+                  <div class="kv"><span class="k">来访时间</span><span class="v">07-03 09:00~12:00</span></div>
+                  <div class="kv"><span class="k">接待人</span><span class="v">李经理 · 采购部</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="flex gap-8" style="margin-top:14px;">
+              <button class="btn btn-ghost btn-sm btn-block" data-toast="已复制邀请链接"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> 复制链接</button>
+              <button class="btn btn-ghost btn-sm btn-block" data-toast="已通过短信发送"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M4 7l8 5 8-5"/></svg> 短信</button>
+              <button class="btn btn-ghost btn-sm btn-block" data-toast="已生成微信分享卡片"><svg viewBox="0 0 24 24" fill="#22b07d"><path d="M8.5 3C4.9 3 2 5.5 2 8.6c0 1.8 1 3.4 2.5 4.4L4 15l2.3-1.2c.7.2 1.4.3 2.2.3h.6c-.1-.4-.2-.9-.2-1.4 0-3 2.9-5.4 6.5-5.4h.6C15.3 4.6 12.2 3 8.5 3z"/></svg> 微信</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 邀请记录 -->
+      <div class="card">
+        <div class="card-head">
+          <div class="flex items-center gap-12"><h3>邀请记录</h3>
+            <div class="tabs"><div class="tab active">全部</div><div class="tab">待到访</div><div class="tab">已到访</div><div class="tab">已过期</div></div>
+          </div>
+          <button class="btn btn-ghost btn-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg> 导出</button>
+        </div>
+        <table class="table">
+          <thead><tr><th>受邀访客</th><th>事由</th><th>接待人</th><th>邀请码</th><th>预约时间</th><th>状态</th><th style="text-align:right">操作</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><div class="person"><div class="pa c3">陈</div><div><div class="pn">陈志远</div><div class="pm">中通快递</div></div></div></td>
+              <td>物料送货</td><td>李经理</td><td><span class="badge blue no-dot mono">8KD3ZP</span></td><td class="mono">07-03 09:00</td>
+              <td><span class="badge orange">待到访</span></td>
+              <td style="text-align:right"><div class="flex gap-8" style="justify-content:flex-end"><button class="btn btn-ghost btn-sm" data-toast="已重新发送邀请">重发</button><button class="btn btn-danger-ghost btn-sm" data-toast="已取消该邀请">取消</button></div></td>
+            </tr>
+            <tr>
+              <td><div class="person"><div class="pa c2">王</div><div><div class="pn">王丽</div><div class="pm">德勤咨询</div></div></div></td>
+              <td>参观考察</td><td>周总</td><td><span class="badge blue no-dot mono">M2P9QX</span></td><td class="mono">07-02 14:00</td>
+              <td><span class="badge green">已到访</span></td>
+              <td style="text-align:right"><button class="btn btn-ghost btn-sm">详情</button></td>
+            </tr>
+            <tr>
+              <td><div class="person"><div class="pa c6">刘</div><div><div class="pn">刘强</div><div class="pm">西门子</div></div></div></td>
+              <td>设备维修</td><td>王工</td><td><span class="badge blue no-dot mono">7YH2KL</span></td><td class="mono">07-01 10:00</td>
+              <td><span class="badge green">已到访</span></td>
+              <td style="text-align:right"><button class="btn btn-ghost btn-sm">详情</button></td>
+            </tr>
+            <tr>
+              <td><div class="person"><div class="pa c5">赵</div><div><div class="pn">赵敏</div><div class="pm">顺丰速运</div></div></div></td>
+              <td>洽谈业务</td><td>李经理</td><td><span class="badge gray no-dot mono">3RT8WN</span></td><td class="mono">06-28 15:30</td>
+              <td><span class="badge gray">已过期</span></td>
+              <td style="text-align:right"><button class="btn btn-ghost btn-sm" data-toast="已按原信息重新邀请">再次邀请</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="assets/app.js"></script>
+</body>
+</html>

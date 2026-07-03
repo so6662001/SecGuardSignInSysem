@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>承运商与车辆管理 · 钢铁厂专属版</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V7l8-4v18"/><path d="M11 21V11l8 3v7"/><path d="M8 9h.01M8 13h.01M8 17h.01"/></svg></div>
+      <div class="name">厂智访客<small style="color:#f5a623;">钢铁厂专属版</small></div>
+    </div>
+    <div class="nav-label">工作台</div>
+    <a href="steel-checkin.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 16H9m10 0h3l-2-6H4l-2 6h3m0 0a2 2 0 1 0 4 0m6 0a2 2 0 1 0 4 0"/></svg> 车辆到厂</a>
+    <a href="weighbridge.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 6l2 13h14l2-13M9 10v5M15 10v5"/></svg> 磅房过磅</a>
+    <a href="carrier.html" class="nav-item active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg> 承运商管理</a>
+    <a href="checkin.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg> 访客登记</a>
+    <a href="onsite.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> 在场访客 <span class="badge-dot">37</span></a>
+    <a href="records.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg> 进出记录</a>
+    <div class="nav-label">管理</div>
+    <a href="dashboard.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/></svg> 数据看板</a>
+    <a href="settings.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg> 系统设置</a>
+    <div class="sidebar-foot">
+      <div class="rent-card" style="background:linear-gradient(135deg,#3a2c12,#241a08);"><span class="tag" style="background:#f5a623;">专属版</span><div class="price">￥599<small>/月起</small></div><div style="font-size:12px; color:#c9a86a; margin-top:4px;">含交易平台打通</div></div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <div><h1>承运商与车辆管理</h1><div class="sub">承运商档案 · 车辆/司机白名单 · 运力池对接交易平台</div></div>
+      <button class="btn btn-primary btn-sm" style="margin-left:auto;" data-toast="打开新增承运商表单"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg> 新增承运商</button>
+      <div class="avatar" style="margin-left:8px;">王</div>
+    </header>
+
+    <div class="content">
+      <div class="stat-grid" style="margin-bottom:20px;">
+        <div class="stat"><div class="ico blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div><div class="num">36</div><div class="lbl">合作承运商</div></div>
+        <div class="stat"><div class="ico green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 16H9m10 0h3l-2-6H4l-2 6h3"/></svg></div><div class="num">248</div><div class="lbl">登记车辆</div></div>
+        <div class="stat"><span class="trend up">白名单</span><div class="ico orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div><div class="num">182</div><div class="lbl">白名单车辆（免审快速通道）</div></div>
+        <div class="stat"><span class="trend up">已入驻</span><div class="ico purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg></div><div class="num">21</div><div class="lbl">已入驻交易平台运力池</div></div>
+      </div>
+
+      <!-- 引流联动提示 -->
+      <div class="card" style="background:var(--brand-soft); border-color:var(--brand-light); margin-bottom:20px;">
+        <div class="card-pad flex items-center gap-12 wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2" style="width:22px;height:22px;flex-shrink:0;"><path d="M13 2L3 14h9l-1 8 10-12h-9z"/></svg>
+          <div class="grow" style="font-size:13.5px; color:var(--text-2);"><b>数据引流联动：</b>系统已识别 15 家<b>高频到厂但尚未入驻交易平台</b>的承运商，可一键邀请其入驻「钢智汇」运力池，把门口的车流转化为交易平台运力资源。</div>
+          <button class="btn btn-primary btn-sm" data-toast="✅ 已向 15 家高频承运商发送运力池入驻邀请">一键邀请入驻</button>
+        </div>
+      </div>
+
+      <!-- 承运商列表 -->
+      <div class="card">
+        <div class="card-head">
+          <div class="flex items-center gap-12"><h3>承运商档案</h3>
+            <div class="tabs"><div class="tab active">全部</div><div class="tab">高频活跃</div><div class="tab">已入驻交易平台</div><div class="tab">受限/黑名单</div></div>
+          </div>
+          <div class="searchbar" style="margin-left:0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg><input placeholder="承运商 / 车牌 / 司机"></div>
+        </div>
+        <table class="table">
+          <thead><tr><th>承运商</th><th>车辆 / 司机</th><th>本月到厂车次</th><th>准运货物</th><th>交易平台</th><th>状态</th><th style="text-align:right">操作</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><div class="person"><div class="pa c1">鑫</div><div><div class="pn">鑫运物流</div><div class="pm">合作 2 年</div></div></div></td>
+              <td>28 车 / 22 人</td><td class="mono">146</td><td>钢材 · 废钢</td>
+              <td><span class="badge green no-dot">已入驻</span></td><td><span class="badge green">白名单</span></td>
+              <td style="text-align:right"><a href="steel-checkin.html" class="btn btn-ghost btn-sm">车辆档案</a></td>
+            </tr>
+            <tr>
+              <td><div class="person"><div class="pa c2">恒</div><div><div class="pn">恒通运输</div><div class="pm">合作 1 年</div></div></div></td>
+              <td>19 车 / 16 人</td><td class="mono">98</td><td>钢材</td>
+              <td><span class="badge green no-dot">已入驻</span></td><td><span class="badge green">白名单</span></td>
+              <td style="text-align:right"><a href="steel-checkin.html" class="btn btn-ghost btn-sm">车辆档案</a></td>
+            </tr>
+            <tr style="background:var(--brand-soft)">
+              <td><div class="person"><div class="pa c3">广</div><div><div class="pn">广发货运</div><div class="pm">高频 · 未入驻</div></div></div></td>
+              <td>12 车 / 10 人</td><td class="mono" style="color:var(--brand);font-weight:700">87</td><td>钢材 · 型材</td>
+              <td><span class="badge orange no-dot">未入驻</span></td><td><span class="badge blue">普通</span></td>
+              <td style="text-align:right"><button class="btn btn-primary btn-sm" data-toast="✅ 已邀请广发货运入驻交易平台运力池">邀请入驻</button></td>
+            </tr>
+            <tr>
+              <td><div class="person"><div class="pa c6">顺</div><div><div class="pn">顺达汽运</div><div class="pm">合作 3 年</div></div></div></td>
+              <td>31 车 / 28 人</td><td class="mono">122</td><td>钢材 · 卷板</td>
+              <td><span class="badge green no-dot">已入驻</span></td><td><span class="badge green">白名单</span></td>
+              <td style="text-align:right"><a href="steel-checkin.html" class="btn btn-ghost btn-sm">车辆档案</a></td>
+            </tr>
+            <tr>
+              <td><div class="person"><div class="pa c5">个</div><div><div class="pn">个体司机 · 赵强</div><div class="pm">散户</div></div></div></td>
+              <td>1 车 / 1 人</td><td class="mono">6</td><td>废钢</td>
+              <td><span class="badge gray no-dot">—</span></td><td><span class="badge red">受限</span></td>
+              <td style="text-align:right"><button class="btn btn-ghost btn-sm">查看原因</button></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="flex items-center justify-between" style="padding:14px 20px; border-top:1px solid var(--line);">
+          <div class="muted" style="font-size:13px;">显示第 1-5 条，共 36 家承运商</div>
+          <div class="flex gap-8"><button class="btn btn-ghost btn-sm">上一页</button><button class="btn btn-primary btn-sm">1</button><button class="btn btn-ghost btn-sm">2</button><button class="btn btn-ghost btn-sm">下一页</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="assets/app.js"></script>
+</body>
+</html>

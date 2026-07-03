@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>租户详情 · 运营后台</title>
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .sidebar.ops { background:#1a1230; }
+  .sidebar.ops .brand .logo { background:linear-gradient(135deg,#7c56e0,#a78bfa); box-shadow:0 6px 16px rgba(124,86,224,.4); }
+  .sidebar.ops .nav-item.active { background:linear-gradient(135deg,#7c56e0,#a78bfa); box-shadow:0 8px 18px rgba(124,86,224,.35); }
+  .tabpane { display:none; }
+  .tabpane.show { display:block; }
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar ops">
+    <div class="brand">
+      <div class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V7l8-4v18"/><path d="M11 21V11l8 3v7"/><path d="M8 9h.01M8 13h.01M8 17h.01"/></svg></div>
+      <div class="name">厂智访客<small>运营后台 · PLATFORM</small></div>
+    </div>
+    <div class="nav-label">平台运营</div>
+    <a href="platform.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/></svg> 运营概览</a>
+    <a href="application-detail.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 15l2 2 4-4"/></svg> 开通申请 <span class="badge-dot">3</span></a>
+    <a href="tenant-detail.html" class="nav-item active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14"/></svg> 租户管理</a>
+    <a href="conversion.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9z"/></svg> 引流转化</a>
+    <a href="platform.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg> 订阅与账单</a>
+    <div class="nav-label">系统</div>
+    <a href="platform.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg> 平台设置</a>
+    <div class="sidebar-foot">
+      <div class="rent-card" style="background:linear-gradient(135deg,#3a2a63,#241a44);"><span class="tag" style="background:#7c56e0;">运营者</span><div style="font-size:13px; color:#dbe3f4; margin-top:6px;">当前登录</div><div style="font-weight:700; color:#fff;">平台管理员</div></div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <div class="flex items-center gap-12">
+        <a href="platform.html" class="icon-btn" style="width:34px;height:34px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></a>
+        <div><h1>租户详情</h1><div class="sub">租户管理 / 宏远精密制造有限公司</div></div>
+      </div>
+      <div class="flex gap-12" style="margin-left:auto;">
+        <button class="btn btn-ghost btn-sm" data-toast="已进入该租户空间（模拟登录）">进入租户空间</button>
+        <button class="btn btn-danger-ghost btn-sm" data-toast="该租户已停用">停用租户</button>
+      </div>
+      <div class="avatar" style="background:linear-gradient(135deg,#a78bfa,#7c56e0);">运</div>
+    </header>
+
+    <div class="content">
+      <!-- 租户头 -->
+      <div class="card card-pad" style="margin-bottom:20px;">
+        <div class="flex items-center gap-16 wrap">
+          <div class="pa c1" style="width:60px;height:60px;border-radius:16px;display:grid;place-items:center;color:#fff;font-weight:800;font-size:24px;">宏</div>
+          <div class="grow">
+            <div class="flex items-center gap-12"><div style="font-size:19px; font-weight:800;">宏远精密制造有限公司</div><span class="badge green">正常</span></div>
+            <div class="muted" style="font-size:13px; margin-top:2px;">hongyuan.faccess.cn · 租户 ID：T-100238 · 开通于 2025-12-31</div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size:26px; font-weight:800;">￥60<span style="font-size:14px; font-weight:500; color:var(--text-3);">/月</span></div>
+            <div class="muted" style="font-size:12.5px;">全功能版 · 1 厂区</div>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="tabs" style="width:fit-content;">
+          <div class="tab active" onclick="showTab('ov')">概览</div>
+          <div class="tab" onclick="showTab('bill')">订阅与账单</div>
+          <div class="tab" onclick="showTab('usage')">用量统计</div>
+          <div class="tab" onclick="showTab('log')">操作日志</div>
+        </div>
+      </div>
+
+      <!-- 概览 -->
+      <div class="tabpane show" id="tab-ov">
+        <div class="stat-grid" style="margin-bottom:20px;">
+          <div class="stat"><div class="ico blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div><div class="num">3,860</div><div class="lbl">累计登记人次</div></div>
+          <div class="stat"><div class="ico green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14"/></svg></div><div class="num">3</div><div class="lbl">门岗数量</div></div>
+          <div class="stat"><div class="ico orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg></div><div class="num">6</div><div class="lbl">成员账号</div></div>
+          <div class="stat"><div class="ico purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><div class="num">28</div><div class="lbl">最近 7 天活跃天数</div></div>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+          <div class="card">
+            <div class="card-head"><h3>企业信息</h3></div>
+            <div class="card-pad">
+              <div class="kv"><span class="k">企业全称</span><span class="v">宏远精密制造有限公司</span></div>
+              <div class="kv"><span class="k">信用代码</span><span class="v mono">91441900MA4XXXX88P</span></div>
+              <div class="kv"><span class="k">所属行业</span><span class="v">机械制造</span></div>
+              <div class="kv"><span class="k">厂区地址</span><span class="v">广东省东莞市长安镇宏远工业园</span></div>
+              <div class="kv"><span class="k">专属域名</span><span class="v" style="color:var(--brand)">hongyuan.faccess.cn</span></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-head"><h3>管理员</h3><a class="link" style="color:var(--brand);" data-toast="已发送重置密码短信">重置密码</a></div>
+            <div class="card-pad">
+              <div class="kv"><span class="k">姓名</span><span class="v">李文强</span></div>
+              <div class="kv"><span class="k">职务</span><span class="v">安保负责人</span></div>
+              <div class="kv"><span class="k">登录账号</span><span class="v mono">138 6621 8890</span></div>
+              <div class="kv"><span class="k">邮箱</span><span class="v">li@hongyuan.com</span></div>
+              <div class="kv"><span class="k">最近登录</span><span class="v">今天 08:32</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 订阅账单 -->
+      <div class="tabpane" id="tab-bill">
+        <div style="display:grid; grid-template-columns:1fr 2fr; gap:20px; align-items:start;">
+          <div class="card">
+            <div class="card-head"><h3>当前订阅</h3></div>
+            <div class="card-pad">
+              <div class="kv"><span class="k">套餐</span><span class="v">全功能版</span></div>
+              <div class="kv"><span class="k">厂区数量</span><span class="v">1</span></div>
+              <div class="kv"><span class="k">月费</span><span class="v">￥60.00</span></div>
+              <div class="kv"><span class="k">计费周期</span><span class="v">按月</span></div>
+              <div class="kv"><span class="k">下次续费</span><span class="v">2026-08-01</span></div>
+              <div class="kv"><span class="k">状态</span><span class="v"><span class="badge green">正常</span></span></div>
+              <div class="flex gap-8" style="margin-top:14px;">
+                <button class="btn btn-primary btn-block btn-sm" data-toast="已为该租户手动续费 1 个月">手动续费</button>
+                <button class="btn btn-ghost btn-sm" data-toast="已调整套餐">调整套餐</button>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-head"><h3>账单记录</h3><button class="btn btn-ghost btn-sm" data-toast="已导出账单">导出</button></div>
+            <table class="table">
+              <thead><tr><th>账单编号</th><th>周期</th><th>金额</th><th>方式</th><th>状态</th><th>时间</th></tr></thead>
+              <tbody>
+                <tr><td class="mono">B-260701-238</td><td>2026-07</td><td class="mono">￥60.00</td><td>微信支付</td><td><span class="badge green">已支付</span></td><td class="mono">2026-07-01</td></tr>
+                <tr><td class="mono">B-260601-238</td><td>2026-06</td><td class="mono">￥60.00</td><td>微信支付</td><td><span class="badge green">已支付</span></td><td class="mono">2026-06-01</td></tr>
+                <tr><td class="mono">B-260501-238</td><td>2026-05</td><td class="mono">￥60.00</td><td>对公转账</td><td><span class="badge green">已支付</span></td><td class="mono">2026-05-01</td></tr>
+                <tr><td class="mono">B-260101-238</td><td>试用转正</td><td class="mono">￥0.00</td><td>—</td><td><span class="badge gray">试用</span></td><td class="mono">2026-01-14</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- 用量 -->
+      <div class="tabpane" id="tab-usage">
+        <div class="card">
+          <div class="card-head"><h3>近 6 月登记量</h3></div>
+          <div class="card-pad">
+            <div class="bars" style="height:180px;">
+              <div class="bar-col"><div class="bar" style="height:58%"></div><div class="bx">2月</div></div>
+              <div class="bar-col"><div class="bar" style="height:66%"></div><div class="bx">3月</div></div>
+              <div class="bar-col"><div class="bar" style="height:72%"></div><div class="bx">4月</div></div>
+              <div class="bar-col"><div class="bar" style="height:84%"></div><div class="bx">5月</div></div>
+              <div class="bar-col"><div class="bar" style="height:92%"></div><div class="bx">6月</div></div>
+              <div class="bar-col"><div class="bar" style="height:100%"></div><div class="bx">7月</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 操作日志 -->
+      <div class="tabpane" id="tab-log">
+        <div class="card">
+          <div class="card-head"><h3>操作日志</h3></div>
+          <table class="table">
+            <thead><tr><th>时间</th><th>操作人</th><th>动作</th><th>说明</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">07-01 08:32</td><td>李文强</td><td><span class="badge blue no-dot">登录</span></td><td>管理员登录企业空间</td></tr>
+              <tr><td class="mono">06-30 17:10</td><td>李文强</td><td><span class="badge green no-dot">配置</span></td><td>启用「承包商/施工」登记模板</td></tr>
+              <tr><td class="mono">06-28 09:02</td><td>王志明</td><td><span class="badge blue no-dot">新增</span></td><td>新增门卫账号 赵大勇</td></tr>
+              <tr><td class="mono">06-01 00:00</td><td>系统</td><td><span class="badge gray no-dot">计费</span></td><td>自动续费成功 ￥60.00</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="assets/app.js"></script>
+<script>
+  function showTab(id){
+    document.querySelectorAll('.tabpane').forEach(function(p){p.classList.remove('show')});
+    document.getElementById('tab-'+id).classList.add('show');
+  }
+</script>
+</body>
+</html>

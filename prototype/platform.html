@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>运营后台 · 厂智访客（多租户平台）</title>
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  /* 运营后台采用紫色系区分租户端 */
+  .sidebar.ops { background:#1a1230; }
+  .sidebar.ops .brand .logo { background:linear-gradient(135deg,#7c56e0,#a78bfa); box-shadow:0 6px 16px rgba(124,86,224,.4); }
+  .sidebar.ops .nav-item.active { background:linear-gradient(135deg,#7c56e0,#a78bfa); box-shadow:0 8px 18px rgba(124,86,224,.35); }
+  .ops-accent { color:#7c56e0; }
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar ops">
+    <div class="brand">
+      <div class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V7l8-4v18"/><path d="M11 21V11l8 3v7"/><path d="M8 9h.01M8 13h.01M8 17h.01"/></svg></div>
+      <div class="name">厂智访客<small>运营后台 · PLATFORM</small></div>
+    </div>
+    <div class="nav-label">平台运营</div>
+    <a href="platform.html" class="nav-item active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/></svg> 运营概览</a>
+    <a href="platform.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 15l2 2 4-4"/></svg> 开通申请 <span class="badge-dot">3</span></a>
+    <a href="platform.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14"/><path d="M9 9h.01M9 13h.01M15 9h.01M15 13h.01"/></svg> 租户管理</a>
+    <a href="conversion.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9z"/></svg> 引流转化</a>
+    <a href="platform.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg> 订阅与账单</a>
+    <div class="nav-label">系统</div>
+    <a href="platform.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg> 平台设置</a>
+    <div class="sidebar-foot">
+      <div class="rent-card" style="background:linear-gradient(135deg,#3a2a63,#241a44);">
+        <span class="tag" style="background:#7c56e0;">运营者</span>
+        <div style="font-size:13px; color:#dbe3f4; margin-top:6px;">当前登录</div>
+        <div style="font-weight:700; color:#fff;">平台管理员</div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <div><h1>运营概览</h1><div class="sub">多租户管理 · 企业开通、订阅与续费一览</div></div>
+      <div class="searchbar" style="margin-left:auto;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <input placeholder="搜索企业名称 / 手机号">
+      </div>
+      <button class="icon-btn"><span class="dot"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px;"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></button>
+      <div class="avatar" style="background:linear-gradient(135deg,#a78bfa,#7c56e0);">运</div>
+    </header>
+
+    <div class="content">
+      <!-- 运营指标 -->
+      <div class="stat-grid" style="margin-bottom:20px;">
+        <div class="stat"><span class="trend up">↑ 6 家</span><div class="ico purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14"/></svg></div><div class="num">142</div><div class="lbl">付费租户企业</div></div>
+        <div class="stat"><div class="ico orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><div class="num">28</div><div class="lbl">试用中企业</div></div>
+        <div class="stat"><span class="trend up">MRR</span><div class="ico green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div class="num">¥9,720</div><div class="lbl">月度经常性收入</div></div>
+        <div class="stat"><span class="trend down">待处理</span><div class="ico blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div><div class="num">3</div><div class="lbl">待审核开通申请</div></div>
+      </div>
+
+      <div style="display:grid; grid-template-columns: 1.05fr .95fr; gap:20px; margin-bottom:20px; align-items:start;">
+        <!-- 待审核开通申请 -->
+        <div class="card">
+          <div class="card-head"><h3>待审核开通申请</h3><span class="badge orange no-dot">3 待处理</span></div>
+          <div class="card-pad" style="display:flex; flex-direction:column; gap:12px;">
+            <div style="border:1px solid var(--line); border-radius:12px; padding:14px;">
+              <div class="flex items-center gap-12" style="margin-bottom:10px;">
+                <div class="pa c4" style="width:40px;height:40px;border-radius:11px;display:grid;place-items:center;color:#fff;font-weight:700">恒</div>
+                <div class="grow"><div style="font-weight:700;">恒达五金制品有限公司</div><div class="muted" style="font-size:12.5px;">王海 · 138****2231 · 申请 1 个厂区</div></div>
+                <span class="badge orange">新申请</span>
+              </div>
+              <div class="kv"><span class="k">所属行业</span><span class="v">五金制造</span></div>
+              <div class="kv"><span class="k">申请时间</span><span class="v">今天 09:40</span></div>
+              <div class="flex gap-12" style="margin-top:12px;">
+                <button class="btn btn-ghost btn-block btn-sm" data-toast="已拒绝该开通申请">拒绝</button>
+                <button class="btn btn-primary btn-block btn-sm" data-toast="✅ 已开通，已向企业发送账号与专属域名">审核并开通</button>
+              </div>
+            </div>
+            <div style="border:1px solid var(--line); border-radius:12px; padding:14px;">
+              <div class="flex items-center gap-12" style="margin-bottom:10px;">
+                <div class="pa c6" style="width:40px;height:40px;border-radius:11px;display:grid;place-items:center;color:#fff;font-weight:700">兴</div>
+                <div class="grow"><div style="font-weight:700;">兴盛食品加工厂</div><div class="muted" style="font-size:12.5px;">陈丽 · 139****7788 · 申请 2 个厂区</div></div>
+                <span class="badge orange">新申请</span>
+              </div>
+              <div class="flex gap-12" style="margin-top:4px;">
+                <button class="btn btn-ghost btn-block btn-sm" data-toast="已拒绝该开通申请">拒绝</button>
+                <button class="btn btn-primary btn-block btn-sm" data-toast="✅ 已开通，已向企业发送账号与专属域名">审核并开通</button>
+              </div>
+            </div>
+            <div class="center"><a href="application-detail.html" class="link" style="color:var(--brand); font-size:13px; font-weight:600;">查看申请详情 · 全部 3 条 →</a></div>
+          </div>
+        </div>
+
+        <!-- 收入趋势 + 到期预警 -->
+        <div style="display:flex; flex-direction:column; gap:20px;">
+          <div class="card">
+            <div class="card-head"><h3>近 6 月收入趋势</h3><span class="badge green">MRR ↑</span></div>
+            <div class="card-pad">
+              <div class="bars" style="height:150px;">
+                <div class="bar-col"><div class="bar" style="height:52%; background:linear-gradient(180deg,#a78bfa,#7c56e0);"></div><div class="bx">2月</div></div>
+                <div class="bar-col"><div class="bar" style="height:60%; background:linear-gradient(180deg,#a78bfa,#7c56e0);"></div><div class="bx">3月</div></div>
+                <div class="bar-col"><div class="bar" style="height:68%; background:linear-gradient(180deg,#a78bfa,#7c56e0);"></div><div class="bx">4月</div></div>
+                <div class="bar-col"><div class="bar" style="height:80%; background:linear-gradient(180deg,#a78bfa,#7c56e0);"></div><div class="bx">5月</div></div>
+                <div class="bar-col"><div class="bar" style="height:90%; background:linear-gradient(180deg,#a78bfa,#7c56e0);"></div><div class="bx">6月</div></div>
+                <div class="bar-col"><div class="bar" style="height:100%; background:linear-gradient(180deg,#a78bfa,#7c56e0);"></div><div class="bx">7月</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="card" style="border-left:4px solid var(--warning); border-color:transparent; background:var(--warning-light);">
+            <div class="card-pad flex items-center gap-12">
+              <div class="ico orange" style="width:40px;height:40px;margin:0;border-radius:11px;display:grid;place-items:center;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+              <div class="grow"><div style="font-weight:700; color:#a86a12;">5 家企业将在 7 天内到期</div><div style="font-size:13px; color:#a86a12;">可发送续费提醒，避免服务中断</div></div>
+              <button class="btn btn-ghost btn-sm" data-toast="已向 5 家企业发送续费提醒">一键催续</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 租户列表 -->
+      <div class="card">
+        <div class="card-head">
+          <div class="flex items-center gap-12"><h3>租户企业列表</h3>
+            <div class="tabs"><div class="tab active">全部</div><div class="tab">正常</div><div class="tab">试用中</div><div class="tab">已欠费</div><div class="tab">已停用</div></div>
+          </div>
+          <button class="btn btn-ghost btn-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg> 导出</button>
+        </div>
+        <table class="table">
+          <thead><tr><th>企业</th><th>套餐 / 厂区</th><th>月费</th><th>状态</th><th>开通日期</th><th>到期日期</th><th style="text-align:right">操作</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><div class="person"><div class="pa c1">宏</div><div><div class="pn">宏远精密制造有限公司</div><div class="pm">hongyuan.faccess.cn</div></div></div></td>
+              <td>全功能 · 1 厂区</td><td class="mono">¥60</td><td><span class="badge green">正常</span></td><td class="mono">2025-12-31</td><td class="mono">2026-12-31</td>
+              <td style="text-align:right"><div class="flex gap-8" style="justify-content:flex-end"><a href="tenant-detail.html" class="btn btn-ghost btn-sm">详情</a><button class="btn btn-ghost btn-sm" data-toast="已进入该租户空间（模拟登录）">进入</button></div></td>
+            </tr>
+            <tr>
+              <td><div class="person"><div class="pa c2">德</div><div><div class="pn">德胜电子科技有限公司</div><div class="pm">desheng.faccess.cn</div></div></div></td>
+              <td>全功能 · 3 厂区</td><td class="mono">¥180</td><td><span class="badge green">正常</span></td><td class="mono">2026-01-15</td><td class="mono">2026-08-15</td>
+              <td style="text-align:right"><div class="flex gap-8" style="justify-content:flex-end"><a href="tenant-detail.html" class="btn btn-ghost btn-sm">详情</a><button class="btn btn-ghost btn-sm">进入</button></div></td>
+            </tr>
+            <tr>
+              <td><div class="person"><div class="pa c3">兴</div><div><div class="pn">兴盛食品加工厂</div><div class="pm">xingsheng.faccess.cn</div></div></div></td>
+              <td>全功能 · 2 厂区</td><td class="mono">¥120</td><td><span class="badge blue">试用中</span></td><td class="mono">2026-06-28</td><td class="mono">2026-07-12</td>
+              <td style="text-align:right"><div class="flex gap-8" style="justify-content:flex-end"><a href="tenant-detail.html" class="btn btn-ghost btn-sm">详情</a><button class="btn btn-ghost btn-sm">进入</button></div></td>
+            </tr>
+            <tr>
+              <td><div class="person"><div class="pa c5">金</div><div><div class="pn">金泰物流仓储有限公司</div><div class="pm">jintai.faccess.cn</div></div></div></td>
+              <td>全功能 · 1 厂区</td><td class="mono">¥60</td><td><span class="badge orange">即将到期</span></td><td class="mono">2025-07-05</td><td class="mono" style="color:var(--warning);font-weight:700">2026-07-05</td>
+              <td style="text-align:right"><div class="flex gap-8" style="justify-content:flex-end"><button class="btn btn-primary btn-sm" data-toast="已发送续费提醒">催续费</button><button class="btn btn-ghost btn-sm">进入</button></div></td>
+            </tr>
+            <tr>
+              <td><div class="person"><div class="pa c4">利</div><div><div class="pn">利丰化工有限公司</div><div class="pm">lifeng.faccess.cn</div></div></div></td>
+              <td>全功能 · 2 厂区</td><td class="mono">¥120</td><td><span class="badge red">已欠费</span></td><td class="mono">2025-03-10</td><td class="mono" style="color:var(--danger);font-weight:700">2026-06-10</td>
+              <td style="text-align:right"><div class="flex gap-8" style="justify-content:flex-end"><button class="btn btn-primary btn-sm" data-toast="已发送催缴通知">催缴</button><button class="btn btn-danger-ghost btn-sm" data-toast="该租户已停用">停用</button></div></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="flex items-center justify-between" style="padding:14px 20px; border-top:1px solid var(--line);">
+          <div class="muted" style="font-size:13px;">显示第 1-5 条，共 170 家租户</div>
+          <div class="flex gap-8"><button class="btn btn-ghost btn-sm">上一页</button><button class="btn btn-primary btn-sm">1</button><button class="btn btn-ghost btn-sm">2</button><button class="btn btn-ghost btn-sm">3</button><button class="btn btn-ghost btn-sm">下一页</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="assets/app.js"></script>
+</body>
+</html>

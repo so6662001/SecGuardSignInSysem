@@ -1,0 +1,62 @@
+### 厂智访客 API 手工联调集（VS Code REST Client / IntelliJ HTTP Client）
+@base = http://localhost:8080
+
+### 健康检查
+GET {{base}}/api/public/health
+
+### 运营登录
+# @name opsLogin
+POST {{base}}/api/ops/auth/login
+Content-Type: application/json
+
+{ "username": "admin", "password": "admin123" }
+
+### 企业申请开通（公开）
+POST {{base}}/api/public/apply
+Content-Type: application/json
+
+{ "companyName": "示例制造厂", "industry": "钢铁", "contactName": "李经理", "contactMobile": "13800009999", "password": "tenant888", "planCode": "STEEL", "smsCode": "1" }
+
+### 开通申请列表（待审）
+GET {{base}}/api/ops/applications?status=1
+Authorization: Bearer {{opsLogin.response.body.data.accessToken}}
+
+### 审核开通（把 :id 换成上面返回的申请ID）
+POST {{base}}/api/ops/applications/:id/approve
+Authorization: Bearer {{opsLogin.response.body.data.accessToken}}
+Content-Type: application/json
+
+{ "domain": "demo" }
+
+### 租户登录
+# @name tenantLogin
+POST {{base}}/api/tenant/auth/login
+Content-Type: application/json
+
+{ "domain": "demo", "username": "13800009999", "password": "tenant888" }
+
+### 入场登记
+POST {{base}}/api/tenant/visits
+Authorization: Bearer {{tenantLogin.response.body.data.accessToken}}
+Content-Type: application/json
+
+{ "visitorName": "张建国", "visitorMobile": "13711112222", "company": "顺丰速运", "reason": "洽谈业务", "hostName": "王工" }
+
+### 在场访客
+GET {{base}}/api/tenant/visits/onsite
+Authorization: Bearer {{tenantLogin.response.body.data.accessToken}}
+
+### 运营概览
+GET {{base}}/api/ops/overview
+Authorization: Bearer {{opsLogin.response.body.data.accessToken}}
+
+### 转化漏斗
+GET {{base}}/api/ops/funnel
+Authorization: Bearer {{opsLogin.response.body.data.accessToken}}
+
+### 生成报价单
+POST {{base}}/api/ops/quotes
+Authorization: Bearer {{opsLogin.response.body.data.accessToken}}
+Content-Type: application/json
+
+{ "planCode": "STEEL", "siteCount": 1, "addons": ["TRADE", "LPR"], "hardware": [{ "code": "TABLET", "mode": "buy", "qty": 1 }] }

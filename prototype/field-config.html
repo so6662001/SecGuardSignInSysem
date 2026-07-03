@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>登记项配置 · 模板设计器</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V7l8-4v18"/><path d="M11 21V11l8 3v7"/><path d="M8 9h.01M8 13h.01M8 17h.01"/></svg></div>
+      <div class="name">厂智访客<small>FACTORY VISITOR</small></div>
+    </div>
+    <div class="nav-label">工作台</div>
+    <a href="checkin.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg> 入场登记</a>
+    <a href="onsite.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> 在场访客 <span class="badge-dot">37</span></a>
+    <a href="records.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg> 进出记录</a>
+    <div class="nav-label">管理</div>
+    <a href="dashboard.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/></svg> 数据看板</a>
+    <a href="approval.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg> 审批与通知</a>
+    <a href="field-config.html" class="nav-item active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v4H4zM4 12h10v4H4zM4 20h7"/></svg> 登记项配置</a>
+    <a href="settings.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg> 系统设置</a>
+    <div class="sidebar-foot">
+      <div class="rent-card"><span class="tag">已订阅</span><div class="price">￥60<small>/月</small></div><div style="font-size:12px; color:#97a2bd; margin-top:4px;">有效期至 2026-12-31</div></div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <div><h1>登记项配置 · 模板设计器</h1><div class="sub">按企业与来访类型自由启用登记项，未启用的不会打扰普通访客</div></div>
+      <button class="btn btn-ghost btn-sm" style="margin-left:auto;">预览</button>
+      <button class="btn btn-primary btn-sm" data-toast="✅ 模板已保存并生效">保存并发布</button>
+      <div class="avatar" style="margin-left:6px;">李</div>
+    </header>
+
+    <div class="content">
+      <!-- 模板选择：不同来访类型可用不同登记项 -->
+      <div class="card card-pad" style="margin-bottom:20px;">
+        <div class="flex items-center justify-between wrap gap-12">
+          <div class="flex items-center gap-12 wrap">
+            <span style="font-weight:700;">登记模板：</span>
+            <div class="tabs">
+              <div class="tab">普通访客</div>
+              <div class="tab active">承包商 / 施工</div>
+              <div class="tab">供应商送货</div>
+              <div class="tab">面试应聘</div>
+            </div>
+            <button class="btn btn-ghost btn-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg> 新建模板</button>
+          </div>
+          <span class="badge blue no-dot">当前编辑：承包商 / 施工 模板</span>
+        </div>
+        <div class="card" style="background:var(--brand-soft); border-color:var(--brand-light); margin-top:14px; padding:12px 14px; display:flex; gap:10px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2" style="width:20px;height:20px;flex-shrink:0;"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+          <div style="font-size:13px; color:var(--text-2);">不同企业、不同来访类型对登记要求不同。普通企业可只保留基础信息；高安全级别企业可对"承包商/施工"模板启用<b>携带设备登记、安全承诺书、危险品申报</b>等模块，而普通访客模板保持简洁。</div>
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns: 1.55fr 1fr; gap:20px; align-items:start;">
+        <!-- 左：模块开关 + 自定义字段 -->
+        <div style="display:flex; flex-direction:column; gap:20px;">
+          <div class="card">
+            <div class="card-head"><h3>登记模块</h3><span class="muted" style="font-size:13px;">拖动可调整顺序 · 开关控制是否启用</span></div>
+            <div class="card-pad">
+              <!-- 基础信息（必备） -->
+              <div class="mod on">
+                <div class="mi ico blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+                <div class="grow">
+                  <div class="mt">基础信息 <span class="badge gray no-dot">必备</span></div>
+                  <div class="md">姓名、手机号、来访单位、来访事由、被访人</div>
+                  <div class="mtags"><span class="mtag">姓名 · 必填</span><span class="mtag">手机号 · 必填</span><span class="mtag">被访人 · 必填</span></div>
+                </div>
+                <div class="switch on" style="opacity:.5; cursor:not-allowed;"></div>
+              </div>
+
+              <!-- 证件核验 -->
+              <div class="mod on">
+                <div class="mi ico purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M15 8h3M15 12h3M7 16h10"/></svg></div>
+                <div class="grow">
+                  <div class="mt">证件核验</div>
+                  <div class="md">身份证 / 驾驶证登记，支持 OCR 识别与人脸抓拍</div>
+                  <div class="mtags"><span class="mtag">证件类型</span><span class="mtag">证件号码</span><span class="mtag">OCR 自动识别</span><span class="mtag">人脸抓拍存档</span></div>
+                </div>
+                <div class="switch on" onclick="toggleMod(this,'m-id')"></div>
+              </div>
+
+              <!-- 携带设备登记 —— 重点 -->
+              <div class="mod on" style="border-color:var(--warning); background:var(--warning-light);">
+                <div class="mi ico orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg></div>
+                <div class="grow">
+                  <div class="mt">携带设备登记 <span class="badge orange no-dot">高安全</span></div>
+                  <div class="md">登记进出携带的电子设备 / 工具，进出核对，防止资产与信息外带</div>
+                  <div class="mtags"><span class="mtag">设备名称</span><span class="mtag">品牌型号</span><span class="mtag">序列号/编号</span><span class="mtag">数量</span><span class="mtag">拍照存档</span><span class="mtag">出场核对</span></div>
+                </div>
+                <div class="switch on" onclick="toggleMod(this,'m-dev')"></div>
+              </div>
+
+              <!-- 危险品/物品申报 -->
+              <div class="mod on">
+                <div class="mi ico orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg></div>
+                <div class="grow">
+                  <div class="mt">危险品 / 物品申报</div>
+                  <div class="md">易燃易爆、化学品等携带申报与审批</div>
+                  <div class="mtags"><span class="mtag">物品类别</span><span class="mtag">数量</span><span class="mtag">用途说明</span></div>
+                </div>
+                <div class="switch on" onclick="toggleMod(this,'m-danger')"></div>
+              </div>
+
+              <!-- 安全承诺书 / 保密协议 -->
+              <div class="mod on">
+                <div class="mi ico green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 15l2 2 4-4"/></svg></div>
+                <div class="grow">
+                  <div class="mt">安全承诺书 / 保密协议</div>
+                  <div class="md">进场前电子签署安全须知、保密协议，留档可追溯</div>
+                  <div class="mtags"><span class="mtag">阅读须知</span><span class="mtag">电子签名</span><span class="mtag">签署留档</span></div>
+                </div>
+                <div class="switch on" onclick="toggleMod(this,'m-sign')"></div>
+              </div>
+
+              <!-- 健康与防护 -->
+              <div class="mod">
+                <div class="mi ico blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a5 5 0 0 0-5 5v3H5a9 9 0 0 0 14 0h-2V7a5 5 0 0 0-5-5z"/></svg></div>
+                <div class="grow">
+                  <div class="mt">健康与防护</div>
+                  <div class="md">体温检测、防护用品（安全帽/工鞋）确认</div>
+                  <div class="mtags"><span class="mtag">体温</span><span class="mtag">防护用品</span></div>
+                </div>
+                <div class="switch" onclick="toggleMod(this,'m-health')"></div>
+              </div>
+
+              <!-- 车辆信息 -->
+              <div class="mod">
+                <div class="mi ico purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 16H9m10 0h3l-2-6H4l-2 6h3m0 0a2 2 0 1 0 4 0m6 0a2 2 0 1 0 4 0"/></svg></div>
+                <div class="grow">
+                  <div class="mt">车辆信息</div>
+                  <div class="md">车牌号、车型登记，可对接道闸</div>
+                  <div class="mtags"><span class="mtag">车牌号</span><span class="mtag">车型</span></div>
+                </div>
+                <div class="switch" onclick="toggleMod(this,'m-car')"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 自定义字段 -->
+          <div class="card">
+            <div class="card-head"><h3>自定义字段</h3><span class="muted" style="font-size:13px;">企业可添加专属登记项</span></div>
+            <div class="card-pad">
+              <div class="muted" style="font-size:13px; margin-bottom:12px;">点击下方类型即可添加一个字段：</div>
+              <div class="ftype-palette">
+                <div class="ftype" data-toast="已添加「单行文本」字段"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></svg> 单行文本</div>
+                <div class="ftype" data-toast="已添加「多行文本」字段"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h10"/></svg> 多行文本</div>
+                <div class="ftype" data-toast="已添加「单选」字段"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3" fill="currentColor"/></svg> 单选</div>
+                <div class="ftype" data-toast="已添加「多选」字段"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 12l3 3 5-6"/></svg> 多选</div>
+                <div class="ftype" data-toast="已添加「数字」字段"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 9h16M4 15h16M10 3L8 21M16 3l-2 18"/></svg> 数字</div>
+                <div class="ftype" data-toast="已添加「日期」字段"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg> 日期时间</div>
+                <div class="ftype" data-toast="已添加「照片上传」字段"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M3 17l5-4 4 3 3-2 6 4"/></svg> 照片上传</div>
+                <div class="ftype" data-toast="已添加「电子签名」字段"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17c3 0 4-8 7-8s3 6 6 6 4-3 5-3"/></svg> 电子签名</div>
+                <div class="ftype" data-toast="已添加「开关」字段"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="7" width="22" height="10" rx="5"/><circle cx="8" cy="12" r="3" fill="currentColor"/></svg> 是否开关</div>
+              </div>
+              <div class="divider"></div>
+              <div style="font-weight:700; font-size:13px; margin-bottom:10px;">已添加字段</div>
+              <div class="flex items-center gap-12" style="padding:10px 12px; border:1px solid var(--line); border-radius:11px; margin-bottom:8px;">
+                <span class="badge blue no-dot">单选</span><span style="font-weight:600;">是否首次进入本厂区</span><span class="muted" style="margin-left:auto; font-size:12px;">是 / 否</span><span class="switch on" onclick="this.classList.toggle('on')"></span>
+              </div>
+              <div class="flex items-center gap-12" style="padding:10px 12px; border:1px solid var(--line); border-radius:11px;">
+                <span class="badge blue no-dot">单行文本</span><span style="font-weight:600;">紧急联系人电话</span><span class="muted" style="margin-left:auto; font-size:12px;">选填</span><span class="switch on" onclick="this.classList.toggle('on')"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 右：实时预览 -->
+        <div class="card" style="position:sticky; top:86px;">
+          <div class="card-head"><h3>访客端实时预览</h3><span class="badge green">承包商模板</span></div>
+          <div class="card-pad">
+            <div class="preview-phone">
+              <div class="pv-bar">
+                <div style="font-size:11px; opacity:.85;">宏远精密制造厂 · 承包商登记</div>
+                <div style="font-size:16px; font-weight:800;">请填写进场登记信息</div>
+              </div>
+              <div class="pv-body">
+                <div class="pv-label">姓名 <span style="color:var(--danger)">*</span></div>
+                <div class="pv-input">请输入姓名</div>
+                <div class="pv-label">手机号 <span style="color:var(--danger)">*</span></div>
+                <div class="pv-input">请输入手机号</div>
+                <div class="pv-label">来访事由 <span style="color:var(--danger)">*</span></div>
+                <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:10px;">
+                  <span class="chip active" style="padding:6px 12px; font-size:12px;">设备维修</span><span class="chip" style="padding:6px 12px; font-size:12px;">施工</span>
+                </div>
+                <div style="border-top:1px dashed var(--line-strong); margin:10px 0; padding-top:10px;"></div>
+                <div class="pv-label" style="color:var(--warning);">📦 携带设备登记</div>
+                <div class="card" style="padding:10px; box-shadow:none; margin-bottom:8px;">
+                  <div class="pv-input filled" style="margin-bottom:6px;">笔记本电脑 · 联想 T14</div>
+                  <div class="flex gap-8"><div class="pv-input" style="flex:1; margin:0;">SN: PF3A····</div><div class="pv-input" style="width:52px; margin:0;">×1</div></div>
+                  <div class="flex items-center gap-8" style="margin-top:8px; font-size:12px; color:var(--brand);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/></svg> 已拍照存档</div>
+                </div>
+                <div class="flex items-center gap-8" style="font-size:12px; color:var(--brand); margin-bottom:12px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><path d="M12 5v14M5 12h14"/></svg> 继续添加设备</div>
+                <div class="pv-label" style="color:var(--success);">✍ 安全承诺书</div>
+                <div class="card" style="padding:10px; box-shadow:none; margin-bottom:12px; font-size:12px; color:var(--text-2);">
+                  本人已阅读《施工安全须知》并承诺遵守…
+                  <div style="margin-top:6px; display:flex; align-items:center; gap:8px;"><input type="checkbox" checked> <span style="font-weight:600; color:var(--text)">已阅读并同意</span></div>
+                </div>
+                <button class="btn btn-primary btn-block" style="font-size:13px;">提交登记</button>
+              </div>
+            </div>
+            <div class="muted center" style="font-size:12px; margin-top:12px;">开关变动会实时反映到访客端与门卫端表单</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="assets/app.js"></script>
+<script>
+  function toggleMod(sw, id){
+    sw.classList.toggle('on');
+    var mod = sw.closest('.mod');
+    if (sw.classList.contains('on')) mod.classList.add('on'); else mod.classList.remove('on');
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+/* 厂智访客 · 设计令牌（对齐 prototype/assets/style.css） + Element Plus 主题覆盖 */
+:root {
+  --brand: #2f6bed;
+  --brand-dark: #1e4fc4;
+  --brand-light: #eaf1ff;
+  --brand-soft: #f4f8ff;
+  --success: #22b07d;
+  --success-light: #e6f7f0;
+  --warning: #f5a623;
+  --warning-light: #fdf3e2;
+  --danger: #ef5b5b;
+  --danger-light: #fdeaea;
+  --purple: #7c56e0;
+  --bg: #f4f6fb;
+  --line: #eceff5;
+  --text: #1f2a44;
+  --text-2: #5a6478;
+  --text-3: #9aa3b5;
+
+  /* Element Plus 主色对齐品牌蓝 */
+  --el-color-primary: #2f6bed;
+  --el-color-primary-light-3: #5b8dff;
+  --el-color-primary-light-5: #8ab0ff;
+  --el-color-primary-light-7: #bcd0ff;
+  --el-color-primary-light-8: #d7e3ff;
+  --el-color-primary-light-9: #eaf1ff;
+  --el-color-primary-dark-2: #1e4fc4;
+  --el-border-radius-base: 10px;
+}
+
+/* 卡片圆角与描边更接近原型 */
+.el-card { border-radius: 16px; border: 1px solid var(--line); }
+.el-card__header { font-weight: 700; }
+
+/* 统计卡 */
+.fv-stat {
+  background: #fff; border: 1px solid var(--line); border-radius: 16px;
+  padding: 20px; position: relative; overflow: hidden;
+}
+.fv-stat .ico { width: 46px; height: 46px; border-radius: 13px; display: grid; place-items: center; margin-bottom: 14px; }
+.fv-stat .ico .el-icon { font-size: 22px; }
+.fv-stat .num { font-size: 30px; font-weight: 800; letter-spacing: -0.5px; }
+.fv-stat .lbl { color: var(--text-2); font-size: 13px; margin-top: 2px; }
+.fv-stat .trend { position: absolute; top: 20px; right: 20px; font-size: 12px; font-weight: 600; padding: 3px 8px; border-radius: 20px; }
+.ico.blue { background: var(--brand-light); color: var(--brand); }
+.ico.green { background: var(--success-light); color: var(--success); }
+.ico.orange { background: var(--warning-light); color: var(--warning); }
+.ico.purple { background: #f0ebfe; color: var(--purple); }
+.trend.up { color: var(--success); background: var(--success-light); }
+.trend.down { color: var(--danger); background: var(--danger-light); }
+
+/* 状态徽标（药丸） */
+.fv-badge { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 20px; white-space: nowrap; }
+.fv-badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.fv-badge.green { color: var(--success); background: var(--success-light); }
+.fv-badge.orange { color: #c9821a; background: var(--warning-light); }
+.fv-badge.red { color: var(--danger); background: var(--danger-light); }
+.fv-badge.blue { color: var(--brand); background: var(--brand-light); }
+.fv-badge.gray { color: var(--text-2); background: #eef1f6; }
+
+/* 人员单元格 */
+.person-cell { display: flex; align-items: center; gap: 11px; }
+.person-cell .pa { width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; font-weight: 700; color: #fff; font-size: 13px; background: linear-gradient(135deg, #5b8dff, #2f6bed); }
+.person-cell .pn { font-weight: 600; }
+.person-cell .pm { font-size: 12px; color: var(--text-3); }

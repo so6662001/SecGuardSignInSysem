@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>cn.faccess</groupId>
+    <artifactId>fv-parent</artifactId>
+    <version>1.0.0</version>
+  </parent>
+  <artifactId>fv-steel</artifactId>
+  <name>厂智访客 · 钢铁厂专属域</name>
+  <description>承运商/车辆/司机、车辆到厂、磅单净重闭环、交易平台对接</description>
+  <dependencies>
+    <dependency>
+      <groupId>cn.faccess</groupId>
+      <artifactId>fv-common</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <optional>true</optional>
+    </dependency>
+  </dependencies>
+</project>

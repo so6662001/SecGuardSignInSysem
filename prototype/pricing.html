@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>套餐与增值商城 · 厂智访客</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body style="background:var(--bg);">
+<nav class="landing-nav">
+  <a href="index.html" class="brand" style="padding:0;">
+    <div class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V7l8-4v18"/><path d="M11 21V11l8 3v7"/><path d="M8 9h.01M8 13h.01M8 17h.01"/></svg></div>
+    <div class="name" style="color:var(--text)">厂智访客<small style="color:var(--text-3)">FACTORY VISITOR</small></div>
+  </a>
+  <div class="links"><a href="index.html">首页</a><a href="#tiers">套餐</a><a href="#addon">增值模块</a><a href="#hardware">硬件</a></div>
+  <div style="margin-left:auto; display:flex; gap:12px;">
+    <a href="login.html" class="btn btn-ghost">登录</a>
+    <a href="signup.html" class="btn btn-primary">申请开通</a>
+  </div>
+</nav>
+
+<div style="max-width:1160px; margin:0 auto; padding:34px 24px 60px;">
+  <div class="center" style="margin-bottom:36px;">
+    <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> 两条腿走路 · 低价引流 + 行业专属高价值</span>
+    <h1 style="font-size:32px; font-weight:800; margin-top:12px;">选择适合你的版本</h1>
+    <p class="muted" style="margin-top:8px;">通用版极简低价做口碑；钢铁厂专属版打通磅单与交易平台，才是真正为钢厂/钢贸创造价值的版本</p>
+  </div>
+
+  <!-- 四档套餐 -->
+  <div class="tier-grid" id="tiers" style="margin-bottom:20px;">
+    <div class="tier">
+      <div class="tname">免费版</div>
+      <div class="tdesc">冲量获客 · 建立口碑</div>
+      <div class="tprice">￥0<small>/月</small></div>
+      <a href="signup.html" class="btn btn-ghost btn-block">免费使用</a>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg> 基础访客登记</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg> 单门岗 · 1 个账号</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg> 记录保存 30 天</li>
+      </ul>
+    </div>
+
+    <div class="tier featured">
+      <div class="badge-top">通用版 · 最受欢迎</div>
+      <div class="tname">标准版</div>
+      <div class="tdesc">中小工厂通用 · 极简易用</div>
+      <div class="tprice">￥60<small>/月 · 厂区</small></div>
+      <a href="signup.html" class="btn btn-primary btn-block">免费试用 14 天</a>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg> 不限登记次数 · 多门岗</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg> 扫码自助 + 被访人审批</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg> 数据看板 + 台账导出</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg> 多账号 · 权限分级</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg> 记录保存 1 年</li>
+      </ul>
+    </div>
+
+    <div class="tier dark" style="border:2px solid #f5a623;">
+      <div class="badge-top" style="background:#f5a623;">钢铁行业专属 · 赚钱版</div>
+      <div class="tname" style="color:#f5a623;">钢铁厂专属版</div>
+      <div class="tdesc">送货/提货 · 磅单 · 车辆物流 · 交易平台打通</div>
+      <div class="tprice">￥599<small>/月起</small></div>
+      <a href="steel-checkin.html" class="btn btn-primary btn-block" style="background:#f5a623;">查看专属版</a>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg> 含标准版全部功能</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg> 车牌识别 + 车辆到厂闭环</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg> 送货/提货 · 磅单净重闭环</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg> 排队叫号 · 承运商管理</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg> <b style="color:#fff">与交易平台订单/运单打通</b></li>
+      </ul>
+    </div>
+
+    <div class="tier">
+      <div class="tname">集团版</div>
+      <div class="tdesc">多厂区 · 定制对接</div>
+      <div class="tprice">定制<small></small></div>
+      <a href="#" class="btn btn-ghost btn-block" data-toast="已提交，销售顾问将与您联系">联系销售</a>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg> 含专属版全部功能</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg> 多厂区 / 集团总览</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg> MES / ERP 系统对接</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg> 专属客户成功 + SLA</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card" style="background:linear-gradient(120deg,#12224a,#1e4fc4); color:#fff; border:none; margin-bottom:36px;">
+    <div class="card-pad flex items-center gap-12 wrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" style="width:24px;height:24px;flex-shrink:0;"><path d="M13 2L3 14h9l-1 8 10-12h-9z"/></svg>
+      <div class="grow" style="font-size:14px;"><b>为什么两条腿？</b> 免费/标准版用极低门槛快速铺量、积累口碑与数据入口；钢铁厂专属版把门口车流变成"可对账的业务流"，客单价从几十元跃升到数百上千元，并成为对接 MES、交易平台的入口——低价引流，高价变现。</div>
+    </div>
+  </div>
+
+  <!-- 增值模块 -->
+  <div class="section-title" id="addon" style="margin-bottom:22px;"><h2 style="font-size:24px;">增值模块 · 按需加购</h2><p>在任意套餐上叠加，边际成本低、随用随开</p></div>
+  <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:36px;">
+    <div class="addon"><div class="ai ico blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 16H9m10 0h3l-2-6H4l-2 6h3"/></svg></div><div class="grow"><div class="an">车牌识别 + 道闸联动</div><div class="ad">自动识别、抬杆放行</div></div><div class="ap">￥199<small style="font-weight:500;color:var(--text-3)">/月</small></div></div>
+    <div class="addon"><div class="ai ico purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 12 0v1"/></svg></div><div class="grow"><div class="an">人脸识别核验</div><div class="ad">刷脸进出、防代刷</div></div><div class="ap">￥159<small style="font-weight:500;color:var(--text-3)">/月</small></div></div>
+    <div class="addon"><div class="ai ico green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M15 8h3M15 12h3"/></svg></div><div class="grow"><div class="an">身份证 OCR 识别</div><div class="ad">秒填信息、防错录</div></div><div class="ap">￥99<small style="font-weight:500;color:var(--text-3)">/月</small></div></div>
+    <div class="addon"><div class="ai ico orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M9 15l2 2 4-4"/></svg></div><div class="grow"><div class="an">电子承诺书 / 保密协议</div><div class="ad">CA 电子签，法律效力</div></div><div class="ap">￥0.5<small style="font-weight:500;color:var(--text-3)">/份</small></div></div>
+    <div class="addon"><div class="ai ico blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M4 7l8 5 8-5"/></svg></div><div class="grow"><div class="an">短信 / 语音通知包</div><div class="ad">审批提醒、语音外呼</div></div><div class="ap">￥30<small style="font-weight:500;color:var(--text-3)">/千条</small></div></div>
+    <div class="addon" style="border-color:#f7d9a6; background:var(--warning-light);"><div class="ai ico orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 6l2 13h14l2-13M9 10v5M15 10v5"/></svg></div><div class="grow"><div class="an">磅单对接 + 交易平台打通 <span class="badge orange no-dot">钢铁</span></div><div class="ad">净重回写订单、运单同步</div></div><div class="ap">￥399<small style="font-weight:500;color:var(--text-3)">/月</small></div></div>
+  </div>
+
+  <!-- 硬件 -->
+  <div class="section-title" id="hardware" style="margin-bottom:22px;"><h2 style="font-size:24px;">配套硬件 · 购买或租赁</h2><p>装到门口即强绑定，提高客单价与续费率</p></div>
+  <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:20px;">
+    <div class="card card-pad center">
+      <div class="ico blue" style="width:56px;height:56px;margin:0 auto 12px;border-radius:16px;display:grid;place-items:center;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:28px;height:28px;"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg></div>
+      <div style="font-weight:700;">门岗登记平板</div>
+      <div class="muted" style="font-size:12.5px; margin:4px 0 10px;">15.6 寸 · 内置摄像头</div>
+      <div style="font-weight:800; color:var(--brand);">￥1,280 <span class="muted" style="font-size:12px;font-weight:500;">/ 台</span></div>
+      <div class="muted" style="font-size:12px;">或租赁 ￥49/月</div>
+    </div>
+    <div class="card card-pad center">
+      <div class="ico purple" style="width:56px;height:56px;margin:0 auto 12px;border-radius:16px;display:grid;place-items:center;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:28px;height:28px;"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 12 0v1"/></svg></div>
+      <div style="font-weight:700;">人脸识别一体机</div>
+      <div class="muted" style="font-size:12.5px; margin:4px 0 10px;">测温 · 刷脸开闸</div>
+      <div style="font-weight:800; color:var(--brand);">￥2,680 <span class="muted" style="font-size:12px;font-weight:500;">/ 台</span></div>
+      <div class="muted" style="font-size:12px;">或租赁 ￥99/月</div>
+    </div>
+    <div class="card card-pad center">
+      <div class="ico orange" style="width:56px;height:56px;margin:0 auto 12px;border-radius:16px;display:grid;place-items:center;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:28px;height:28px;"><path d="M14 16H9m10 0h3l-2-6H4l-2 6h3"/></svg></div>
+      <div style="font-weight:700;">车牌识别道闸</div>
+      <div class="muted" style="font-size:12.5px; margin:4px 0 10px;">高清抓拍 · 自动抬杆</div>
+      <div style="font-weight:800; color:var(--brand);">￥5,600 <span class="muted" style="font-size:12px;font-weight:500;">/ 套</span></div>
+      <div class="muted" style="font-size:12px;">或租赁 ￥199/月</div>
+    </div>
+    <div class="card card-pad center">
+      <div class="ico green" style="width:56px;height:56px;margin:0 auto 12px;border-radius:16px;display:grid;place-items:center;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:28px;height:28px;"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 8h.01M8 12h4"/></svg></div>
+      <div style="font-weight:700;">自助登记码立牌</div>
+      <div class="muted" style="font-size:12.5px; margin:4px 0 10px;">铝合金 · 免电</div>
+      <div style="font-weight:800; color:var(--brand);">￥120 <span class="muted" style="font-size:12px;font-weight:500;">/ 个</span></div>
+      <div class="muted" style="font-size:12px;">下单包邮</div>
+    </div>
+  </div>
+
+  <div class="center"><a href="quote.html" class="btn btn-primary btn-lg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg> 配置方案并生成报价单</a></div>
+</div>
+
+<footer class="footer">厂智访客 · 套餐与增值商城 · 高保真原型演示 &nbsp;|&nbsp; 价格为示意</footer>
+<script src="assets/app.js"></script>
+</body>
+</html>

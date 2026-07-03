@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>登记规则 · 厂智访客</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V7l8-4v18"/><path d="M11 21V11l8 3v7"/><path d="M8 9h.01M8 13h.01M8 17h.01"/></svg></div>
+      <div class="name">厂智访客<small>FACTORY VISITOR</small></div>
+    </div>
+    <div class="nav-label">工作台</div>
+    <a href="checkin.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg> 入场登记</a>
+    <a href="onsite.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> 在场访客 <span class="badge-dot">37</span></a>
+    <a href="records.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg> 进出记录</a>
+    <div class="nav-label">管理</div>
+    <a href="dashboard.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/></svg> 数据看板</a>
+    <a href="approval.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg> 审批与通知</a>
+    <a href="field-config.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v4H4zM4 12h10v4H4zM4 20h7"/></svg> 登记项配置</a>
+    <a href="settings.html" class="nav-item active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg> 系统设置</a>
+    <div class="sidebar-foot">
+      <div class="rent-card"><span class="tag">已订阅</span><div class="price">￥60<small>/月</small></div><div style="font-size:12px; color:#97a2bd; margin-top:4px;">有效期至 2026-12-31</div></div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <div class="flex items-center gap-12">
+        <a href="settings.html" class="icon-btn" style="width:34px;height:34px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></a>
+        <div><h1>登记规则</h1><div class="sub">系统设置 / 登记规则 · 规则对本厂区全部门岗生效</div></div>
+      </div>
+      <button class="btn btn-primary btn-sm" style="margin-left:auto;" data-toast="✅ 登记规则已保存并生效">保存设置</button>
+      <div class="avatar" style="margin-left:8px;">李</div>
+    </header>
+
+    <div class="content">
+      <div style="display:grid; grid-template-columns: 200px 1fr; gap:20px; align-items:start;">
+        <!-- 锚点导航 -->
+        <div class="setting-menu card card-pad" style="position:sticky; top:86px;">
+          <a href="#basic" class="sm active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> 信息填写</a>
+          <a href="#approve" class="sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg> 审批与放行</a>
+          <a href="#stay" class="sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> 在场与时长</a>
+          <a href="#badge" class="sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 8h.01M7 12h6"/></svg> 访客牌管理</a>
+          <a href="#risk" class="sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg> 黑名单与限制</a>
+          <a href="#privacy" class="sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> 数据与隐私</a>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:20px;">
+          <!-- 信息填写 -->
+          <div class="card" id="basic">
+            <div class="card-head"><h3>访客信息填写规则</h3><span class="muted" style="font-size:13px;">控制哪些字段必填</span></div>
+            <div class="card-pad">
+              <div class="flex items-center justify-between" style="padding:12px 0; border-bottom:1px solid var(--line);">
+                <div><div style="font-weight:600;">手机号必填</div><div class="muted" style="font-size:13px;">用于接收进出通知与审批短信</div></div><div class="switch on" onclick="this.classList.toggle('on')"></div>
+              </div>
+              <div class="flex items-center justify-between" style="padding:12px 0; border-bottom:1px solid var(--line);">
+                <div><div style="font-weight:600;">来访单位必填</div><div class="muted" style="font-size:13px;">未填写时不允许提交登记</div></div><div class="switch on" onclick="this.classList.toggle('on')"></div>
+              </div>
+              <div class="flex items-center justify-between" style="padding:12px 0; border-bottom:1px solid var(--line);">
+                <div><div style="font-weight:600;">被访人必填</div><div class="muted" style="font-size:13px;">必须指定被访人或部门</div></div><div class="switch on" onclick="this.classList.toggle('on')"></div>
+              </div>
+              <div class="flex items-center justify-between" style="padding:12px 0; border-bottom:1px solid var(--line);">
+                <div><div style="font-weight:600;">手机号验证码校验</div><div class="muted" style="font-size:13px;">自助登记时发送短信验证码，确保号码真实</div></div><div class="switch" onclick="this.classList.toggle('on')"></div>
+              </div>
+              <div class="flex items-center justify-between" style="padding:12px 0;">
+                <div><div style="font-weight:600;">更多登记项</div><div class="muted" style="font-size:13px;">携带设备、承诺书等在「登记项配置」中按模板设置</div></div>
+                <a href="field-config.html" class="btn btn-ghost btn-sm">去配置 →</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 审批与放行 -->
+          <div class="card" id="approve">
+            <div class="card-head"><h3>审批与放行规则</h3></div>
+            <div class="card-pad">
+              <div class="flex items-center justify-between" style="padding:12px 0; border-bottom:1px solid var(--line);">
+                <div><div style="font-weight:600;">被访人确认后方可入场</div><div class="muted" style="font-size:13px;">需被访人在手机端同意接待</div></div><div class="switch on" onclick="this.classList.toggle('on')"></div>
+              </div>
+              <div class="flex items-center justify-between" style="padding:12px 0; border-bottom:1px solid var(--line);">
+                <div><div style="font-weight:600;">允许门卫代审批（兜底）</div><div class="muted" style="font-size:13px;">被访人超时无响应时，门卫电话确认后可代放行</div></div><div class="switch on" onclick="this.classList.toggle('on')"></div>
+              </div>
+              <div class="flex items-center justify-between" style="padding:12px 0;">
+                <div><div style="font-weight:600;">通知渠道与超时升级</div><div class="muted" style="font-size:13px;">短信免登录审批、语音电话、自动升级等</div></div>
+                <a href="approval.html" class="btn btn-ghost btn-sm">前往审批与通知 →</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 在场与时长 -->
+          <div class="card" id="stay">
+            <div class="card-head"><h3>在场与时长规则</h3></div>
+            <div class="card-pad">
+              <div class="flex items-center justify-between" style="padding:12px 0; border-bottom:1px solid var(--line);">
+                <div><div style="font-weight:600;">超时滞留提醒</div><div class="muted" style="font-size:13px;">在场超过设定时长自动提醒管理员与被访人</div></div>
+                <div class="flex items-center gap-12"><select class="select" style="width:120px;"><option>超 2 小时</option><option selected>超 4 小时</option><option>超 8 小时</option></select><div class="switch on" onclick="this.classList.toggle('on')"></div></div>
+              </div>
+              <div class="flex items-center justify-between" style="padding:12px 0; border-bottom:1px solid var(--line);">
+                <div><div style="font-weight:600;">当日自动离场</div><div class="muted" style="font-size:13px;">当日 23:00 仍未登记离场的，系统自动标记离场并记录异常</div></div>
+                <div class="flex items-center gap-12"><input class="input btn-sm" style="width:90px;" value="23:00"><div class="switch on" onclick="this.classList.toggle('on')"></div></div>
+              </div>
+              <div class="flex items-center justify-between" style="padding:12px 0;">
+                <div><div style="font-weight:600;">访客通行有效时段</div><div class="muted" style="font-size:13px;">限制访客可进入的时间范围</div></div>
+                <div class="flex items-center gap-8"><input class="input btn-sm" style="width:80px;" value="07:00"><span class="muted">—</span><input class="input btn-sm" style="width:80px;" value="20:00"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 访客牌 -->
+          <div class="card" id="badge">
+            <div class="card-head"><h3>访客牌管理规则</h3></div>
+            <div class="card-pad">
+              <div class="flex items-center justify-between" style="padding:12px 0; border-bottom:1px solid var(--line);">
+                <div><div style="font-weight:600;">入场自动分配访客牌</div><div class="muted" style="font-size:13px;">从可用牌号池中自动取号（前缀 VIP-）</div></div><div class="switch on" onclick="this.classList.toggle('on')"></div>
+              </div>
+              <div class="flex items-center justify-between" style="padding:12px 0; border-bottom:1px solid var(--line);">
+                <div><div style="font-weight:600;">离场必须归还访客牌</div><div class="muted" style="font-size:13px;">未归还不可完成离场，自动提醒</div></div><div class="switch on" onclick="this.classList.toggle('on')"></div>
+              </div>
+              <div class="flex items-center justify-between" style="padding:12px 0;">
+                <div><div style="font-weight:600;">访客牌号段</div><div class="muted" style="font-size:13px;">配置可用牌号范围</div></div>
+                <div class="flex items-center gap-8"><input class="input btn-sm" style="width:90px;" value="VIP-001"><span class="muted">—</span><input class="input btn-sm" style="width:90px;" value="VIP-060"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 黑名单 -->
+          <div class="card" id="risk">
+            <div class="card-head"><h3>黑名单与限制</h3><button class="btn btn-ghost btn-sm" data-toast="打开新增黑名单表单"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg> 添加</button></div>
+            <div class="card-pad">
+              <div class="flex items-center justify-between" style="padding:0 0 14px; border-bottom:1px solid var(--line); margin-bottom:6px;">
+                <div><div style="font-weight:600;">命中黑名单自动拦截</div><div class="muted" style="font-size:13px;">手机号/身份证命中时门卫端弹窗告警，禁止登记</div></div><div class="switch on" onclick="this.classList.toggle('on')"></div>
+              </div>
+            </div>
+            <table class="table">
+              <thead><tr><th>对象</th><th>类型</th><th>原因</th><th>加入时间</th><th style="text-align:right">操作</th></tr></thead>
+              <tbody>
+                <tr><td class="mono">李某某 · 138****0000</td><td><span class="badge red">黑名单</span></td><td>曾发生冲突/滋事</td><td class="mono">2026-05-11</td><td style="text-align:right"><button class="btn btn-ghost btn-sm">移除</button></td></tr>
+                <tr><td class="mono">某推销公司</td><td><span class="badge orange">限制单位</span></td><td>禁止推销上门</td><td class="mono">2026-06-02</td><td style="text-align:right"><button class="btn btn-ghost btn-sm">移除</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- 数据与隐私 -->
+          <div class="card" id="privacy">
+            <div class="card-head"><h3>数据留存与隐私</h3></div>
+            <div class="card-pad">
+              <div class="flex items-center justify-between" style="padding:12px 0; border-bottom:1px solid var(--line);">
+                <div><div style="font-weight:600;">进出记录保存期限</div><div class="muted" style="font-size:13px;">满足台账留存要求，到期自动归档</div></div>
+                <select class="select" style="width:130px;"><option>6 个月</option><option selected>1 年</option><option>3 年</option></select>
+              </div>
+              <div class="flex items-center justify-between" style="padding:12px 0; border-bottom:1px solid var(--line);">
+                <div><div style="font-weight:600;">自助登记须签署信息授权</div><div class="muted" style="font-size:13px;">访客须勾选《信息收集与使用授权》</div></div><div class="switch on" onclick="this.classList.toggle('on')"></div>
+              </div>
+              <div class="flex items-center justify-between" style="padding:12px 0;">
+                <div><div style="font-weight:600;">手机号/证件号脱敏显示</div><div class="muted" style="font-size:13px;">列表中默认打码，仅授权人员可查看完整信息</div></div><div class="switch on" onclick="this.classList.toggle('on')"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="assets/app.js"></script>
+<script>
+  document.querySelectorAll('.setting-menu .sm').forEach(function(m){
+    m.addEventListener('click', function(){
+      document.querySelectorAll('.setting-menu .sm').forEach(function(x){x.classList.remove('active')});
+      m.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>

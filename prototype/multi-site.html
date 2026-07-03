@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>集团总览 · 多厂区汇总 · 厂智访客</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V7l8-4v18"/><path d="M11 21V11l8 3v7"/><path d="M8 9h.01M8 13h.01M8 17h.01"/></svg></div>
+      <div class="name">厂智访客<small>FACTORY VISITOR</small></div>
+    </div>
+    <div class="nav-label">工作台</div>
+    <a href="checkin.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg> 入场登记</a>
+    <a href="onsite.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> 在场访客 <span class="badge-dot">37</span></a>
+    <a href="records.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg> 进出记录</a>
+    <div class="nav-label">管理</div>
+    <a href="multi-site.html" class="nav-item active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14M14 21V11h6v10"/></svg> 集团总览</a>
+    <a href="dashboard.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/></svg> 数据看板</a>
+    <a href="approval.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg> 审批与通知</a>
+    <a href="field-config.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v4H4zM4 12h10v4H4zM4 20h7"/></svg> 登记项配置</a>
+    <a href="settings.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg> 系统设置</a>
+    <div class="sidebar-foot">
+      <div class="rent-card"><span class="tag">已订阅</span><div class="price">￥180<small>/月</small></div><div style="font-size:12px; color:#97a2bd; margin-top:4px;">3 个厂区 · 有效期至 2026-12-31</div></div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <div><h1>集团总览</h1><div class="sub">跨厂区人员进出汇总 · 数据实时更新</div></div>
+      <!-- 厂区切换器 -->
+      <div class="tenant-switch" style="margin-left:20px;" title="切换查看范围">
+        <span class="tl" style="background:linear-gradient(135deg,#7c56e0,#a78bfa)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" style="width:16px;height:16px"><path d="M3 21h18M5 21V7l7-4 7 4v14"/></svg></span>
+        <div><div class="tn">全部厂区（集团）</div><div class="tp">德胜电子科技 · 3 个厂区</div></div>
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" stroke-width="2" style="width:16px;height:16px;"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="tabs" style="margin-left:auto;"><div class="tab">今日</div><div class="tab active">本周</div><div class="tab">本月</div></div>
+      <div class="avatar" style="margin-left:8px;">李</div>
+    </header>
+
+    <div class="content">
+      <!-- 厂区快速切换条 -->
+      <div class="flex gap-12 wrap" style="margin-bottom:20px;">
+        <button class="btn btn-primary btn-sm">🏭 全部厂区</button>
+        <a href="dashboard.html" class="btn btn-ghost btn-sm">东莞总厂</a>
+        <a href="dashboard.html" class="btn btn-ghost btn-sm">惠州二厂</a>
+        <a href="dashboard.html" class="btn btn-ghost btn-sm">苏州分厂</a>
+        <span class="muted" style="font-size:12.5px; align-self:center; margin-left:6px;">点击厂区可下钻查看该厂区独立看板</span>
+      </div>
+
+      <!-- 集团汇总指标 -->
+      <div class="stat-grid" style="margin-bottom:20px;">
+        <div class="stat"><span class="trend up">↑ 9.1%</span><div class="ico blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div><div class="num">2,146</div><div class="lbl">本周到访总人次（集团）</div></div>
+        <div class="stat"><div class="ico green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><div class="num">96</div><div class="lbl">当前在场（全厂区）</div></div>
+        <div class="stat"><span class="trend down">超时 5</span><div class="ico orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg></div><div class="num">8</div><div class="lbl">待处理（审核+滞留）</div></div>
+        <div class="stat"><div class="ico purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14"/></svg></div><div class="num">3</div><div class="lbl">厂区 · 9 个门岗</div></div>
+      </div>
+
+      <div style="display:grid; grid-template-columns: 1.5fr 1fr; gap:20px; align-items:start;">
+        <!-- 各厂区对比 -->
+        <div class="card">
+          <div class="card-head"><h3>各厂区进出对比</h3><a href="dashboard.html" class="link">进入单厂区看板 →</a></div>
+          <table class="table">
+            <thead><tr><th>厂区</th><th>今日到访</th><th>当前在场</th><th>门岗</th><th>待处理</th><th>负责人</th><th style="text-align:right"></th></tr></thead>
+            <tbody>
+              <tr>
+                <td><div class="person"><div class="pa c1" style="border-radius:10px;">莞</div><div><div class="pn">东莞总厂</div><div class="pm">广东东莞长安镇</div></div></div></td>
+                <td class="mono">128</td><td class="mono">37</td><td>3</td><td><span class="badge orange">4</span></td><td>王志明</td>
+                <td style="text-align:right"><a href="dashboard.html" class="btn btn-ghost btn-sm">查看</a></td>
+              </tr>
+              <tr>
+                <td><div class="person"><div class="pa c2" style="border-radius:10px;">惠</div><div><div class="pn">惠州二厂</div><div class="pm">广东惠州仲恺区</div></div></div></td>
+                <td class="mono">86</td><td class="mono">29</td><td>3</td><td><span class="badge orange">3</span></td><td>赵大勇</td>
+                <td style="text-align:right"><a href="dashboard.html" class="btn btn-ghost btn-sm">查看</a></td>
+              </tr>
+              <tr>
+                <td><div class="person"><div class="pa c4" style="border-radius:10px;">苏</div><div><div class="pn">苏州分厂</div><div class="pm">江苏苏州工业园</div></div></div></td>
+                <td class="mono">64</td><td class="mono">30</td><td>3</td><td><span class="badge gray">1</span></td><td>孙浩</td>
+                <td style="text-align:right"><a href="dashboard.html" class="btn btn-ghost btn-sm">查看</a></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="card-pad" style="padding-top:16px;">
+            <div style="font-weight:700; font-size:13px; margin-bottom:12px;">本周到访趋势（分厂区）</div>
+            <div class="bars" style="height:150px;">
+              <div class="bar-col"><div class="bar" style="height:70%"></div><div class="bx">周一</div></div>
+              <div class="bar-col"><div class="bar" style="height:82%"></div><div class="bx">周二</div></div>
+              <div class="bar-col"><div class="bar" style="height:60%"></div><div class="bx">周三</div></div>
+              <div class="bar-col"><div class="bar" style="height:95%"></div><div class="bx">周四</div></div>
+              <div class="bar-col"><div class="bar" style="height:100%"></div><div class="bx">周五</div></div>
+              <div class="bar-col"><div class="bar alt" style="height:40%"></div><div class="bx">周六</div></div>
+              <div class="bar-col"><div class="bar alt" style="height:28%"></div><div class="bx">周日</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 各厂区占比 + 实时动态 -->
+        <div style="display:flex; flex-direction:column; gap:20px;">
+          <div class="card">
+            <div class="card-head"><h3>厂区到访占比</h3></div>
+            <div class="card-pad flex items-center gap-24">
+              <svg width="130" height="130" viewBox="0 0 140 140" class="ring">
+                <circle class="ring-bg" cx="70" cy="70" r="58"/>
+                <circle cx="70" cy="70" r="58" fill="none" stroke="#2f6bed" stroke-width="18" stroke-dasharray="164 200" stroke-dashoffset="0"/>
+                <circle cx="70" cy="70" r="58" fill="none" stroke="#22b07d" stroke-width="18" stroke-dasharray="110 254" stroke-dashoffset="-164"/>
+                <circle cx="70" cy="70" r="58" fill="none" stroke="#7c56e0" stroke-width="18" stroke-dasharray="90 274" stroke-dashoffset="-274"/>
+              </svg>
+              <div style="flex:1;">
+                <div class="kv"><span class="k flex items-center gap-8"><span style="width:9px;height:9px;border-radius:2px;background:#2f6bed;display:inline-block"></span>东莞总厂</span><span class="v">46%</span></div>
+                <div class="kv"><span class="k flex items-center gap-8"><span style="width:9px;height:9px;border-radius:2px;background:#22b07d;display:inline-block"></span>惠州二厂</span><span class="v">30%</span></div>
+                <div class="kv"><span class="k flex items-center gap-8"><span style="width:9px;height:9px;border-radius:2px;background:#7c56e0;display:inline-block"></span>苏州分厂</span><span class="v">24%</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-head"><h3>集团实时动态</h3><span class="badge green">LIVE</span></div>
+            <div class="card-pad">
+              <div class="timeline">
+                <div class="tl-item green"><div class="tl-time">09:24 · 东莞总厂</div><div class="tl-title">吴文斌 入场</div><div class="muted" style="font-size:12px">京东物流 · A区正门</div></div>
+                <div class="tl-item"><div class="tl-time">09:22 · 惠州二厂</div><div class="tl-title">李强 离场</div><div class="muted" style="font-size:12px">西门子 · 东门</div></div>
+                <div class="tl-item orange"><div class="tl-time">09:18 · 苏州分厂</div><div class="tl-title">周敏 待审核</div><div class="muted" style="font-size:12px">应聘者 · 已通知人事</div></div>
+                <div class="tl-item green"><div class="tl-time">09:12 · 东莞总厂</div><div class="tl-title">张建国 入场</div><div class="muted" style="font-size:12px">顺丰速运 · A区正门</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="assets/app.js"></script>
+</body>
+</html>

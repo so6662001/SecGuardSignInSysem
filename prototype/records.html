@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>进出记录 · 审核台账</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V7l8-4v18"/><path d="M11 21V11l8 3v7"/><path d="M8 9h.01M8 13h.01M8 17h.01"/></svg></div>
+      <div class="name">厂智访客<small>FACTORY VISITOR</small></div>
+    </div>
+    <div class="nav-label">工作台</div>
+    <a href="checkin.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg> 入场登记</a>
+    <a href="onsite.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> 在场访客 <span class="badge-dot">37</span></a>
+    <a href="records.html" class="nav-item active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg> 进出记录</a>
+    <div class="nav-label">管理</div>
+    <a href="dashboard.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/></svg> 数据看板</a>
+    <a href="approval.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg> 审批与通知</a>
+    <a href="field-config.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v4H4zM4 12h10v4H4zM4 20h7"/></svg> 登记项配置</a>
+    <a href="settings.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg> 系统设置</a>
+    <div class="sidebar-foot">
+      <div class="rent-card"><span class="tag">已订阅</span><div class="price">￥60<small>/月</small></div><div style="font-size:12px; color:#97a2bd; margin-top:4px;">有效期至 2026-12-31</div></div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <div><h1>进出记录 / 审核台账</h1><div class="sub">全量进出记录，实时同步 · 支持检索导出</div></div>
+      <div class="searchbar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <input placeholder="姓名 / 手机 / 单位 / 访客牌">
+      </div>
+      <button class="icon-btn"><span class="dot"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px;"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></button>
+      <div class="avatar">李</div>
+    </header>
+
+    <div class="content">
+      <!-- 筛选栏 -->
+      <div class="card card-pad" style="margin-bottom:20px;">
+        <div class="flex items-center gap-12 wrap">
+          <div class="input-icon" style="width:180px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><input class="input" value="2026-07-01" style="padding-left:42px;"></div>
+          <select class="select" style="width:150px;"><option>全部事由</option><option>洽谈业务</option><option>设备维修</option><option>物料送货</option><option>面试应聘</option></select>
+          <select class="select" style="width:150px;"><option>全部状态</option><option>在场</option><option>已离场</option><option>待审核</option></select>
+          <select class="select" style="width:150px;"><option>全部门岗</option><option>A 区正门岗</option><option>B 区侧门岗</option></select>
+          <button class="btn btn-primary btn-sm" data-toast="已按条件筛选">查询</button>
+          <button class="btn btn-ghost btn-sm">重置</button>
+          <div style="margin-left:auto; display:flex; gap:10px;">
+            <button class="btn btn-ghost btn-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg> 导出 Excel</button>
+            <button class="btn btn-ghost btn-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z"/></svg> 打印台账</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 汇总小卡 -->
+      <div class="flex gap-16 wrap" style="margin-bottom:20px;">
+        <div class="card card-pad flex items-center gap-12" style="flex:1; min-width:180px;"><div class="ico blue" style="margin:0;width:42px;height:42px;border-radius:12px;display:grid;place-items:center"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg></div><div><div class="num" style="font-size:24px;font-weight:800">128</div><div class="muted" style="font-size:13px">今日记录总数</div></div></div>
+        <div class="card card-pad flex items-center gap-12" style="flex:1; min-width:180px;"><div class="ico green" style="margin:0;width:42px;height:42px;border-radius:12px;display:grid;place-items:center"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg></div><div><div class="num" style="font-size:24px;font-weight:800">124</div><div class="muted" style="font-size:13px">已审核通过</div></div></div>
+        <div class="card card-pad flex items-center gap-12" style="flex:1; min-width:180px;"><div class="ico orange" style="margin:0;width:42px;height:42px;border-radius:12px;display:grid;place-items:center"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg></div><div><div class="num" style="font-size:24px;font-weight:800">2</div><div class="muted" style="font-size:13px">待管理员审核</div></div></div>
+        <div class="card card-pad flex items-center gap-12" style="flex:1; min-width:180px;"><div class="ico purple" style="margin:0;width:42px;height:42px;border-radius:12px;display:grid;place-items:center"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div><div class="num" style="font-size:24px;font-weight:800">2</div><div class="muted" style="font-size:13px">异常/驳回</div></div></div>
+      </div>
+
+      <!-- 记录表 -->
+      <div class="card">
+        <div class="card-head">
+          <h3>进出记录明细</h3>
+          <div class="tabs"><div class="tab active">全部</div><div class="tab">待审核</div><div class="tab">已通过</div><div class="tab">异常</div></div>
+        </div>
+        <table class="table">
+          <thead><tr><th>访客</th><th>单位 / 事由</th><th>被访人</th><th>入场</th><th>离场</th><th>门岗 / 登记人</th><th>审核状态</th><th style="text-align:right">操作</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><div class="person"><div class="pa c3">陈</div><div><div class="pn">陈志远</div><div class="pm">中通快递</div></div></div></td>
+              <td>物料送货</td><td>张主管</td><td class="mono">—</td><td class="mono">—</td><td>A区正门<div class="pm">王师傅</div></td>
+              <td><span class="badge orange">待审核</span></td>
+              <td style="text-align:right"><div class="flex gap-8" style="justify-content:flex-end"><button class="btn btn-success btn-sm" data-toast="✅ 已通过 陈志远 的到访审核">通过</button><button class="btn btn-danger-ghost btn-sm" data-toast="已驳回该记录">驳回</button></div></td>
+            </tr>
+            <tr>
+              <td><div class="person"><div class="pa c4">周</div><div><div class="pn">周晓芳</div><div class="pm">应聘者</div></div></div></td>
+              <td>面试应聘</td><td>人事部</td><td class="mono">—</td><td class="mono">—</td><td>A区正门<div class="pm">王师傅</div></td>
+              <td><span class="badge orange">待审核</span></td>
+              <td style="text-align:right"><div class="flex gap-8" style="justify-content:flex-end"><button class="btn btn-success btn-sm" data-toast="✅ 已通过 周晓芳 的到访审核">通过</button><button class="btn btn-danger-ghost btn-sm" data-toast="已驳回该记录">驳回</button></div></td>
+            </tr>
+            <tr>
+              <td><div class="person"><div class="pa c2">张</div><div><div class="pn">张建国</div><div class="pm">顺丰速运</div></div></div></td>
+              <td>洽谈业务</td><td>李经理</td><td class="mono">09:12</td><td class="mono faint">在场中</td><td>A区正门<div class="pm">王师傅</div></td>
+              <td><span class="badge green">已通过</span></td>
+              <td style="text-align:right"><button class="btn btn-ghost btn-sm">详情</button></td>
+            </tr>
+            <tr>
+              <td><div class="person"><div class="pa c1">刘</div><div><div class="pn">刘德华</div><div class="pm">三菱电机</div></div></div></td>
+              <td>设备维修</td><td>王工</td><td class="mono">08:55</td><td class="mono faint">在场中</td><td>A区正门<div class="pm">王师傅</div></td>
+              <td><span class="badge green">已通过</span></td>
+              <td style="text-align:right"><button class="btn btn-ghost btn-sm">详情</button></td>
+            </tr>
+            <tr>
+              <td><div class="person"><div class="pa c6">李</div><div><div class="pn">李美琳</div><div class="pm">华为技术</div></div></div></td>
+              <td>设备维修</td><td>周总</td><td class="mono">08:40</td><td class="mono">09:20</td><td>B区侧门<div class="pm">赵师傅</div></td>
+              <td><span class="badge green">已通过</span></td>
+              <td style="text-align:right"><button class="btn btn-ghost btn-sm">详情</button></td>
+            </tr>
+            <tr>
+              <td><div class="person"><div class="pa c5">黄</div><div><div class="pn">黄伟强</div><div class="pm">未知单位</div></div></div></td>
+              <td>其他</td><td>—</td><td class="mono">07:58</td><td class="mono">08:05</td><td>B区侧门<div class="pm">赵师傅</div></td>
+              <td><span class="badge red">异常驳回</span></td>
+              <td style="text-align:right"><button class="btn btn-ghost btn-sm">详情</button></td>
+            </tr>
+            <tr>
+              <td><div class="person"><div class="pa c2">孙</div><div><div class="pn">孙丽娜</div><div class="pm">德勤咨询</div></div></div></td>
+              <td>参观考察</td><td>周总</td><td class="mono">08:30</td><td class="mono faint">在场中</td><td>A区正门<div class="pm">王师傅</div></td>
+              <td><span class="badge green">已通过</span></td>
+              <td style="text-align:right"><button class="btn btn-ghost btn-sm">详情</button></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="flex items-center justify-between" style="padding:14px 20px; border-top:1px solid var(--line);">
+          <div class="muted" style="font-size:13px;">显示第 1-7 条，共 128 条</div>
+          <div class="flex gap-8">
+            <button class="btn btn-ghost btn-sm">上一页</button>
+            <button class="btn btn-primary btn-sm">1</button>
+            <button class="btn btn-ghost btn-sm">2</button>
+            <button class="btn btn-ghost btn-sm">3</button>
+            <button class="btn btn-ghost btn-sm">…</button>
+            <button class="btn btn-ghost btn-sm">19</button>
+            <button class="btn btn-ghost btn-sm">下一页</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>cn.faccess</groupId>
+    <artifactId>fv-parent</artifactId>
+    <version>1.0.0</version>
+  </parent>
+  <artifactId>fv-visitor</artifactId>
+  <name>厂智访客 · 访客通用域</name>
+  <description>登记模板/入场登记/审批/在场离场/记录台账/预约邀请/黑名单/看板</description>
+  <dependencies>
+    <dependency>
+      <groupId>cn.faccess</groupId>
+      <artifactId>fv-system</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>cn.faccess</groupId>
+      <artifactId>fv-notify</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <optional>true</optional>
+    </dependency>
+  </dependencies>
+</project>
