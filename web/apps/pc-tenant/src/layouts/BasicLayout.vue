@@ -55,20 +55,22 @@ const router = useRouter()
 const user = computed(() => store.user)
 const roleText = computed(() => (store.roles.includes('TENANT_ADMIN') ? '企业管理员' : store.roles.join(',')))
 
-// 已实现的本地页面路径
-const localPaths: Record<string, string> = {
-  '/checkin': '/checkin',
-  '/onsite': '/onsite',
-  '/records': '/records'
-}
+// 已实现的前端页面路径（与 router 对应）
+const implemented = new Set([
+  '/checkin', '/invite', '/onsite', '/records', '/dashboard', '/approval',
+  '/field-config', '/rules', '/gate-config', '/multi-site', '/settings',
+  '/steel/checkin', '/steel/weigh', '/steel/carrier'
+])
 
 const menuList = computed(() => {
   const base = [{ id: 0, parentId: 0, name: '工作台', path: '/workbench' } as any]
-  return base.concat(store.menus.filter((m: any) => m.parentId === 0))
+  // 扁平展示后端下发的全部菜单（含二级）
+  return base.concat(store.menus)
 })
 
 function resolvePath(m: any) {
-  return localPaths[m.path] || (m.path === '/workbench' ? '/workbench' : '/placeholder')
+  if (m.path === '/workbench') return '/workbench'
+  return implemented.has(m.path) ? m.path : '/placeholder'
 }
 
 const activePath = computed(() => route.path)
