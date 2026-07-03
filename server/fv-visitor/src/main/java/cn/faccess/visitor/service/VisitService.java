@@ -4,7 +4,9 @@ import cn.faccess.common.exception.BizException;
 import cn.faccess.common.tenant.TenantContext;
 import cn.faccess.common.web.PageResult;
 import cn.faccess.notify.service.NotifyService;
+import cn.faccess.system.entity.SysGate;
 import cn.faccess.system.entity.SysUser;
+import cn.faccess.system.mapper.SysGateMapper;
 import cn.faccess.system.mapper.SysUserMapper;
 import cn.faccess.visitor.dto.CheckinReq;
 import cn.faccess.visitor.entity.VisitApproval;
@@ -42,6 +44,7 @@ public class VisitService {
     private final BlacklistService blacklistService;
     private final NotifyService notifyService;
     private final SysUserMapper userMapper;
+    private final SysGateMapper gateMapper;
     private final StringRedisTemplate redis;
     private final ObjectMapper objectMapper;
 
@@ -50,15 +53,32 @@ public class VisitService {
 
     public VisitService(VisitRecordMapper recordMapper, VisitApprovalMapper approvalMapper, BadgeService badgeService,
                         BlacklistService blacklistService, NotifyService notifyService, SysUserMapper userMapper,
-                        StringRedisTemplate redis, ObjectMapper objectMapper) {
+                        SysGateMapper gateMapper, StringRedisTemplate redis, ObjectMapper objectMapper) {
         this.recordMapper = recordMapper;
         this.approvalMapper = approvalMapper;
         this.badgeService = badgeService;
         this.blacklistService = blacklistService;
         this.notifyService = notifyService;
         this.userMapper = userMapper;
+        this.gateMapper = gateMapper;
         this.redis = redis;
         this.objectMapper = objectMapper;
+    }
+
+    /** 访客扫码自助登记（免登录）：由门岗码解析租户后登记。 */
+    @Transactional(rollbackFor = Exception.class)
+    public VisitRecord selfRegister(String gateCode, CheckinReq req) {
+        SysGate gate = gateMapper.selectOne(Wrappers.<SysGate>lambdaQuery()
+                .eq(SysGate::getGateCode, gateCode).last("limit 1"));
+        if (gate == null) throw new BizException(404, "门岗不存在或二维码无效");
+        TenantContext.set(gate.getTenantId(), null, "self-register", java.util.List.of());
+        try {
+            req.setGateId(gate.getId());
+            req.setRegisterType("SELF");
+            return checkin(req);
+        } finally {
+            TenantContext.clear();
+        }
     }
 
     @Transactional(rollbackFor = Exception.class)

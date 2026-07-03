@@ -1,10 +1,13 @@
 package cn.faccess.visitor.controller;
 
 import cn.faccess.common.web.R;
+import cn.faccess.visitor.dto.CheckinReq;
+import cn.faccess.visitor.entity.VisitRecord;
 import cn.faccess.visitor.service.TemplateService;
 import cn.faccess.visitor.service.VisitService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -26,6 +29,12 @@ public class PublicVisitController {
     @GetMapping("/gate/{gateCode}/template")
     public R<Map<String, Object>> gateTemplate(@PathVariable String gateCode) {
         return R.ok(templateService.schemaByGate(gateCode));
+    }
+
+    @Operation(summary = "访客扫码自助登记")
+    @PostMapping("/gate/{gateCode}/self-register")
+    public R<VisitRecord> selfRegister(@PathVariable String gateCode, @Valid @RequestBody CheckinReq req) {
+        return R.ok(visitService.selfRegister(gateCode, req));
     }
 
     @Operation(summary = "免登录审批详情")
