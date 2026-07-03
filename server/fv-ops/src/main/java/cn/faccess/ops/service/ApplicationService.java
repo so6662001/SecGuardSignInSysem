@@ -191,6 +191,7 @@ public class ApplicationService {
 
     private String genAppNo() {
         String date = LocalDate.now().format(DateTimeFormatter.BASIC_ISO_DATE);
-        return "AP-" + date + "-" + String.format("%04d", SEQ.incrementAndGet());
+        long ts = System.currentTimeMillis() % 100000;
+        return "AP-" + date + "-" + String.format("%04d", SEQ.incrementAndGet()) + String.format("%05d", ts);
     }
 }
