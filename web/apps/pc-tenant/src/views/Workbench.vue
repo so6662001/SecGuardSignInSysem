@@ -1,10 +1,10 @@
 <template>
   <div>
     <el-row :gutter="18">
-      <el-col :span="6"><div class="stat-card"><div class="num" style="color:#2f6bed">{{ overview.todayVisits ?? 0 }}</div><div class="lbl">今日到访</div></div></el-col>
-      <el-col :span="6"><div class="stat-card"><div class="num" style="color:#22b07d">{{ overview.onsite ?? 0 }}</div><div class="lbl">当前在场</div></div></el-col>
-      <el-col :span="6"><div class="stat-card"><div class="num" style="color:#f5a623">{{ overview.pending ?? 0 }}</div><div class="lbl">待审核</div></div></el-col>
-      <el-col :span="6"><div class="stat-card"><div class="num" style="color:#7c56e0">{{ deviceCount }}</div><div class="lbl">接入设备</div></div></el-col>
+      <el-col :span="6"><StatCard :value="overview.todayVisits ?? 0" label="今日到访" color="blue" num-color="#2f6bed" :icon="User" /></el-col>
+      <el-col :span="6"><StatCard :value="overview.onsite ?? 0" label="当前在场" color="green" num-color="#22b07d" :icon="Clock" /></el-col>
+      <el-col :span="6"><StatCard :value="overview.pending ?? 0" label="待审核" color="orange" num-color="#f5a623" :icon="Bell" /></el-col>
+      <el-col :span="6"><StatCard :value="deviceCount" label="接入设备" color="purple" num-color="#7c56e0" :icon="Cpu" /></el-col>
     </el-row>
 
     <el-row :gutter="18" style="margin-top:18px">
@@ -30,8 +30,10 @@
 
 <script setup lang="ts">
 import { onMounted, ref, computed } from 'vue'
+import { User, Clock, Bell, Cpu } from '@element-plus/icons-vue'
 import request from '@/api/request'
 import Chart from '@/components/Chart.vue'
+import StatCard from '@/components/StatCard.vue'
 
 const overview = ref<any>({})
 const trend = ref<any[]>([])

@@ -14,14 +14,20 @@
       </div>
     </template>
     <el-table :data="list" v-loading="loading" empty-text="暂无记录">
-      <el-table-column prop="visitorName" label="访客" />
-      <el-table-column prop="company" label="单位" />
+      <el-table-column label="访客" min-width="150">
+        <template #default="{ row }">
+          <div class="person-cell">
+            <div class="pa">{{ (row.visitorName || '?').charAt(0) }}</div>
+            <div><div class="pn">{{ row.visitorName }}</div><div class="pm">{{ row.company || '—' }}</div></div>
+          </div>
+        </template>
+      </el-table-column>
       <el-table-column prop="reason" label="事由" />
       <el-table-column prop="hostName" label="被访人" />
-      <el-table-column prop="badgeNo" label="访客牌" />
+      <el-table-column label="访客牌"><template #default="{ row }"><span class="fv-badge blue">{{ row.badgeNo }}</span></template></el-table-column>
       <el-table-column label="入场"><template #default="{ row }">{{ fmt(row.inTime) }}</template></el-table-column>
       <el-table-column label="离场"><template #default="{ row }">{{ fmt(row.outTime) }}</template></el-table-column>
-      <el-table-column label="状态"><template #default="{ row }"><el-tag :type="tagType(row.status)">{{ row.status }}</el-tag></template></el-table-column>
+      <el-table-column label="状态"><template #default="{ row }"><span class="fv-badge" :class="badgeClass(row.status)">{{ statusText(row.status) }}</span></template></el-table-column>
       <el-table-column label="审核" align="right">
         <template #default="{ row }">
           <template v-if="row.status === 'PENDING'">
@@ -50,7 +56,8 @@ const keyword = ref('')
 const loading = ref(false)
 
 function fmt(t: string) { return t ? String(t).replace('T', ' ').slice(0, 19) : '—' }
-function tagType(s: string) { return s === 'ONSITE' ? 'success' : s === 'PENDING' ? 'warning' : s === 'REJECTED' ? 'danger' : 'info' }
+function badgeClass(s: string) { return s === 'ONSITE' ? 'green' : s === 'PENDING' ? 'orange' : s === 'REJECTED' ? 'red' : 'gray' }
+function statusText(s: string) { return ({ PENDING: '待审', ONSITE: '在场', LEFT: '已离场', REJECTED: '已驳回', OVERSTAY: '超时滞留' } as any)[s] || s }
 
 async function load() {
   loading.value = true

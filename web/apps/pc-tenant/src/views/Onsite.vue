@@ -7,16 +7,23 @@
       </div>
     </template>
     <el-table :data="list" v-loading="loading" empty-text="暂无在场访客">
-      <el-table-column prop="visitorName" label="访客" />
+      <el-table-column label="访客" min-width="160">
+        <template #default="{ row }">
+          <div class="person-cell">
+            <div class="pa">{{ (row.visitorName || '?').charAt(0) }}</div>
+            <div><div class="pn">{{ row.visitorName }}</div><div class="pm">{{ row.visitorMobile || '—' }}</div></div>
+          </div>
+        </template>
+      </el-table-column>
       <el-table-column prop="company" label="来访单位" />
       <el-table-column prop="reason" label="事由" />
       <el-table-column prop="hostName" label="被访人" />
-      <el-table-column prop="badgeNo" label="访客牌" />
+      <el-table-column label="访客牌"><template #default="{ row }"><span class="fv-badge blue">{{ row.badgeNo }}</span></template></el-table-column>
       <el-table-column label="入场时间">
         <template #default="{ row }">{{ (row.inTime || '').replace('T', ' ').slice(0, 19) }}</template>
       </el-table-column>
       <el-table-column label="状态">
-        <template #default="{ row }"><el-tag type="success">{{ statusText(row.status) }}</el-tag></template>
+        <template #default="{ row }"><span class="fv-badge" :class="row.status==='OVERSTAY'?'orange':'green'">{{ statusText(row.status) }}</span></template>
       </el-table-column>
       <el-table-column label="操作" align="right">
         <template #default="{ row }">
