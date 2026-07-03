@@ -42,6 +42,7 @@ public class MockChannels {
     }
 
     @Component
+    @ConditionalOnProperty(name = "fv.channel.wechat", havingValue = "mock", matchIfMissing = true)
     public static class WechatChannel implements NotifyChannel {
         public String code() { return "WECHAT"; }
         public String send(String target, String title, String content) { return MockChannels.send("WECHAT", target, title, content); }

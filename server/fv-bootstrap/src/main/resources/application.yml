@@ -50,6 +50,12 @@ fv:
       access-key-secret: ${FV_SMS_SK:}
       sign-name: 厂智访客
       template-code: ${FV_SMS_TPL:}
+      endpoint: dysmsapi.aliyuncs.com
+    wechat: ${FV_WECHAT_PROVIDER:mock}    # mock | official
+    wechat-config:
+      app-id: ${FV_WX_APPID:}
+      app-secret: ${FV_WX_SECRET:}
+      template-id: ${FV_WX_TPL:}
   trade:
     provider: ${FV_TRADE_PROVIDER:mock}   # mock | rest
     base-url: ${FV_TRADE_URL:http://localhost:9999}
