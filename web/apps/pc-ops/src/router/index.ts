@@ -9,7 +9,9 @@ const routes: RouteRecordRaw[] = [
     children: [
       { path: 'overview', component: () => import('@/views/Overview.vue'), meta: { title: '运营概览' } },
       { path: 'applications', component: () => import('@/views/Applications.vue'), meta: { title: '开通申请' } },
-      { path: 'tenants', component: () => import('@/views/Tenants.vue'), meta: { title: '租户管理' } }
+      { path: 'tenants', component: () => import('@/views/Tenants.vue'), meta: { title: '租户管理' } },
+      { path: 'conversion', component: () => import('@/views/Conversion.vue'), meta: { title: '引流转化' } },
+      { path: 'quote', component: () => import('@/views/Quote.vue'), meta: { title: '配置报价' } }
     ]
   }
 ]

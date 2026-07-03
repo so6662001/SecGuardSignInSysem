@@ -29,13 +29,12 @@ const pending = ref(0)
 const apps = ref<any[]>([])
 
 onMounted(async () => {
-  const t = await request.get('/ops/tenants', { params: { page: 1, size: 100 } })
-  const list = t.list || []
-  tenantTotal.value = t.total || list.length
-  trialCount.value = list.filter((x: any) => x.status === 1).length
-  mrr.value = list.reduce((s: number, x: any) => s + (x.status === 2 || x.status === 3 ? (x.siteCount || 1) * 60 : 0), 0)
+  const o = await request.get('/ops/overview')
+  tenantTotal.value = o.tenantTotal || 0
+  trialCount.value = o.trial || 0
+  mrr.value = o.mrr || 0
+  pending.value = o.pending || 0
   const a = await request.get('/ops/applications', { params: { status: 1, page: 1, size: 20 } })
   apps.value = a.list || []
-  pending.value = a.total || 0
 })
 </script>

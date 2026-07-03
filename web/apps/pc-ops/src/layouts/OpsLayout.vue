@@ -6,6 +6,8 @@
         <el-menu-item index="/overview">运营概览</el-menu-item>
         <el-menu-item index="/applications">开通申请</el-menu-item>
         <el-menu-item index="/tenants">租户管理</el-menu-item>
+        <el-menu-item index="/conversion">引流转化</el-menu-item>
+        <el-menu-item index="/quote">配置报价</el-menu-item>
       </el-menu>
     </el-aside>
     <el-container>

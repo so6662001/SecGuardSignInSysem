@@ -5,9 +5,13 @@ import cn.faccess.common.tenant.TenantContext;
 import cn.faccess.common.web.PageResult;
 import cn.faccess.ops.dto.ApplyReq;
 import cn.faccess.ops.entity.BizPlan;
+import cn.faccess.ops.entity.OpsConversion;
+import cn.faccess.ops.entity.OpsLead;
 import cn.faccess.ops.entity.TenantApplication;
 import cn.faccess.ops.entity.TenantSubscription;
 import cn.faccess.ops.mapper.BizPlanMapper;
+import cn.faccess.ops.mapper.OpsConversionMapper;
+import cn.faccess.ops.mapper.OpsLeadMapper;
 import cn.faccess.ops.mapper.TenantApplicationMapper;
 import cn.faccess.ops.mapper.TenantSubscriptionMapper;
 import cn.faccess.system.service.TenantProvisionService;
@@ -39,15 +43,20 @@ public class ApplicationService {
     private final BizPlanMapper planMapper;
     private final TenantProvisionService provisionService;
     private final PasswordEncoder passwordEncoder;
+    private final OpsConversionMapper conversionMapper;
+    private final OpsLeadMapper leadMapper;
 
     public ApplicationService(TenantApplicationMapper applicationMapper, TenantSubscriptionMapper subscriptionMapper,
                               BizPlanMapper planMapper, TenantProvisionService provisionService,
-                              PasswordEncoder passwordEncoder) {
+                              PasswordEncoder passwordEncoder, OpsConversionMapper conversionMapper,
+                              OpsLeadMapper leadMapper) {
         this.applicationMapper = applicationMapper;
         this.subscriptionMapper = subscriptionMapper;
         this.planMapper = planMapper;
         this.provisionService = provisionService;
         this.passwordEncoder = passwordEncoder;
+        this.conversionMapper = conversionMapper;
+        this.leadMapper = leadMapper;
     }
 
     /** 公开：企业提交开通申请。 */
@@ -138,6 +147,22 @@ public class ApplicationService {
         app.setAuditBy(TenantContext.getUserId());
         app.setAuditRemark(remark);
         applicationMapper.updateById(app);
+
+        // 引流转化：记录注册事件 + 生成高潜线索
+        boolean steel = plan != null && plan.getSteelEnabled() != null && plan.getSteelEnabled() == 1;
+        OpsConversion conv = new OpsConversion();
+        conv.setTenantId(tenantId);
+        conv.setStage("REGISTER");
+        conversionMapper.insert(conv);
+
+        OpsLead lead = new OpsLead();
+        lead.setTenantId(tenantId);
+        lead.setCompanyName(app.getCompanyName());
+        lead.setSignalTag(steel ? "高频物流" : "供应链活跃");
+        lead.setRecommend(steel ? "钢智汇交易平台" : "生产/管理软件");
+        lead.setIntentScore(steel ? 90 : 70);
+        lead.setStatus(1);
+        leadMapper.insert(lead);
 
         Map<String, Object> res = new HashMap<>();
         res.put("tenantId", tenantId);
