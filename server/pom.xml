@@ -33,6 +33,7 @@
     <module>fv-system</module>
     <module>fv-visitor</module>
     <module>fv-steel</module>
+    <module>fv-device</module>
     <module>fv-ops</module>
     <module>fv-bootstrap</module>
   </modules>
@@ -87,6 +88,11 @@
       <dependency>
         <groupId>cn.faccess</groupId>
         <artifactId>fv-steel</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>cn.faccess</groupId>
+        <artifactId>fv-device</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>

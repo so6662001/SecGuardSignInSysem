@@ -30,6 +30,10 @@
       <groupId>cn.faccess</groupId>
       <artifactId>fv-steel</artifactId>
     </dependency>
+    <dependency>
+      <groupId>cn.faccess</groupId>
+      <artifactId>fv-device</artifactId>
+    </dependency>
 
     <dependency>
       <groupId>com.mysql</groupId>
