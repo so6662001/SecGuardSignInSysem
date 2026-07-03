@@ -143,6 +143,9 @@ public class QuoteService {
     }
 
     private String genNo() {
-        return "Q" + LocalDate.now().format(DateTimeFormatter.BASIC_ISO_DATE) + "-" + String.format("%04d", SEQ.incrementAndGet());
+        // 结合毫秒时间戳后缀，避免应用重启后序号从 0 开始导致的重复
+        long ts = System.currentTimeMillis() % 100000;
+        return "Q" + LocalDate.now().format(DateTimeFormatter.BASIC_ISO_DATE)
+                + "-" + String.format("%04d", SEQ.incrementAndGet()) + String.format("%05d", ts);
     }
 }

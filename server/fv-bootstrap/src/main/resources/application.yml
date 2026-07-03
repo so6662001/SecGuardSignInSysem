@@ -40,6 +40,26 @@ fv:
   dev:
     admin-username: ${FV_ADMIN_USER:admin}
     admin-password: ${FV_ADMIN_PWD:admin123}
+  # 免登录审批短链基础域名
+  public-base-url: ${FV_PUBLIC_BASE_URL:http://localhost:8080}
+  # ===== 第三方接入切换（默认 mock，无需真实厂商即可运行）=====
+  channel:
+    sms: ${FV_SMS_PROVIDER:mock}          # mock | aliyun
+    sms-config:
+      access-key-id: ${FV_SMS_AK:}
+      access-key-secret: ${FV_SMS_SK:}
+      sign-name: 厂智访客
+      template-code: ${FV_SMS_TPL:}
+  trade:
+    provider: ${FV_TRADE_PROVIDER:mock}   # mock | rest
+    base-url: ${FV_TRADE_URL:http://localhost:9999}
+    api-key: ${FV_TRADE_KEY:}
+  device:
+    offline-seconds: 120
+    lpr-vendor: ${FV_LPR_VENDOR:mock}     # mock | hik | dahua
+    face-vendor: ${FV_FACE_VENDOR:mock}
+  approval:
+    timeout-seconds: ${FV_APPROVAL_TIMEOUT:180}
 
 # Knife4j / OpenAPI
 knife4j:

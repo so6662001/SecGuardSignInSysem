@@ -2,6 +2,7 @@ package cn.faccess.notify.channel;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
@@ -26,7 +27,9 @@ public class MockChannels {
         public String send(String target, String title, String content) { return MockChannels.send("PUSH", target, title, content); }
     }
 
+    /** 短信 Mock：默认启用；配置 fv.channel.sms=aliyun 时切换为阿里云实现。 */
     @Component
+    @ConditionalOnProperty(name = "fv.channel.sms", havingValue = "mock", matchIfMissing = true)
     public static class SmsChannel implements NotifyChannel {
         public String code() { return "SMS"; }
         public String send(String target, String title, String content) { return MockChannels.send("SMS", target, title, content); }
