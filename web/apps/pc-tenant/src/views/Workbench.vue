@@ -10,12 +10,7 @@
     <el-row :gutter="18" style="margin-top:18px">
       <el-col :span="14">
         <el-card shadow="never" header="近 7 日到访趋势">
-          <div class="bars">
-            <div v-for="t in trend" :key="t.date" class="bar-col">
-              <div class="bar" :style="{ height: barHeight(t.count) }"></div>
-              <div class="bx">{{ t.date.slice(5) }}</div>
-            </div>
-          </div>
+          <Chart :option="trendOption" height="260px" />
         </el-card>
       </el-col>
       <el-col :span="10">
@@ -36,15 +31,22 @@
 <script setup lang="ts">
 import { onMounted, ref, computed } from 'vue'
 import request from '@/api/request'
+import Chart from '@/components/Chart.vue'
 
 const overview = ref<any>({})
 const trend = ref<any[]>([])
 const deviceCount = ref(0)
 
-const maxCount = computed(() => Math.max(1, ...trend.value.map((t) => t.count)))
-function barHeight(c: number) {
-  return Math.round((c / maxCount.value) * 100) + '%'
-}
+const trendOption = computed(() => ({
+  tooltip: { trigger: 'axis' },
+  grid: { left: 40, right: 20, top: 20, bottom: 30 },
+  xAxis: { type: 'category', data: trend.value.map((t) => t.date.slice(5)) },
+  yAxis: { type: 'value' },
+  series: [{
+    type: 'bar', data: trend.value.map((t) => t.count), barWidth: '45%',
+    itemStyle: { color: '#2f6bed', borderRadius: [6, 6, 0, 0] }
+  }]
+}))
 
 onMounted(async () => {
   try { overview.value = await request.get('/tenant/dashboard/overview') } catch {}

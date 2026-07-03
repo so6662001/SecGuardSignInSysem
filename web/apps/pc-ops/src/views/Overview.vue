@@ -6,6 +6,10 @@
       <el-col :span="6"><div class="stat-card"><div class="num" style="color:#22b07d">￥{{ mrr }}</div><div class="lbl">月度经常性收入(估)</div></div></el-col>
       <el-col :span="6"><div class="stat-card"><div class="num" style="color:#2f6bed">{{ pending }}</div><div class="lbl">待审核开通申请</div></div></el-col>
     </el-row>
+    <el-card shadow="never" style="margin-top:18px" header="近 6 月收入趋势（MRR）">
+      <Chart :option="revenueOption" height="240px" />
+    </el-card>
+
     <el-card shadow="never" style="margin-top:18px" header="待审核开通申请">
       <el-table :data="apps" empty-text="暂无待审申请">
         <el-table-column prop="companyName" label="企业" />
@@ -19,14 +23,27 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, computed } from 'vue'
 import request from '@/api/request'
+import Chart from '@/components/Chart.vue'
 
 const tenantTotal = ref(0)
 const trialCount = ref(0)
 const mrr = ref(0)
 const pending = ref(0)
 const apps = ref<any[]>([])
+const revenue = ref<any[]>([])
+
+const revenueOption = computed(() => ({
+  tooltip: { trigger: 'axis' },
+  grid: { left: 50, right: 20, top: 20, bottom: 30 },
+  xAxis: { type: 'category', data: revenue.value.map((r) => r.month) },
+  yAxis: { type: 'value' },
+  series: [{
+    type: 'line', smooth: true, data: revenue.value.map((r) => r.revenue),
+    areaStyle: { color: 'rgba(124,86,224,0.15)' }, itemStyle: { color: '#7c56e0' }
+  }]
+}))
 
 onMounted(async () => {
   const o = await request.get('/ops/overview')
@@ -36,5 +53,6 @@ onMounted(async () => {
   pending.value = o.pending || 0
   const a = await request.get('/ops/applications', { params: { status: 1, page: 1, size: 20 } })
   apps.value = a.list || []
+  revenue.value = await request.get('/ops/revenue-trend')
 })
 </script>
