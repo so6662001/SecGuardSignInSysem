@@ -22,7 +22,7 @@
           <el-table-column prop="reason" label="事由" />
           <el-table-column prop="hostName" label="接待人" />
           <el-table-column prop="inviteCode" label="邀请码" />
-          <el-table-column label="状态"><template #default="{ row }"><el-tag :type="row.status==='PENDING'?'warning':row.status==='ARRIVED'?'success':'info'">{{ row.status }}</el-tag></template></el-table-column>
+          <el-table-column label="状态"><template #default="{ row }"><span class="fv-badge" :class="row.status==='PENDING'?'orange':row.status==='ARRIVED'?'green':'gray'">{{ statusText(row.status) }}</span></template></el-table-column>
           <el-table-column label="操作" align="right">
             <template #default="{ row }">
               <el-button size="small" @click="resend(row)">重发</el-button>
@@ -44,6 +44,7 @@ const loading = ref(false)
 const list = ref<any[]>([])
 const last = ref<any>(null)
 const form = reactive<any>({ visitorName: '', visitorMobile: '', company: '', reason: '洽谈业务', hostName: '', visitDate: '' })
+function statusText(s: string) { return ({ PENDING: '待到访', ARRIVED: '已到访', EXPIRED: '已过期', CANCELLED: '已取消' } as any)[s] || s }
 
 async function submit() {
   if (!form.visitorName || !form.visitorMobile) { ElMessage.warning('请填写访客姓名与手机'); return }

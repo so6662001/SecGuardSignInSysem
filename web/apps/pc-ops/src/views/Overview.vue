@@ -40,7 +40,7 @@ const revenueOption = computed(() => ({
   xAxis: { type: 'category', data: revenue.value.map((r) => r.month) },
   yAxis: { type: 'value' },
   series: [{
-    type: 'line', smooth: true, data: revenue.value.map((r) => r.revenue),
+    type: 'line', smooth: true, data: revenue.value.map((r) => Number(r.revenue)),
     areaStyle: { color: 'rgba(124,86,224,0.15)' }, itemStyle: { color: '#7c56e0' }
   }]
 }))

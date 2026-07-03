@@ -45,7 +45,7 @@ const trendOption = computed(() => ({
   xAxis: { type: 'category', data: trend.value.map((t) => t.date.slice(5)) },
   yAxis: { type: 'value' },
   series: [{
-    type: 'bar', data: trend.value.map((t) => t.count), barWidth: '45%',
+    type: 'bar', data: trend.value.map((t) => Number(t.count)), barWidth: '45%',
     itemStyle: { color: '#2f6bed', borderRadius: [6, 6, 0, 0] }
   }]
 }))
