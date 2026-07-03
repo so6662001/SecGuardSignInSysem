@@ -1,0 +1,10 @@
+{
+  "name": "faccess-web",
+  "private": true,
+  "version": "1.0.0",
+  "description": "厂智访客 前端 Monorepo（pc-tenant 租户端 / pc-ops 运营端 / mobile 移动端）",
+  "scripts": {
+    "dev:tenant": "pnpm --filter pc-tenant dev",
+    "build:tenant": "pnpm --filter pc-tenant build"
+  }
+}
