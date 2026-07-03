@@ -1,0 +1,70 @@
+version: "3.8"
+
+# 厂智访客 · 全栈一键编排（中间件 + 后端 + 前端Nginx）
+# 使用：docker compose up -d --build
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: fv-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: faccess123
+      MYSQL_DATABASE: faccess
+      TZ: Asia/Shanghai
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    ports: ["3306:3306"]
+    volumes: ["fv-mysql:/var/lib/mysql"]
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-pfaccess123"]
+      interval: 10s
+      timeout: 5s
+      retries: 15
+
+  redis:
+    image: redis:7
+    container_name: fv-redis
+    ports: ["6379:6379"]
+
+  rabbitmq:
+    image: rabbitmq:3.13-management
+    container_name: fv-rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: faccess
+      RABBITMQ_DEFAULT_PASS: faccess123
+    ports: ["5672:5672", "15672:15672"]
+
+  minio:
+    image: minio/minio:latest
+    container_name: fv-minio
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: faccess
+      MINIO_ROOT_PASSWORD: faccess123
+    ports: ["9000:9000", "9001:9001"]
+    volumes: ["fv-minio:/data"]
+
+  fv-server:
+    build: ./server
+    container_name: fv-server
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    environment:
+      FV_DB_URL: jdbc:mysql://mysql:3306/faccess?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&useSSL=false
+      FV_DB_USER: root
+      FV_DB_PASSWORD: faccess123
+      FV_REDIS_HOST: redis
+      FV_JWT_SECRET: faccess-prod-secret-please-change-0001-0002-0003
+    ports: ["8080:8080"]
+
+  web:
+    build: ./web
+    container_name: fv-web
+    depends_on:
+      - fv-server
+    ports: ["80:80"]
+
+volumes:
+  fv-mysql:
+  fv-minio:
