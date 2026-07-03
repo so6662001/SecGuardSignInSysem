@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>cn.faccess</groupId>
+    <artifactId>fv-parent</artifactId>
+    <version>1.0.0</version>
+  </parent>
+  <artifactId>fv-notify</artifactId>
+  <name>厂智访客 · 通知提醒引擎</name>
+  <description>多渠道通知（系统推送/短信/语音/微信）+ 模板 + 发送日志</description>
+  <dependencies>
+    <dependency>
+      <groupId>cn.faccess</groupId>
+      <artifactId>fv-common</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <optional>true</optional>
+    </dependency>
+  </dependencies>
+</project>
