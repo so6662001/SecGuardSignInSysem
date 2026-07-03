@@ -1,5 +1,8 @@
 package cn.faccess;
 
+import cn.faccess.visitor.entity.VisitApproval;
+import cn.faccess.visitor.mapper.VisitApprovalMapper;
+import cn.faccess.visitor.schedule.EscalationScheduler;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.MethodOrderer;
@@ -12,6 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
+import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
@@ -34,6 +38,10 @@ class FlowIntegrationTest {
     MockMvc mvc;
     @Autowired
     ObjectMapper om;
+    @Autowired
+    EscalationScheduler escalationScheduler;
+    @Autowired
+    VisitApprovalMapper approvalMapper;
 
     static String opsToken;
     static String tenantToken;
@@ -59,14 +67,21 @@ class FlowIntegrationTest {
         if (body != null) req = req.content(body);
         if (token != null) req = req.header("Authorization", "Bearer " + token);
         MvcResult res = mvc.perform(req).andExpect(status().isOk()).andReturn();
-        return om.readTree(res.getResponse().getContentAsString());
+        return om.readTree(res.getResponse().getContentAsString(java.nio.charset.StandardCharsets.UTF_8));
     }
 
     private JsonNode callGet(String url, String token) throws Exception {
         var req = get(url);
         if (token != null) req = req.header("Authorization", "Bearer " + token);
         MvcResult res = mvc.perform(req).andExpect(status().isOk()).andReturn();
-        return om.readTree(res.getResponse().getContentAsString());
+        return om.readTree(res.getResponse().getContentAsString(java.nio.charset.StandardCharsets.UTF_8));
+    }
+
+    /** 不校验 200 的原始请求，返回 HTTP 状态码，用于鉴权分支断言。 */
+    private int statusOfGet(String url, String token) throws Exception {
+        var req = get(url);
+        if (token != null) req = req.header("Authorization", "Bearer " + token);
+        return mvc.perform(req).andReturn().getResponse().getStatus();
     }
 
     @Test @Order(1)
@@ -148,5 +163,76 @@ class FlowIntegrationTest {
         assertTrue(funnel.has("REGISTER"));
         JsonNode q = callPost("/api/ops/quotes", "{\"planCode\":\"STANDARD\",\"siteCount\":2,\"addons\":[\"OCR\"],\"hardware\":[]}", opsToken);
         assertEquals(219.0, q.get("data").get("monthlyTotal").asDouble(), 0.001);
+    }
+
+    // ==================== 分支：参数校验 / 鉴权 / 业务异常 / 超时升级 ====================
+
+    /** 参数校验：缺少必填「访客姓名」→ code=400 且返回具体提示。 */
+    @Test @Order(10)
+    void validationError() throws Exception {
+        JsonNode d = callPost("/api/tenant/visits",
+                "{\"visitorMobile\":\"13700000009\",\"reason\":\"洽谈\",\"hostName\":\"王工\"}", tenantToken);
+        assertEquals(400, d.get("code").asInt());
+        assertTrue(d.get("message").asText().contains("访客姓名"), "应提示访客姓名必填");
+    }
+
+    /** 鉴权：无 token 访问租户接口 → HTTP 401。 */
+    @Test @Order(11)
+    void authRequired() throws Exception {
+        assertEquals(401, statusOfGet("/api/tenant/visits/onsite", null));
+        assertEquals(401, statusOfGet("/api/tenant/visits/onsite", "invalid.jwt.token"));
+    }
+
+    /** 越权：租户 token 访问运营接口 → HTTP 403（方法级 hasRole 校验）。 */
+    @Test @Order(12)
+    void crossRoleForbidden() throws Exception {
+        assertEquals(403, statusOfGet("/api/ops/applications?status=1", tenantToken));
+    }
+
+    /** 业务异常：重复开通已开通的申请 → code!=0，提示已开通。 */
+    @Test @Order(13)
+    void bizErrorReapprove() throws Exception {
+        JsonNode d = callPost("/api/ops/applications/" + appId + "/approve", "{\"domain\":\"" + DOMAIN + "x\"}", opsToken);
+        assertNotEquals(0, d.get("code").asInt());
+        assertTrue(d.get("message").asText().contains("已开通"));
+    }
+
+    /** 业务异常：审批不存在的记录 → code=404。 */
+    @Test @Order(14)
+    void bizErrorApprovalNotFound() throws Exception {
+        JsonNode d = callPost("/api/tenant/approvals/99999999/decision", "{\"approve\":true}", tenantToken);
+        assertNotEquals(0, d.get("code").asInt());
+    }
+
+    /** 超时升级：新建待审批 → 将超时阈值设为 0 触发扫描 → 审批状态变为 ESCALATED 并追加轨迹。 */
+    @Test @Order(15)
+    void timeoutEscalation() throws Exception {
+        JsonNode c = callPost("/api/tenant/visits",
+                "{\"visitorName\":\"超时访客\",\"visitorMobile\":\"13700000010\",\"company\":\"顺丰\",\"reason\":\"洽谈业务\",\"hostName\":\"王工\"}", tenantToken);
+        long newRecordId = c.get("data").get("id").asLong();
+
+        JsonNode pending = callGet("/api/tenant/approvals/pending", tenantToken).get("data");
+        long targetApprovalId = -1;
+        for (JsonNode n : pending) {
+            if (n.has("recordId") && n.get("recordId").asLong() == newRecordId) {
+                targetApprovalId = n.get("id").asLong();
+                break;
+            }
+        }
+        assertTrue(targetApprovalId > 0, "应能在待响应列表中找到新审批");
+
+        Object prev = ReflectionTestUtils.getField(escalationScheduler, "timeoutSeconds");
+        ReflectionTestUtils.setField(escalationScheduler, "timeoutSeconds", 0);
+        try {
+            escalationScheduler.scan();
+        } finally {
+            ReflectionTestUtils.setField(escalationScheduler, "timeoutSeconds", prev);
+        }
+
+        VisitApproval after = approvalMapper.selectById(targetApprovalId);
+        assertNotNull(after);
+        assertEquals("ESCALATED", after.getStatus(), "超时后审批应升级为 ESCALATED");
+        assertNotNull(after.getTrace());
+        assertTrue(after.getTrace().contains("升级"), "升级轨迹应被记录");
     }
 }
