@@ -36,6 +36,7 @@ public class MockChannels {
     }
 
     @Component
+    @ConditionalOnProperty(name = "fv.channel.voice", havingValue = "mock", matchIfMissing = true)
     public static class VoiceChannel implements NotifyChannel {
         public String code() { return "VOICE"; }
         public String send(String target, String title, String content) { return MockChannels.send("VOICE", target, title, content); }

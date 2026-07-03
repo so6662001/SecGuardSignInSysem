@@ -56,14 +56,30 @@ fv:
       app-id: ${FV_WX_APPID:}
       app-secret: ${FV_WX_SECRET:}
       template-id: ${FV_WX_TPL:}
+    voice: ${FV_VOICE_PROVIDER:mock}      # mock | aliyun
+    voice-config:
+      access-key-id: ${FV_VOICE_AK:}
+      access-key-secret: ${FV_VOICE_SK:}
+      tts-code: ${FV_VOICE_TTS:}
   trade:
     provider: ${FV_TRADE_PROVIDER:mock}   # mock | rest
     base-url: ${FV_TRADE_URL:http://localhost:9999}
     api-key: ${FV_TRADE_KEY:}
   device:
     offline-seconds: 120
-    lpr-vendor: ${FV_LPR_VENDOR:mock}     # mock | hik | dahua
-    face-vendor: ${FV_FACE_VENDOR:mock}
+    lpr: ${FV_LPR_PROVIDER:mock}          # mock | hik
+    lpr-config:
+      base-url: ${FV_HIK_URL:http://192.168.1.64}
+      username: ${FV_HIK_USER:admin}
+      password: ${FV_HIK_PWD:}
+    ocr: ${FV_OCR_PROVIDER:mock}          # mock | aliyun
+    ocr-config:
+      access-key-id: ${FV_OCR_AK:}
+      access-key-secret: ${FV_OCR_SK:}
+    esign: ${FV_ESIGN_PROVIDER:mock}      # mock | fdd
+    esign-config:
+      app-id: ${FV_FDD_APPID:}
+      app-secret: ${FV_FDD_SECRET:}
   approval:
     timeout-seconds: ${FV_APPROVAL_TIMEOUT:180}
 

@@ -2,6 +2,7 @@ package cn.faccess.device.adapter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
@@ -41,6 +42,7 @@ public class DeviceAdapters {
     }
 
     @Component
+    @ConditionalOnProperty(name = "fv.device.lpr", havingValue = "mock", matchIfMissing = true)
     public static class MockLprGate implements LprGateAdapter {
         public void openGate(Long gateId, String plate) {
             log.info("[车牌道闸-MOCK] 门岗 {} 识别 {} · 抬杆放行", gateId, plate);
@@ -64,6 +66,7 @@ public class DeviceAdapters {
     }
 
     @Component
+    @ConditionalOnProperty(name = "fv.device.ocr", havingValue = "mock", matchIfMissing = true)
     public static class MockOcr implements OcrAdapter {
         public Map<String, String> recognizeIdCard(String imageUrl) {
             log.info("[OCR-MOCK] 识别身份证 {}", imageUrl);
@@ -72,6 +75,7 @@ public class DeviceAdapters {
     }
 
     @Component
+    @ConditionalOnProperty(name = "fv.device.esign", havingValue = "mock", matchIfMissing = true)
     public static class MockESign implements ESignAdapter {
         public String createSign(String subject, String signerName, String signerMobile) {
             String url = "https://esign.local/sign/" + UUID.randomUUID().toString().substring(0, 10);

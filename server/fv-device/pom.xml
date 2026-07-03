@@ -21,5 +21,11 @@
       <artifactId>lombok</artifactId>
       <optional>true</optional>
     </dependency>
+    <!-- 阿里云 OCR SDK（fv.device.ocr=aliyun 时使用） -->
+    <dependency>
+      <groupId>com.aliyun</groupId>
+      <artifactId>ocr_api20210707</artifactId>
+      <version>3.1.3</version>
+    </dependency>
   </dependencies>
 </project>
